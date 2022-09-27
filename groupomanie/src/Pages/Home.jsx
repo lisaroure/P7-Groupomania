@@ -80,7 +80,6 @@ export default function Home() {
             Authorization: 'Bearer' + token,
         },
         )
-
             .then((res) => res.json())
             .then((data) => {
                 setDataPost(data)

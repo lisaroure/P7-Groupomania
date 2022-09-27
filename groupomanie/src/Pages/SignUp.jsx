@@ -28,10 +28,10 @@ export default function Signup() {
             .then((res) => res.json())
             .then((data) => {
                 if (data.error) {
-                    console.log(data.error)
-                    setErrorTxt('Email ou mot de passe déjà enregistré'
+                    setErrorTxt('Email ou mot de passe existant'
                     )
                 } else {
+                    console.log(data);
                     toLogin(userInfo)
                 }
             })
@@ -49,7 +49,6 @@ export default function Signup() {
             .then((res) => res.json())
             .then((data) => {
                 if (data.error) {
-                    console.log(data.error)
                 } else {
                     if (data.adminId) localStorage.setItem('adminId', data.adminId)
                     if (data.userId) localStorage.setItem('userId', data.userId)
@@ -69,8 +68,6 @@ export default function Signup() {
                         <input
                             type="text"
                             name="pseudo"
-                            minLength={5}
-                            maxLength={30}
                             placeholder="pseudo"
                             value={pseudo}
                             onChange={(e) => {
@@ -98,7 +95,6 @@ export default function Signup() {
                     <label>
                         <input
                             type="password"
-                            minLength={5}
                             placeholder="mot de passe"
                             value={password}
                             onChange={(e) => {
