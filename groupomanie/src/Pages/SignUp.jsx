@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
-export default function SignUp() {
+export default function Signup() {
     const [pseudo, setPseudo] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -17,6 +17,7 @@ export default function SignUp() {
             password: password,
         }
 
+        //Utilisation de fetch pour faire appel à l'API lors de l'inscription
         fetch('http://localhost:3000/api/user/signup', {
             method: 'POST',
             headers: {
@@ -31,14 +32,13 @@ export default function SignUp() {
                     setErrorTxt('Email ou mot de passe déjà enregistré'
                     )
                 } else {
-                    console.log(data)
-                    log(userInfo)
+                    toLogin(userInfo)
                 }
             })
             .catch((err) => console.log(err))
     }
 
-    function log(userInfo) {
+    function toLogin(userInfo) {
         fetch('http://localhost:3000/api/user/login', {
             method: 'POST',
             headers: {
@@ -69,8 +69,8 @@ export default function SignUp() {
                         <input
                             type="text"
                             name="pseudo"
-                            minLength={4}
-                            maxLength={20}
+                            minLength={5}
+                            maxLength={30}
                             placeholder="pseudo"
                             value={pseudo}
                             onChange={(e) => {

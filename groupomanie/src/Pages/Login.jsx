@@ -69,7 +69,7 @@ export default function Login() {
                     </label>
                     <input type="submit" value="Se connecter" />
                 </form>
-                <error>{error}</error>
+                <div>{error}</div>
                 <Link to="/signup">Créer un compte</Link>
             </div>
         </div>
