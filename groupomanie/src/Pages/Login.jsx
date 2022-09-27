@@ -57,8 +57,7 @@ export default function Login() {
                     </label>
                     <label>
                         <input
-                            type="password"
-                            minLength={5}
+                            type="current-password"
                             placeholder="mot de passe"
                             value={password}
                             onChange={(e) => {

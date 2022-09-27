@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../components/AppContext';
@@ -23,7 +24,7 @@ export default function Home() {
         if (userId && token) callApiUser(token, userId)
         if (adminId && token) callApiAdmin(token, adminId)
         if (!token) return
-    }, [token, userId, adminId])
+    }, [token, userId, adminId, callApiUser, callApiAdmin])
 
     useEffect(() => {
         if (!token) return
