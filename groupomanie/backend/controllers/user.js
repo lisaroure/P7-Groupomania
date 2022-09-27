@@ -5,7 +5,7 @@ const AdminMdl = require('../models/Admin');
 
 const Admin = {
     pseudo: "Admin",
-    email: "test@admin.mail",
+    email: "test@admin.fr",
     password: "mdpadmin"
 }
 
@@ -19,12 +19,12 @@ exports.signup = (req, res) => {
                     password: hash
                 });
                 admin.save()
-                    .then(() => res.status(201).json({ message: 'Admin créé !' }))
-                    .catch(error => res.status(400).json({ error }));
+                    .then(() => res.status(201).json({ message: 'Admin created' }))
+                    .catch(err => res.status(400).json({ err }));
             })
-            .catch(error => {
-                console.log(error)
-                res.status(400).json({ error })
+            .catch(err => {
+                console.log(err)
+                res.status(400).json({ err })
             });
     } else {
         bcrypt.hash(req.body.password, 10)
@@ -36,8 +36,8 @@ exports.signup = (req, res) => {
                     password: hash
                 });
                 user.save()
-                    .then(() => res.status(201).json({ message: 'Utilisateur crée !' }))
-                    .catch(error => res.status(500).json({ error }))
+                    .then(() => res.status(201).json({ message: 'User created' }))
+                    .catch(err => res.status(500).json({ err }))
             })
     }
 }
@@ -58,24 +58,24 @@ exports.login = (req, res) => {
                                 adminId: admin._id,
                                 token: jwt.sign(
                                     { adminId: admin._id },
-                                    process.env.TOKEN_SECRET,
+                                    process.env.RANDOM_TOKEN_SECRET,
                                     { expiresIn: '24h' })
                             })
                         }
                     })
-                    .catch(error => res.status(500).json({ error }))
+                    .catch(err => res.status(500).json({ err }))
             })
-            .catch(error => res.status(500).json({ error }))
+            .catch(err => res.status(500).json({ err }))
     } else {
         User.findOne({ email: req.body.email })
             .then(user => {
                 if (!user) {
-                    return res.status(401).json({ error: 'Identifiant ou mot de passe incorrect !' });
+                    return res.status(401).json({ error: 'Identifiant ou mot de passe incorrect' });
                 }
                 bcrypt.compare(req.body.password, user.password)
                     .then(valid => {
                         if (!valid) {
-                            return res.status(401).json({ error: 'Identifiant ou mot de passe incorrect !' });
+                            return res.status(401).json({ error: 'Identifiant ou mot de passe incorrect' });
                         } else {
                             res.status(200).json({
                                 userId: user._id,
@@ -86,22 +86,22 @@ exports.login = (req, res) => {
                             });
                         }
                     })
-                    .catch(error => res.status(500).json({ error }));
+                    .catch(err => res.status(500).json({ err }));
             })
-            .catch(error => res.status(500).json({ error }));
+            .catch(err => res.status(500).json({ err }));
     }
 };
 
 exports.getUser = (req, res) => {
     User.findOne({ _id: req.params.id }).select('pseudo')
         .then((user) => res.status(200).json(user))
-        .catch(error => res.status(400).json({ error }))
+        .catch(err => res.status(400).json({ err }))
 }
 
 exports.getAdmin = (req, res) => {
     if (req.params.id === req.auth.adminId) {
         AdminMdl.findOne({ _id: req.params.id }).select('pseudo')
             .then((admin) => res.status(200).json(admin))
-            .catch(error => res.status(400).json({ error }))
+            .catch(err => res.status(400).json({ err }))
     }
 }

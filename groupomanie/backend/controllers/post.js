@@ -22,7 +22,7 @@ exports.createPost = (req, res, next) => {
         imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     });
     post.save()
-        .then(() => res.status(201).json({ message: 'Objet enregistré !' }))
+        .then(() => res.status(201).json({ message: 'Object done' }))
         .catch(error => res.status(400).json({ error }));
 };
 // Modifier une post
@@ -33,7 +33,7 @@ exports.modifyPost = (req, res, next) => {
             imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
         } : { ...req.body }
     Post.updateOne({ _id: req.params.id }, { ...postObject, _id: req.params.id })
-        .then(() => res.status(200).json({ message: 'Post modifiée !' }))
+        .then(() => res.status(200).json({ message: 'Post modify' }))
         .catch(error => res.status(400).json({ error }))
 }
 // Supprimer une post
@@ -43,7 +43,7 @@ exports.deletePost = (req, res, next) => {
             const filename = post.imageUrl.split('/images/')[1]
             fs.unlink(`images/${filename}`, () => {
                 Post.deleteOne({ _id: req.params.id })
-                    .then(() => res.status(200).json({ message: 'Post supprimée !' }))
+                    .then(() => res.status(200).json({ message: 'Post deleted' }))
                     .catch(error => res.status(400).json({ error: error }))
             })
         })
@@ -53,13 +53,13 @@ exports.deletePost = (req, res, next) => {
 exports.likeOrNot = (req, res, next) => {
     if (req.body.like === 1) {
         Post.updateOne({ _id: req.params.id }, { $inc: { likes: req.body.like++ }, $push: { usersLiked: req.body.userId } })
-            .then((post) => res.status(200).json({ message: 'Like enrigistré !' }))
+            .then((post) => res.status(200).json({ message: 'Liked' }))
             .catch(error => res.status(400).json({ error }))
     }
     // Dislike utilisateur
     else if (req.body.like === -1) {
         Post.updateOne({ _id: req.params.id }, { $inc: { dislikes: (req.body.like++) * -1 }, $push: { usersDisliked: req.body.userId } })
-            .then((post) => res.status(200).json({ message: 'Dislike enregistré !' }))
+            .then((post) => res.status(200).json({ message: 'Disliked' }))
             .catch(error => res.status(400).json({ error }))
     } else {
         Post.findOne({ _id: req.params.id })
@@ -67,12 +67,12 @@ exports.likeOrNot = (req, res, next) => {
             .then(post => {
                 if (post.usersLiked.includes(req.body.userId)) {
                     Post.updateOne({ _id: req.params.id }, { $pull: { usersLiked: req.body.userId }, $inc: { likes: -1 } })
-                        .then((post) => { res.status(200).json({ message: 'Like annulé' }) })
+                        .then((post) => { res.status(200).json({ message: 'like cancelled' }) })
                         .catch(error => res.status(400).json({ error }))
                 }// Annuler le dislike
                 else if (post.usersDisliked.includes(req.body.userId)) {
                     Post.updateOne({ _id: req.params.id }, { $pull: { usersDisliked: req.body.userId }, $inc: { dislikes: -1 } })
-                        .then((post) => { res.status(200).json({ message: 'Dislike annulé' }) })
+                        .then((post) => { res.status(200).json({ message: 'Dislike cancelled' }) })
                         .catch(error => res.status(400).json({ error }))
                 }
             })
