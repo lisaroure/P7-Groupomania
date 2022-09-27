@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 export default function SignUp() {
@@ -110,7 +110,8 @@ export default function SignUp() {
 
                     <input type="submit" value="S'inscrire"></input>
                 </form>
-                <errorTxt>{errorTxt}</errorTxt>
+                <div>{errorTxt}</div>
+                <Link to="/">Se connecter</Link>
             </div>
         </div>
     )
