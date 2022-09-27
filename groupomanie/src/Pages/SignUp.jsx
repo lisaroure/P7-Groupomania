@@ -18,16 +18,18 @@ export default function Signup() {
         }
 
         //Utilisation de fetch pour faire appel à l'API lors de l'inscription
-        fetch('http://localhost:3000/api/user/signup', {
+        fetch('http://localhost:5000/api/user/signup', {
             method: 'POST',
             headers: {
+                'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(userInfo),
         })
             .then((res) => res.json())
             .then((data) => {
-                if (data.error) {
+                if (data.err) {
+                    console.log(data.err);
                     setErrorTxt('Email ou mot de passe existant'
                     )
                 } else {
@@ -39,7 +41,7 @@ export default function Signup() {
     }
 
     function toLogin(userInfo) {
-        fetch('http://localhost:3000/api/user/login', {
+        fetch('http://localhost:5000/api/user/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -48,7 +50,8 @@ export default function Signup() {
         })
             .then((res) => res.json())
             .then((data) => {
-                if (data.error) {
+                if (data.err) {
+                    console.log(data.err);
                 } else {
                     if (data.adminId) localStorage.setItem('adminId', data.adminId)
                     if (data.userId) localStorage.setItem('userId', data.userId)

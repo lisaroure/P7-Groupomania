@@ -10,6 +10,7 @@ const Admin = {
 }
 
 exports.signup = (req, res) => {
+    console.log('pas de ananas ici', req.body);
     if (req.body.pseudo === Admin.pseudo && req.body.email === Admin.email && req.body.password === Admin.password) {
         bcrypt.hash(req.body.password, 10)
             .then(hash => {
@@ -43,6 +44,7 @@ exports.signup = (req, res) => {
 }
 
 exports.login = (req, res) => {
+    console.log("login", req.body);
     if (req.body.email === Admin.email && req.body.password === Admin.password) {
         AdminMdl.findOne({ email: req.body.email })
             .then(admin => {
