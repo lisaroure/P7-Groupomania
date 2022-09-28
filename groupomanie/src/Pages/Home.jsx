@@ -37,7 +37,7 @@ export default function Home() {
 
     function callApiUser(token, userId) {
         setGetUser(true)
-        fetch(`http://localhost:5000/api/user/user`, {
+        fetch(`http://localhost:5000/api/user${userId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -53,6 +53,7 @@ export default function Home() {
                 console.log({ message: 'URL invalide.' });
             })
     }
+
     function callApiAdmin(token, adminId) {
         setGetUser(true)
         fetch(`http://localhost:5000/api/user/admin${adminId}`, {
@@ -104,7 +105,7 @@ export default function Home() {
                 </div>
             ) : (
                 <>
-                    {adminId ? <></> : <FormHome callApiPost={callApiPosts} />}
+                    {adminId ? <></> : <FormHome callApiPosts={callApiPosts} />}
                     <div className='cards-container'>
                         {dataPost.map((item, index) => (
                             <Card
@@ -116,7 +117,7 @@ export default function Home() {
                                 likers={item.likers}
                                 comments={item.comments}
                                 createdAt={item.createdAt}
-                                callApiPost={callApiPosts}
+                                callApiPosts={callApiPosts}
                             />
                         ))}
                     </div>
