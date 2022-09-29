@@ -20,7 +20,7 @@ export default function EditCommentPost(props) {
         data.append('image', picture)
         data.append('post', post)
 
-        fetch('http://localhost:3000/api/post/' + props.postId, {
+        fetch('http://localhost:5000/api/post/' + props.postId, {
             method: 'PUT',
             headers: {
                 Authorization: 'Bearer ' + token,

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import './styles/index.css';
 import Header from './components/Header';
 import Signup from './Pages/Signup';
@@ -11,15 +11,16 @@ import AppContextProvider from './components/AppContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter>
-    <AppContextProvider>
-      < Header />
-      <Routes>
-        <Route path='/signup' element={<Signup />} />
-        <Route path='/' element={<Login />} />
-        <Route path='/home' element={<Home />} />
-        <Route path='*' element={<Login />} />
-      </Routes>
-    </AppContextProvider>
-  </BrowserRouter>
+  <React.StrictMode>
+    <Router>
+      <AppContextProvider>
+        < Header />
+        <Routes>
+          <Route exact path='/signup' element={<Signup />} />
+          <Route exact path='/' element={<Login />} />
+          <Route exact path='/home' element={<Home />} />
+        </Routes>
+      </AppContextProvider>
+    </Router>
+  </React.StrictMode>
 );

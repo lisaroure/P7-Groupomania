@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-// regarder si le cookie est set import Cookies from 'js-cookie';
+// regarder si le cookie est set 
+import Cookies from 'js-cookie';
 
 export default function Login() {
     const [email, setEmail] = useState('')
@@ -25,16 +26,17 @@ export default function Login() {
             .then((res) => res.json())
             .then((data) => {
                 if (data.err) {
-                    console.log(data)
+                    console.log(data.err)
                     setError('Login ou mot de passe incorrect')
                 } else {
                     console.log(data)
                     if (data.adminId) localStorage.setItem('adminId', data.adminId)
                     if (data.userId) localStorage.setItem('userId', data.userId)
-                    // Cookies.set('token', data.token, { expire: 1, secure: true })
+                    Cookies.set('token', data.token, { expire: 1, secure: true })
                     nav('/home');
                 }
             })
+            .catch((err) => console.log(err))
     }
 
     return (
@@ -66,7 +68,9 @@ export default function Login() {
                             }}
                         />
                     </label>
-                    <input type="submit" value="Se connecter" />
+                    <label>
+                        <input type="submit" value="Se connecter" />
+                    </label>
                 </form>
                 <div>{error}</div>
                 <Link to="/signup">Créer un compte</Link>

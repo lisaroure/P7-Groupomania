@@ -56,7 +56,7 @@ export default function Signup() {
                     if (data.adminId) localStorage.setItem('adminId', data.adminId)
                     if (data.userId) localStorage.setItem('userId', data.userId)
                     Cookies.set('token', data.token, { expires: 1, secure: true })
-                    nav('/home')
+                    nav('/home');
                 }
             })
             .catch((err) => console.log(err))
@@ -106,8 +106,9 @@ export default function Signup() {
                             }}
                         />
                     </label>
-
-                    <input type="submit" value="S'inscrire"></input>
+                    <label>
+                        <input type="submit" value="S'inscrire"></input>
+                    </label>
                 </form>
                 <div>{errorTxt}</div>
                 <Link to="/">Se connecter</Link>

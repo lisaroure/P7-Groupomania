@@ -19,12 +19,14 @@ export default function Header() {
     //JSX
     return (
         <div className="header">
-            <img
-                src={logo}
-                alt='Logo de Groupomania'
-                width={50}
-                height={40}
-            />
+            <Link to='/home'>
+                <img
+                    src={logo}
+                    alt='Logo de Groupomania'
+                    width={150}
+                    height={140}
+                />
+            </Link>
             {
                 token && (
                     <div className="user-card">

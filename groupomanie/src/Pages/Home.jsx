@@ -37,7 +37,7 @@ export default function Home() {
 
     function callApiUser(token, userId) {
         setGetUser(true)
-        fetch(`http://localhost:5000/api/user${userId}`, {
+        fetch(`http://localhost:3000/api/user${userId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -56,7 +56,7 @@ export default function Home() {
 
     function callApiAdmin(token, adminId) {
         setGetUser(true)
-        fetch(`http://localhost:5000/api/user/admin${adminId}`, {
+        fetch(`http://localhost:3000/api/user/admin${adminId}`, {
             method: 'GET',
             headers: {
                 headers: {
@@ -77,7 +77,7 @@ export default function Home() {
 
     function callApiPosts(token) {
         setGetPost(true)
-        fetch(`http://localhost:5000/api/post`, {
+        fetch(`http://localhost:3000/api/post`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

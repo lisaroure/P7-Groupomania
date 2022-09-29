@@ -14,7 +14,7 @@ export default function FormHome(props) {
         data.append('image', picture)
         data.append('post', posts)
 
-        fetch('http://localhost:3000/api/post', {
+        fetch('http://localhost:5000/api/post', {
             method: 'POST',
             headers: {
                 Authorization: 'Bearer ' + token,
