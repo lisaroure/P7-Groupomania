@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import axios from "axios";
+import React, { useState, useEffect } from "react";
 import { UidContext } from "./utils/context";
 import Routes from "./Routes";
-import getUser from "./actions/user.actions";
+import { useDispatch } from "react-redux";
+import axios from "axios";
+import { getUser } from "./actions/user.actions";
 
 const App = () => {
     const [uid, setUid] = useState(null)
