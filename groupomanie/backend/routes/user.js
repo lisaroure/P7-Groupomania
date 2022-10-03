@@ -9,7 +9,7 @@ router.post('/signup', userCtrl.signup);
 router.post('/login', userCtrl.login);
 
 // User
-router.get('/user/:id', auth, userCtrl.getUser);
+router.get('/:id', auth, userCtrl.getUser);
 
 // Admin
 router.get('/admin/:id', auth, userCtrl.getAdmin);

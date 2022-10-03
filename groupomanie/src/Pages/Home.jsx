@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AppContext } from '../utils/context';
 import Cookies from 'js-cookie';
 import Card from '../components/Card';
-import NewPostForm from '../components/NewPostForm';
+import FormHome from '../components/NewPostForm';
 import logo from '../assets/logo.png'
 
 
@@ -49,9 +49,7 @@ export default function Home() {
                 setPseudoContext(data.pseudo)
                 setGetUser(false)
             })
-            .catch((err) => {
-                console.log(err);
-            })
+            .catch(err => (err))
     }
 
     function callApiAdmin(token, adminId) {
@@ -106,7 +104,7 @@ export default function Home() {
                 </div>
             ) : (
                 <>
-                    {adminId ? <></> : <NewPostForm callApiPosts={callApiPosts} />}
+                    {adminId ? <></> : <FormHome callApiPosts={callApiPosts} />}
                     <div className='cards-container'>
                         {dataPost.map((item, index) => (
                             <Card

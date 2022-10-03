@@ -27,16 +27,15 @@ export default function Header() {
                     height={140}
                 />
             </Link>
-            {
-                token && (
-                    <div className="user-card">
-                        <h3>Bienvenue {pseudoContext} !</h3>
-                        <Link to="/login" onClick={logout}>
-                            Déconnexion
-                        </Link>
-                    </div>
+            {token && (
+                <div className="user-card">
+                    <h3>Bienvenue {pseudoContext} !</h3>
+                    <Link to="/login" onClick={logout}>
+                        Déconnexion
+                    </Link>
+                </div>
 
-                )
+            )
             }
         </div>
     )

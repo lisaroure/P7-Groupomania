@@ -1,12 +1,47 @@
 import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
+import styled from 'styled-components';
 import deleteIcon from '../assets/trash.svg';
 import likeIcon from '../assets/heart-filled.svg';
 import unlikeIcon from '../assets/heart.svg';
-// import commentIcon from '../assets/comment.svg';
-// import CardComments from './CardComments';
 import EditCommentPost from './EditCommentPost';
 import { dateParser } from '../utils/Utils';
+
+// Composants styled
+
+const CardDiv = styled.div`
+
+`
+const SmallDiv = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: flex-between;
+`
+const ParaStyled = styled.p`
+font-size: 15px;
+font-weight: bold;
+`
+
+const AdminDiv = styled.div`
+display: flex;
+align-items: center;
+`
+const CardImage = styled.img`
+height: 80px;
+width: 80px;
+border-radius: 50%;
+`
+const Btn = styled.div`
+display: flex;
+flex-direction: wrap;
+`
+const LikeImg = styled.img`
+cursor: pointer;
+`
+const DeleteImg = styled.img`
+cursor: pointer;
+`
+// Component de l'app
 
 export default function Card(props) {
     const adminId = localStorage.getItem('adminId')
@@ -15,7 +50,6 @@ export default function Card(props) {
     const [pseudo, setPseudo] = useState('')
     const [manyLike, setManyLiked] = useState(props.likers.length)
     const [liked, setLiked] = useState(false)
-    // const [showComments, setShowComments] = useState(false)
 
 
     //like
@@ -102,55 +136,49 @@ export default function Card(props) {
     // JSX
 
     return (
-        <div className='cards-container'>
-            <img src={props.imageUrl} alt='Post pic' />
-            <div className='post-infos'>
-                <span>{dateParser(props.createdAt)}</span>
-                <h3>{pseudo}</h3>
-            </div>
-            <p>{props.posts}</p>
-            {adminId ? (
-                <></>
-            ) : (
-                <div className='card'>
-                    {!liked ? (
-                        <img
-                            onClick={() => like(userId, props.postId)}
-                            src={unlikeIcon}
-                            alt='Unliker un post'
-                            height={30}
-                            width={30}
-                        />
-                    ) : (
-                        <img
-                            onClick={() => unlike(userId, props.postId)}
-                            src={likeIcon}
-                            alt='Liker un post'
-                            height={30}
-                            width={30}
-                        />
-                    )}
-
-                    <p>{manyLike}</p>
+        <CardDiv>
+            <CardImage src={props.imageUrl} alt='Post pic' />
+            <SmallDiv>
+                <div>
+                    <ParaStyled>{dateParser(props.createdAt)}</ParaStyled>
+                    <h3>{pseudo}</h3>
                 </div>
-            )}
-            {/* <img
-                onClick={() => setShowComments(!showComments)}
-                src={commentIcon}
-                alt='Commenter'
-                height={30}
-                width={30}
-            /> */}
-
+                <p>{props.posts}</p>
+                {
+                    adminId ? (
+                        <AdminDiv></AdminDiv>
+                    ) : (
+                        <AdminDiv>
+                            {!liked ? (
+                                <LikeImg
+                                    onClick={() => like(userId, props.postId)}
+                                    src={unlikeIcon}
+                                    alt='Unliker un post'
+                                    height={30}
+                                    width={30}
+                                />
+                            ) : (
+                                <LikeImg
+                                    onClick={() => unlike(userId, props.postId)}
+                                    src={likeIcon}
+                                    alt='Liker un post'
+                                    height={30}
+                                    width={30}
+                                />
+                            )}
+                            <p>{manyLike}</p>
+                        </AdminDiv>
+                    )}
+            </SmallDiv>
             {adminId && (
-                <>
+                <Btn>
                     <EditCommentPost
                         post={props.posts}
                         imageUrl={props.imageUrl}
                         postId={props.postId}
                         callApiPosts={props.callApiPosts}
                     />
-                    <img
+                    <DeleteImg
                         src={deleteIcon}
                         alt="Supprimer"
                         height={30}
@@ -161,39 +189,30 @@ export default function Card(props) {
                             }
                         }}
                     />
-                </>
-            )
-            }
-            {props.posterId === userId && (
-                <>
-                    <div className='btn-container' />
-                    <EditCommentPost
-                        post={props.posts}
-                        imageUrl={props.imageUrl}
-                        postId={props.postId}
-                        callApiPosts={props.callApiPosts} /><img
-                        src={deleteIcon}
-                        alt='Supprimer'
-                        height={30}
-                        width={30}
-                        onClick={() => {
-                            if (window.confirm('La suppression de ce post sera définitive')) {
-                                deletePost(props.postId, token);
-                            }
-                        }}
-                    />
-                </>
-            )
-            }
-            {/* <div className='cards-container'>
-                {showComments && (
-                    <CardComments
-                        postId={props.postId}
-                        comments={props.comments}
-                        callApiPosts={props.callApiPosts}
-                    />
+                </Btn>
+            )}
+            {
+                props.posterId === userId && (
+                    <Btn>
+                        <EditCommentPost
+                            post={props.posts}
+                            imageUrl={props.imageUrl}
+                            postId={props.postId}
+                            callApiPosts={props.callApiPosts}
+                        />
+                        <DeleteImg
+                            src={deleteIcon}
+                            alt='Supprimer'
+                            height={30}
+                            width={30}
+                            onClick={() => {
+                                if (window.confirm('La suppression de ce post sera définitive')) {
+                                    deletePost(props.postId, token);
+                                }
+                            }}
+                        />
+                    </Btn>
                 )}
-            </div> */}
-        </div>
+        </CardDiv>
     )
 }

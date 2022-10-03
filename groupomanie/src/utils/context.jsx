@@ -2,7 +2,7 @@ import { useState, createContext } from 'react';
 
 export const AppContext = createContext();
 
-const AppContextProvider = (props) => {
+const PseudoProvider = (props) => {
     const [pseudoContext, setPseudoContext] = useState('')
 
     return (
@@ -12,4 +12,4 @@ const AppContextProvider = (props) => {
     );
 };
 
-export default AppContextProvider;
+export default PseudoProvider;
