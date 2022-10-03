@@ -3,9 +3,22 @@ const uniqueValidator = require('mongoose-unique-validator');
 const { isEmail } = require('validator');
 
 const adminSchema = new mongoose.Schema({
-    pseudo: { type: String, minlenght: 3, maxlength: 55, required: true, unique: true, trim: true },
-    email: { type: String, required: true, validate: [isEmail], lowercase: true, unique: true, trim: true },
-    password: { type: String, required: true },
+    pseudo: {
+        type: String,
+        unique: true,
+        required: true
+    },
+    email: {
+        type: String,
+        validate: [isEmail],
+        lowercase: true,
+        unique: true,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
 },
     {
         timestamps: true,

@@ -1,3 +1,4 @@
+//Node fs : permet la création et modification des fichiers
 const fs = require('fs');
 const Post = require('../models/Post');
 const User = require('../models/User');
@@ -12,7 +13,7 @@ exports.createPost = (req, res, next) => {
     });
     post.save()
         .then(() => { res.status(201).json({ message: 'post save' }) })
-        .catch(error => { res.status(400).json({ error }) })
+        .catch(error => { res.status(400).json({ error, message: 'Erreur creation post' }) })
 };
 // Modifier un post
 exports.modifyPost = (req, res) => {

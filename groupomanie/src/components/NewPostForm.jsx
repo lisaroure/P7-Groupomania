@@ -23,7 +23,7 @@ cursor: pointer;
 
 export default function FormHome(props) {
     const token = Cookies.get('token')
-    const [posts, setPosts] = useState('')
+    const [post, setPost] = useState('')
     const [picture, setPicture] = useState('')
 
     function onSubmitHandler(e) {
@@ -31,20 +31,17 @@ export default function FormHome(props) {
 
         const data = new FormData()
         data.append('image', picture)
-        data.append('post', posts)
+        data.append('post', post)
 
         fetch('http://localhost:3000/api/post', {
             method: 'POST',
-            headers: {
-                Authorization: 'Bearer ' + token,
-            },
             body: data,
         })
             .then((res) => res.json())
             .then((data) => {
                 console.log(data)
-                setPosts('')
-                props.callApiPosts(token)
+                setPost('')
+                props.callApiPost(token)
             })
             .catch((err) => (err))
     }
@@ -66,8 +63,8 @@ export default function FormHome(props) {
                     name='post'
                     maxLength={240}
                     placeholder='Ecrivez votre post ici'
-                    value={posts}
-                    onChange={(e) => setPosts(e.target.value)}
+                    value={post}
+                    onChange={(e) => setPost(e.target.value)}
                 ></TextArea>
             </label>
             <Btn>Envoyer</Btn>
