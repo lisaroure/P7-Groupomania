@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
-import { AppContext } from '../utils/context';
+import { UidContext } from '../utils/context';
 import logo from '../assets/logo.png'
 
 export default function Header() {
-    const { pseudoContext } = useContext(AppContext)
+    const { pseudoContext } = useContext(UidContext)
     const token = Cookies.get('token')
     const nav = useNavigate()
 

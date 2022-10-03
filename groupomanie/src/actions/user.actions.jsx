@@ -2,33 +2,32 @@ import axios from "axios";
 
 export const GET_USER = "GET_USER";
 export const GET_ADMIN = "GET_ADMIN";
+export const DELETE_USER = "DELETE_USER";
 
 export const getUser = (uid) => {
-    return async (dispatch) => {
-        try {
-            const res = await axios
-                .get(`http://localhost:3000/api/user/${uid}`);
-            dispatch({
-                type: GET_USER,
-                payload: res.data
-            });
-        } catch (err) {
-            return console.log(err);
-        }
+    return (dispatch) => {
+        return axios
+            .get(`http://localhost:3000/api/user/${uid}`)
+            .then((res) => {
+                dispatch({
+                    type: GET_USER,
+                    payload: res.data
+                })
+            })
+            .catch((err) => console.log(err))
     };
 };
 
 export const getAdmin = (uid) => {
-    return async (dispatch) => {
-        try {
-            const res = await axios
-                .get(`http://localhost:3000/api/admin/${uid}`);
-            dispatch({
-                type: GET_USER,
-                payload: res.data
-            });
-        } catch (err) {
-            return console.log(err);
-        }
+    return (dispatch) => {
+        return axios
+            .get(`http://localhost:3000/api/admin/${uid}`)
+            .then((res) => {
+                dispatch({
+                    type: GET_ADMIN,
+                    payload: res.data
+                })
+            })
+            .catch((err) => console.log(err))
     };
 };

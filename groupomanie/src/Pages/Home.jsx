@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { AppContext } from '../utils/context';
+import { UidContext } from '../utils/context';
 import Cookies from 'js-cookie';
 import Card from '../components/Card';
 import FormHome from '../components/NewPostForm';
@@ -9,7 +9,7 @@ import logo from '../assets/logo.png'
 
 
 export default function Home() {
-    const { setPseudoContext } = useContext(AppContext)
+    const { setPseudoContext } = useContext(UidContext)
 
     const userId = localStorage.getItem('userId')
     const adminId = localStorage.getItem('adminId')

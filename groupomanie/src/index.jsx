@@ -1,8 +1,8 @@
 import React from "react";
-import { ReactDOM } from "react-dom";
+import { render } from "react-dom";
 import App from "./App";
 import { getUser } from "./actions/user.actions";
-import { getPost } from "./actions/post.actions";
+import { getPosts } from "./actions/post.actions";
 import rootReducer from "./reducers";
 //Redux
 import { Provider } from "react-redux";
@@ -11,9 +11,9 @@ import { configureStore } from "@reduxjs/toolkit";
 const store = configureStore({ reducer: rootReducer })
 
 store.dispatch(getUser())
-store.dispatch(getPost())
+store.dispatch(getPosts())
 
-ReactDOM.render(
+render(
   <Provider store={store}>
     < App />
   </Provider>,
