@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-// regarder si le cookie est set 
 import Cookies from 'js-cookie';
 
 export default function Login() {
@@ -25,14 +24,14 @@ export default function Login() {
         })
             .then((res) => res.json())
             .then((data) => {
-                if (data.err) {
-                    console.log(data.err)
+                if (data.message) {
+                    console.log(data)
                     setError('Login ou mot de passe incorrect')
                 } else {
-                    console.log(data)
+                    // console.log('user ou admin log', data)
                     if (data.adminId) localStorage.setItem('adminId', data.adminId)
                     if (data.userId) localStorage.setItem('userId', data.userId)
-                    Cookies.set('token', data.token, { expire: 1, secure: true })
+                    Cookies.set('token', data.token, { expires: 1, secure: true })
                     nav('/home');
                 }
             })
@@ -59,7 +58,7 @@ export default function Login() {
                     </label>
                     <label>
                         <input
-                            type="current-password"
+                            type="password"
                             placeholder="mot de passe"
                             value={password}
                             onChange={(e) => {
@@ -69,7 +68,7 @@ export default function Login() {
                         />
                     </label>
                     <label>
-                        <input type="submit" value="Se connecter" />
+                        <input type="submit" value="Se connecter"></input>
                     </label>
                 </form>
                 <div>{error}</div>

@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { AppContext } from '../components/AppContext';
+import { Link, useNavigate } from 'react-router-dom';
+import { AppContext } from '../utils/context';
 import Cookies from 'js-cookie';
 import Card from '../components/Card';
-import FormHome from '../components/FormHome';
+import NewPostForm from '../components/NewPostForm';
 import logo from '../assets/logo.png'
 
 
@@ -49,8 +49,8 @@ export default function Home() {
                 setPseudoContext(data.pseudo)
                 setGetUser(false)
             })
-            .catch(() => {
-                console.log({ message: 'URL invalide.' });
+            .catch((err) => {
+                console.log(err);
             })
     }
 
@@ -59,9 +59,7 @@ export default function Home() {
         fetch(`http://localhost:3000/api/user/admin${adminId}`, {
             method: 'GET',
             headers: {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                'Content-Type': 'application/json',
                 Authorization: 'Bearer ' + token,
             },
         })
@@ -70,9 +68,7 @@ export default function Home() {
                 setPseudoContext(data.pseudo)
                 setGetUser(false)
             })
-            .catch(() => {
-                console.log({ message: 'URL invalide' });
-            })
+            .catch(err => (err))
     }
 
     function callApiPosts(token) {
@@ -81,8 +77,8 @@ export default function Home() {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
+                Authorization: 'Bearer' + token,
             },
-            Authorization: 'Bearer' + token,
         },
         )
             .then((res) => res.json())
@@ -90,22 +86,27 @@ export default function Home() {
                 setDataPost(data)
                 setGetPost(false)
             })
-            .catch(() => {
-                console.log({ message: 'URL post non valide' });
-            })
+            .catch(err => (err))
     }
 
     //JSX
     return (
         <>
-            <img src={logo} alt="Logo groupomania" />
+            <Link to='/home'>
+                <img
+                    src={logo}
+                    alt="Logo groupomania"
+                    width={140}
+                    height={152}
+                />
+            </Link>
             {getUser && getPost ? (
                 <div className='spinner'>
                     <i className="fas fa-spinner fa-spin"></i>
                 </div>
             ) : (
                 <>
-                    {adminId ? <></> : <FormHome callApiPosts={callApiPosts} />}
+                    {adminId ? <></> : <NewPostForm callApiPosts={callApiPosts} />}
                     <div className='cards-container'>
                         {dataPost.map((item, index) => (
                             <Card

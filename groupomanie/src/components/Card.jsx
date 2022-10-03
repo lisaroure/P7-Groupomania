@@ -3,8 +3,8 @@ import Cookies from 'js-cookie';
 import deleteIcon from '../assets/trash.svg';
 import likeIcon from '../assets/heart-filled.svg';
 import unlikeIcon from '../assets/heart.svg';
-import commentIcon from '../assets/comment.svg';
-import CardComments from './CardComments';
+// import commentIcon from '../assets/comment.svg';
+// import CardComments from './CardComments';
 import EditCommentPost from './EditCommentPost';
 import { dateParser } from '../utils/Utils';
 
@@ -15,7 +15,7 @@ export default function Card(props) {
     const [pseudo, setPseudo] = useState('')
     const [manyLike, setManyLiked] = useState(props.likers.length)
     const [liked, setLiked] = useState(false)
-    const [showComments, setShowComments] = useState(false)
+    // const [showComments, setShowComments] = useState(false)
 
 
     //like
@@ -134,13 +134,13 @@ export default function Card(props) {
                     <p>{manyLike}</p>
                 </div>
             )}
-            <img
+            {/* <img
                 onClick={() => setShowComments(!showComments)}
                 src={commentIcon}
                 alt='Commenter'
                 height={30}
                 width={30}
-            />
+            /> */}
 
             {adminId && (
                 <>
@@ -185,7 +185,7 @@ export default function Card(props) {
                 </>
             )
             }
-            <div className='cards-container'>
+            {/* <div className='cards-container'>
                 {showComments && (
                     <CardComments
                         postId={props.postId}
@@ -193,7 +193,7 @@ export default function Card(props) {
                         callApiPosts={props.callApiPosts}
                     />
                 )}
-            </div>
+            </div> */}
         </div>
     )
 }

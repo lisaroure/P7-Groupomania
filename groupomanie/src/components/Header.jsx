@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
-import { AppContext } from './AppContext';
+import { AppContext } from '../utils/context';
 import logo from '../assets/logo.png'
 
 export default function Header() {
@@ -12,7 +12,7 @@ export default function Header() {
     function logout() {
         Cookies.remove('token')
         localStorage.clear()
-        nav('/')
+        nav('/login')
         console.log({ message: 'logout' })
     }
 
@@ -31,7 +31,7 @@ export default function Header() {
                 token && (
                     <div className="user-card">
                         <h3>Bienvenue {pseudoContext} !</h3>
-                        <Link to="/" onClick={logout}>
+                        <Link to="/login" onClick={logout}>
                             Déconnexion
                         </Link>
                     </div>

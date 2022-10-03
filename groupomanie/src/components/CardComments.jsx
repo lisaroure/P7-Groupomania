@@ -1,11 +1,8 @@
-import React from 'react';
+// import React from 'react';
 
-const CardComments = () => {
-    return (
-        <div>
 
-        </div>
-    );
-};
-
-export default CardComments;
+// export default function CardComments(props) {
+//     const adminId = localStorage.getItem('adminId')
+//     const userId = localStorage.getItem('userId')
+//     const [comments, setComments] =
+// }
