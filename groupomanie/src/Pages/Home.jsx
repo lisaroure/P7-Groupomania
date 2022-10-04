@@ -47,7 +47,9 @@ export default function Home() {
                 setPseudoContext(data.pseudo)
                 setGetUser(false)
             })
-            .catch(err => (err))
+            .catch(() => {
+                console.log('URL user non valide');
+            })
     }
 
     function callApiAdmin(token, adminId) {
@@ -64,7 +66,9 @@ export default function Home() {
                 setPseudoContext(data.pseudo)
                 setGetUser(false)
             })
-            .catch(err => (err))
+            .catch(() => {
+                console.log('URL admin non valide');
+            })
     }
 
     function callApiPosts(token) {
@@ -82,7 +86,9 @@ export default function Home() {
                 setDataPost(data)
                 setGetPost(false)
             })
-            .catch(err => (err))
+            .catch(() => {
+                console.log('URL posts non valide');
+            })
     }
 
     //JSX
