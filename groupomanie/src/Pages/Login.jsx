@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
@@ -28,14 +28,13 @@ export default function Login() {
                     console.log(data)
                     setError('Login ou mot de passe incorrect')
                 } else {
-                    // console.log('user ou admin log', data)
+                    console.log('user ou admin log', data)
                     if (data.adminId) localStorage.setItem('adminId', data.adminId)
                     if (data.userId) localStorage.setItem('userId', data.userId)
                     Cookies.set('token', data.token, { expires: 1, secure: true })
                     nav('/home');
                 }
             })
-            .catch((err) => console.log(err))
     }
 
     return (

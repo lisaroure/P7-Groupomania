@@ -22,7 +22,7 @@ export default function Home() {
         if (userId && token) callApiUser(token, userId)
         if (adminId && token) callApiAdmin(token, adminId)
         if (!token) return
-    }, [token, userId, adminId, callApiUser, callApiAdmin])
+    }, [token, userId, adminId])
 
     useEffect(() => {
         if (!token) return
@@ -35,7 +35,7 @@ export default function Home() {
 
     function callApiUser(token, userId) {
         setGetUser(true)
-        fetch(`http://localhost:3000/api/user${userId}`, {
+        fetch(`http://localhost:3000/api/user/${userId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -54,7 +54,7 @@ export default function Home() {
 
     function callApiAdmin(token, adminId) {
         setGetUser(true)
-        fetch(`http://localhost:3000/api/user/admin${adminId}`, {
+        fetch(`http://localhost:3000/api/user/admin/${adminId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -73,14 +73,13 @@ export default function Home() {
 
     function callApiPosts(token) {
         setGetPost(true)
-        fetch(`http://localhost:3000/api/post`, {
+        fetch(`http://localhost:3000/api/post/`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: 'Bearer' + token,
             },
-        },
-        )
+        })
             .then((res) => res.json())
             .then((data) => {
                 setDataPost(data)
