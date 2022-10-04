@@ -18,7 +18,7 @@ export default function Signup() {
         }
 
         //Utilisation de fetch pour faire appel à l'API lors de l'inscription
-        fetch('http://localhost:5000/api/user/signup', {
+        fetch('http://localhost:3000/api/user/signup', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -41,7 +41,7 @@ export default function Signup() {
     }
 
     function toLogin(userInfo) {
-        fetch('http://localhost:5000/api/user/login', {
+        fetch('http://localhost:3000/api/user/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

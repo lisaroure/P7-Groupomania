@@ -1,21 +1,24 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App";
-// import { getUser } from "./actions/user.actions";
-// import { getPosts } from "./actions/post.actions";
-// import rootReducer from "./reducers";
-//Redux
-// import { Provider } from "react-redux";
-// import { configureStore } from "@reduxjs/toolkit";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Header from './components/Header';
+import Signup from './Pages/Signup';
+import Home from './Pages/Home';
+import Login from './Pages/Login';
 
-// const store = configureStore({ reducer: rootReducer })
-
-// store.dispatch(getUser())
-// store.dispatch(getPosts())
+import AppContextProvider from './utils/context';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    < App />
-  </React.StrictMode>
-)
+  <BrowserRouter>
+    <AppContextProvider>
+      < Header />
+      <Routes>
+        <Route exact path='/signup' element={<Signup />} />
+        <Route exact path='/login' element={<Login />} />
+        <Route exact path='/home' element={<Home />} />
+        <Route exact path='/' element={<Login />} />
+      </Routes>
+    </AppContextProvider>
+  </BrowserRouter>
+);

@@ -1,15 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useContext, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { UidContext } from '../utils/context';
+import { useNavigate } from 'react-router-dom';
+import { AppContext } from '../utils/context';
 import Cookies from 'js-cookie';
 import Card from '../components/Card';
 import FormHome from '../components/NewPostForm';
-import logo from '../assets/logo.png'
-
 
 export default function Home() {
-    const uid = useContext(UidContext)
+    const { setPseudoContext } = useContext(AppContext)
 
     const userId = localStorage.getItem('userId')
     const adminId = localStorage.getItem('adminId')
@@ -46,7 +44,7 @@ export default function Home() {
         })
             .then((res) => res.json())
             .then((data) => {
-                uid(data.pseudo)
+                setPseudoContext(data.pseudo)
                 setGetUser(false)
             })
             .catch(err => (err))
@@ -63,7 +61,7 @@ export default function Home() {
         })
             .then((res) => res.json())
             .then((data) => {
-                uid(data.pseudo)
+                setPseudoContext(data.pseudo)
                 setGetUser(false)
             })
             .catch(err => (err))
@@ -90,14 +88,6 @@ export default function Home() {
     //JSX
     return (
         <>
-            <Link to='/home'>
-                <img
-                    src={logo}
-                    alt="Logo groupomania"
-                    width={140}
-                    height={152}
-                />
-            </Link>
             {getUser && getPost ? (
                 <div className='spinner'>
                     <i className="fas fa-spinner fa-spin"></i>

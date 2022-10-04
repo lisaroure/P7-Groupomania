@@ -1,10 +1,11 @@
+import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 import Cookies from 'js-cookie';
+import { AppContext } from '../utils/context';
 import logo from '../assets/logo.png'
 
 export default function Header() {
-    const userData = useSelector((state) => state.userReducer)
+    const { pseudoContext } = useContext(AppContext)
     const token = Cookies.get('token')
     const nav = useNavigate()
 
@@ -28,7 +29,7 @@ export default function Header() {
             </Link>
             {token && (
                 <div className="user-card">
-                    <h5>Bienvenue {userData.pseudo} !</h5>
+                    <h3>Bienvenue {pseudoContext} !</h3>
                     <Link to="/login" onClick={logout}>
                         Déconnexion
                     </Link>
