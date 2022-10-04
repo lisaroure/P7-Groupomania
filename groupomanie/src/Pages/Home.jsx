@@ -9,7 +9,7 @@ import logo from '../assets/logo.png'
 
 
 export default function Home() {
-    const { setPseudoContext } = useContext(UidContext)
+    const uid = useContext(UidContext)
 
     const userId = localStorage.getItem('userId')
     const adminId = localStorage.getItem('adminId')
@@ -46,7 +46,7 @@ export default function Home() {
         })
             .then((res) => res.json())
             .then((data) => {
-                setPseudoContext(data.pseudo)
+                uid(data.pseudo)
                 setGetUser(false)
             })
             .catch(err => (err))
@@ -63,7 +63,7 @@ export default function Home() {
         })
             .then((res) => res.json())
             .then((data) => {
-                setPseudoContext(data.pseudo)
+                uid(data.pseudo)
                 setGetUser(false)
             })
             .catch(err => (err))
