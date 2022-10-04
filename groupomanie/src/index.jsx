@@ -1,5 +1,5 @@
 import React from "react";
-import { render } from "react-dom";
+import ReactDOM from "react-dom/client";
 import App from "./App";
 import { getUser } from "./actions/user.actions";
 import { getPosts } from "./actions/post.actions";
@@ -13,9 +13,9 @@ const store = configureStore({ reducer: rootReducer })
 store.dispatch(getUser())
 store.dispatch(getPosts())
 
-render(
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
   <Provider store={store}>
     < App />
   </Provider>,
-  document.getElementById("root")
 )
