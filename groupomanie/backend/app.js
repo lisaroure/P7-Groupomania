@@ -27,7 +27,7 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
     next();
 });
-app.use(cors({ origin: "http://localhost:3000", credentials: true }));
+app.use(cors({ origin: "http://localhost:3000" || "http://localhost:5000", credentials: true }));
 
 // Permet d'accéder au corps de la requête
 app.use(express.json());

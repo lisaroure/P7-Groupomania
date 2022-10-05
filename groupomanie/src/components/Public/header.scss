@@ -1,0 +1,14 @@
+nav {
+    border-bottom: 2px solid black;
+    ul {
+        list-style-type: none;
+        padding: 20px;
+        display: flex;
+        justify-content: right;
+        li {
+            padding: 10px;
+            cursor: pointer;
+            color: black;
+        }
+    }
+}
