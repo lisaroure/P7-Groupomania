@@ -54,7 +54,7 @@ export default function Card(props) {
 
     //like
     function like(userId, postId) {
-        fetch(`http://localhost:3000/api/post/like/${postId}`, {
+        fetch(`http://localhost:5000/api/post/like/${postId}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ export default function Card(props) {
 
     //dislike
     function unlike(userId, postId) {
-        fetch(`http://localhost:3000/api/post/unlike/${postId}`, {
+        fetch(`http://localhost:5000/api/post/unlike/${postId}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -101,7 +101,7 @@ export default function Card(props) {
     // Supprimer un post
 
     function deletePost(postId, token) {
-        fetch(`http://localhost:3000/api/post/${postId}`, {
+        fetch(`http://localhost:5000/api/post/${postId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -120,7 +120,7 @@ export default function Card(props) {
 
     //Pseudos
     useEffect(() => {
-        fetch(`http://localhost:3000/api/user/${props.posterId}`, {
+        fetch(`http://localhost:5000/api/user/${props.posterId}`, {
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: 'Bearer ' + token,

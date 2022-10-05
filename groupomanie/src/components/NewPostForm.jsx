@@ -33,9 +33,12 @@ export default function FormHome(props) {
         data.append('image', picture)
         data.append('post', post)
 
-        fetch('http://localhost:3000/api/post', {
+        fetch('http://localhost:5000/api/post', {
             method: 'POST',
             body: data,
+            headers: {
+                'Content-Type': 'application/octet-stream',
+            },
         })
             .then((res) => res.json())
             .then((data) => {
@@ -43,7 +46,9 @@ export default function FormHome(props) {
                 setPost('')
                 props.callApiPost(token)
             })
-            .catch((err) => (err))
+            .catch(() => {
+                console.log('requete invalide');
+            })
     }
 
     //JSX
