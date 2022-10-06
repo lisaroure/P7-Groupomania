@@ -1,0 +1,25 @@
+#admin {
+    display: flex;
+    .SideMenu {
+        border-right: solid 1px gray;
+        padding-right: 30px;
+          ul {
+            list-style: none;
+              li a {
+                text-decoration: none;
+                color: black;
+              }
+            }
+      }
+  }
+
+.AHeader {
+  text-align: center;
+}
+
+#admin-body {
+  text-align: center;
+  padding-left: 20px;
+}
+
+/***************************************/

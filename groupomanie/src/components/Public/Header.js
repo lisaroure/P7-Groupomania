@@ -48,7 +48,7 @@ import './header.scss'
 
 const Header = () => {
     return (
-        <header>
+        <header className='public-header'>
             <nav>
                 <ul>
                     <li><Link to="/home"></Link>Accueil</li>

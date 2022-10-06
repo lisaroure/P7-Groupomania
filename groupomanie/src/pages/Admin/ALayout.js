@@ -2,7 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from '../../components/Admin/Header';
 import SideMenu from '../../components/Admin/SideMenu';
-import './admin.css';
+import './admin.scss';
 
 const ALayout = () => {
     return (
