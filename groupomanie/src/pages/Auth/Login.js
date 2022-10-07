@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import { accountService } from '../../_services/account.service'
 
 import './auth.scss';
 
 const Login = () => {
+    let navigate = useNavigate()
+
     // initialisation du state
     const [credentials, setCredentials] = useState({
         email: '',
@@ -20,7 +24,11 @@ const Login = () => {
     const onSubmit = (e) => {
         e.preventDefault(credentials)
         axios.post('http://localhost:5000/api/user/login', credentials)
-            .then(res => console.log(res))
+            .then(res => {
+                console.log(res)
+                accountService.saveToken(res.data.access_token)
+                navigate('/admin')
+            })
             .catch(error => console.log(error))
     }
 
