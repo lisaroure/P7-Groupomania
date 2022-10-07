@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import axios from "axios";
+
 import './auth.scss';
 
 const Login = () => {
     // initialisation du state
     const [credentials, setCredentials] = useState({
-        pseudo: '',
         email: '',
         password: ''
     })
@@ -18,24 +19,18 @@ const Login = () => {
     //déclenchement du formulaire
     const onSubmit = (e) => {
         e.preventDefault(credentials)
+        axios.post('http://localhost:5000/api/user/login', credentials)
+            .then(res => console.log(res))
+            .catch(error => console.log(error))
     }
 
     return (
         <form onSubmit={onSubmit}>
             <div className='group'>
-                <label htmlFor='pseudo'>Pseudo</label>
-                <input
-                    type="text"
-                    name='pseudo'
-                    id='pseudo'
-                    value={credentials.pseudo}
-                    onChange={onChange}
-                />
                 <label htmlFor='email'>Adresse e-mail</label>
                 <input
                     type="text"
                     name='email'
-                    id='email'
                     value={credentials.email}
                     onChange={onChange}
                 />
