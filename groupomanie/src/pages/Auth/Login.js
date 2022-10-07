@@ -2,23 +2,42 @@ import React, { useState } from 'react';
 import './auth.scss';
 
 const Login = () => {
-    const [login, setLogin] = useState('')
-    const [password, setPassword] = useState('')
-
+    // initialisation du state
+    const [credentials, setCredentials] = useState({
+        pseudo: '',
+        email: '',
+        password: ''
+    })
+    //passer par l'état précédent pour modifier les champs input
+    const onChange = (e) => {
+        setCredentials({
+            ...credentials,
+            [e.target.name]: e.target.value
+        })
+    }
+    //déclenchement du formulaire
     const onSubmit = (e) => {
-        e.preventDefault()
-        console.log('form');
+        e.preventDefault(credentials)
     }
 
     return (
         <form onSubmit={onSubmit}>
             <div className='group'>
-                <label htmlFor='login'>Identifiant</label>
+                <label htmlFor='pseudo'>Pseudo</label>
                 <input
                     type="text"
-                    name='login'
-                    value={login}
-                    onChange={e => setLogin(e.target.value)}
+                    name='pseudo'
+                    id='pseudo'
+                    value={credentials.pseudo}
+                    onChange={onChange}
+                />
+                <label htmlFor='email'>Adresse e-mail</label>
+                <input
+                    type="text"
+                    name='email'
+                    id='email'
+                    value={credentials.email}
+                    onChange={onChange}
                 />
             </div>
             <div className='group'>
@@ -26,8 +45,8 @@ const Login = () => {
                 <input
                     type="text"
                     name='password'
-                    value={password}
-                    onChange={e => setPassword(e.target.value)}
+                    value={credentials.password}
+                    onChange={onChange}
                 />
             </div>
             <div className='group'>
