@@ -10,6 +10,7 @@ const AdminRouter = () => {
     return (
         <Routes>
             <Route element={<ALayout />}>
+                <Route index element={<Dashboard />} />
                 <Route path="dashboard" element={<Dashboard />} />
                 <Route path="user">
                     <Route path="index" element={<User />} />
