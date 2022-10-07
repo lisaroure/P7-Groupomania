@@ -14,7 +14,19 @@
   }
 
 .AHeader {
+  display: flex;
+  justify-content: space-between;
   text-align: center;
+  button {
+    width: 7rem;
+    height: 25px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+     &:hover {
+      box-shadow: solid gray;
+     }
+  }
 }
 
 #admin-body {

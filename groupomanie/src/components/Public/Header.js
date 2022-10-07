@@ -51,12 +51,13 @@ const Header = () => {
         <header className='public-header'>
             <nav>
                 <ul>
-                    <li><Link to="/home"></Link>Accueil</li>
-                    <li><Link to="/login"></Link>Connexion</li>
-                    <li><Link to="/signup"></Link>Inscription</li>
+                    <li><Link to="home"></Link>Accueil</li>
+                    <li><Link to="login"></Link>Connexion</li>
+                    <li><Link to="signup"></Link>Inscription</li>
+                    <li><Link to="admin"></Link>Admin</li>
                 </ul>
             </nav>
-        </header>
+        </header >
     );
 };
 
