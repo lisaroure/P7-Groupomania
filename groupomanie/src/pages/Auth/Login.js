@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from "axios";
 import { accountService } from '../../_services/account.service'
 
 import './auth.scss';
@@ -22,12 +21,11 @@ const Login = () => {
     }
     //déclenchement du formulaire
     const onSubmit = (e) => {
-        e.preventDefault(credentials)
-        axios.post('http://localhost:5000/api/user/login', credentials)
+        e.preventDefault()
+        accountService.login(credentials)
             .then(res => {
-                console.log(res)
                 accountService.saveToken(res.data.access_token)
-                navigate('/admin')
+                navigate('/admin', {replace: true})
             })
             .catch(error => console.log(error))
     }
