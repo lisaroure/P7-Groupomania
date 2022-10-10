@@ -10,7 +10,7 @@ const Admin = {
 }
 
 exports.signup = (req, res) => {
-    console.log('pas de ananas ici', req.body);
+    console.log(req.body);
     if (req.body.pseudo === Admin.pseudo && req.body.email === Admin.email && req.body.password === Admin.password) {
         bcrypt.hash(req.body.password, 10)
             .then(hash => {
@@ -37,7 +37,7 @@ exports.signup = (req, res) => {
                     password: hash
                 });
                 user.save()
-                    .then(() => res.status(201).json({ message: 'User created' }))
+                    .then(() => res.status(201).json('User created'))
                     .catch(err => res.status(500).json({ err }))
             })
     }
@@ -49,12 +49,12 @@ exports.login = (req, res) => {
         AdminMdl.findOne({ email: req.body.email })
             .then(admin => {
                 if (!admin) {
-                    return res.status(401).json({ message: 'Login ou mot de passe incorrect' });
+                    return res.status(401).json('Login ou mot de passe incorrect');
                 }
                 bcrypt.compare(req.body.password, admin.password)
                     .then(valid => {
                         if (!valid) {
-                            return res.status(401).json({ message: 'Login ou mot de passe incorrect' });
+                            return res.status(401).json('Login ou mot de passe incorrect');
                         } else {
                             res.status(200).json({
                                 adminId: admin._id,
@@ -84,7 +84,7 @@ exports.login = (req, res) => {
                                 token: jwt.sign(
                                     { userId: user._id },
                                     'RANDOM_TOKEN_SECRET',
-                                    { expiresIn: '24h' })
+                                    { expiresIn: process.env.JWT_DURING })
                             });
                         }
                     })

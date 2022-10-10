@@ -8,12 +8,12 @@ const SideMenu = () => {
                 <li><Link to="/">Accueil</Link></li>
                 <li>&nbsp;</li>
                 <li><Link to="/admin/dashboard">Dashboard</Link></li>
-                <li>
+                {/* <li>
                     Admin
                     <ul>
                         <li><Link to='/admin/user/index'>Get</Link></li>
                     </ul>
-                </li>
+                </li> */}
                 <li>
                     User
                     <ul>

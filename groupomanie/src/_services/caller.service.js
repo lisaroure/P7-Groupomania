@@ -14,6 +14,7 @@ Axios.interceptors.request.use(request => {
     if (accountService.isLogged()) {
         request.headers.Authorization = 'Bearer' + accountService.getToken()
     }
+
     return request
 })
 

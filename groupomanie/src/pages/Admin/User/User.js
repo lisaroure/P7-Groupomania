@@ -13,6 +13,10 @@ const User = () => {
         userService.getUser()
             .then(res => console.log(res.data))
 
+        // userService.getAdmin()
+        //     .then(res => console.log(res.data))
+        //     .catch(err => console.log(err))
+
     }, [])
 
     const user = (userId) => {
