@@ -94,6 +94,12 @@ exports.login = (req, res) => {
     }
 };
 
+exports.getAllUsers = (req, res) => {
+    User.find().select("-password")
+        .then((users) => res.status(200).json(users))
+        .catch(err => res.status(400).json({ err }))
+}
+
 exports.getUser = (req, res) => {
     User.findOne({ _id: req.params.id }).select('pseudo')
         .then((user) => res.status(200).json(user))

@@ -7,8 +7,8 @@ const User = () => {
 
     useEffect(() => {
         userService.getUser()
-        .then(res=> console.log(res.data))
-        .catch(err => console.log(err))
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err))
     }, [])
 
     const user = (userId) => {
