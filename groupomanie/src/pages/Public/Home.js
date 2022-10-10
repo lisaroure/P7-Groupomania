@@ -1,23 +1,3 @@
-// /* eslint-disable react-hooks/exhaustive-deps */
-// import React, { useState, useContext, useEffect } from 'react';
-// import { useNavigate } from 'react-router-dom';
-// import { AppContext } from '../_utils/context';
-// import Cookies from 'js-cookie';
-// import Card from '../components/Card';
-// import FormHome from '../components/NewPostForm';
-
-// export default function Home() {
-//     const { setPseudoContext } = useContext(AppContext)
-
-//     const userId = localStorage.getItem('userId')
-//     const adminId = localStorage.getItem('adminId')
-//     const token = Cookies.get('token')
-//     const [dataPost, setDataPost] = useState([])
-//     const [getUser, setGetUser] = useState(true)
-//     const [getPost, setGetPost] = useState(true)
-//     const nav = useNavigate();
-
-//     //Utilisation de useEffect pour afficher les données selon le profil connecté
 //     useEffect(() => {
 //         if (userId && token) callApiUser(token, userId)
 //         if (adminId && token) callApiAdmin(token, adminId)
