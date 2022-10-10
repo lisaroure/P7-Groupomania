@@ -7,20 +7,22 @@ const Header = () => {
   return (
     <>
       <header className="public-header">
-        <ul>
-          <li>
-            <Link to="/home"></Link>Accueil
-          </li>
-          <li>
-            <Link to="/login"></Link>Connexion
-          </li>
-          <li>
-            <Link to="/signup"></Link>Inscription
-          </li>
-          <li>
-            <Link to="/admin"></Link>Admin
-          </li>
-        </ul>
+        <nav>
+          <ul>
+            <li>
+              <Link to="home">Accueil</Link>
+            </li>
+            <li>
+              <Link to="login">Connexion</Link>
+            </li>
+            <li>
+              <Link to="signup">Inscription</Link>
+            </li>
+            <li>
+              <Link to="admin">Admin</Link>
+            </li>
+          </ul>
+        </nav>
       </header>
     </>
   );
