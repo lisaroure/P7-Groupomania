@@ -6,9 +6,13 @@ const User = () => {
     let navigate = useNavigate()
 
     useEffect(() => {
-        userService.getUser()
+        userService.getAllUsers()
             .then(res => console.log(res.data))
             .catch(err => console.log(err))
+
+        userService.getUser()
+            .then(res => console.log(res.data))
+
     }, [])
 
     const user = (userId) => {
