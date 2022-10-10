@@ -9,6 +9,12 @@ const SideMenu = () => {
                 <li>&nbsp;</li>
                 <li><Link to="/admin/dashboard">Dashboard</Link></li>
                 <li>
+                    Admin
+                    <ul>
+                        <li><Link to='/admin/user/index'>Get</Link></li>
+                    </ul>
+                </li>
+                <li>
                     User
                     <ul>
                         <li><Link to='/admin/user/index'>Liste</Link></li>
