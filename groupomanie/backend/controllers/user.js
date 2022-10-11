@@ -95,7 +95,7 @@ exports.login = (req, res) => {
 };
 
 exports.getAllUsers = (req, res) => {
-    User.findAll()
+    User.find()
         .then(users => res.json({ data: users }))
         .catch(err => res.status(500).json({ message: 'Database Error', error: err }))
 }
@@ -107,7 +107,7 @@ exports.getUser = (req, res) => {
 };
 
 exports.getAdmin = (req, res) => {
-    if (req.params.id == req.auth.adminId) {
+    if (req.params.id === req.auth.adminId) {
         AdminMdl.findOne({ _id: req.params.id }).select('pseudo')
             .then((admin) => res.status(200).json(admin))
             .catch(error => res.status(400).json({ error }));

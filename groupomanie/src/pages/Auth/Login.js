@@ -24,7 +24,7 @@ const Login = () => {
         e.preventDefault()
         accountService.login(credentials)
             .then(res => {
-                accountService.saveToken(res.data.access_token)
+                accountService.saveToken(res.data.token)
                 navigate('/admin')
             })
             .catch(error => console.log(error))
