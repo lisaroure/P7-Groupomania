@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from '../../assets/logo.png'
 
 import "./header.scss";
 
@@ -7,6 +8,12 @@ const Header = () => {
   return (
     <>
       <header className="public-header">
+        <img
+          src={logo}
+          alt='logo de Groupomania'
+          width={130}
+          height={130}
+        />
         <nav>
           <ul>
             <li>
