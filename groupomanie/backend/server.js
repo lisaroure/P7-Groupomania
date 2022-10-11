@@ -1,7 +1,6 @@
 require('dotenv').config({ path: './config/.env' })
 const path = require('path');
 const express = require('express')
-const helmet = require('helmet')
 const cors = require('cors')
 const mongoose = require('mongoose')
 const userRoutes = require('./routes/user');
@@ -9,9 +8,6 @@ const postRoutes = require('./routes/post');
 
 /*** Initialiser l'API */
 const app = express()
-
-//Sécurité du http
-app.use(helmet());
 
 app.use(cors({
     origin: "*",

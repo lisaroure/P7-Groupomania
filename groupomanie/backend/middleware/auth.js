@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+require('dotenv').config({ path: './config/.env' })
 
 module.exports = (req, res, next) => {
     try {

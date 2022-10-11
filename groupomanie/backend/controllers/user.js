@@ -1,3 +1,4 @@
+require('dotenv').config({ path: './config/.env' })
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
@@ -99,44 +100,16 @@ exports.getAllUsers = (req, res) => {
         .catch(err => res.status(500).json({ message: 'Database Error', error: err }))
 }
 
-exports.getUser = async (req, res) => {
-    let userId = parseInt(req.params.id)
+exports.getUser = (req, res) => {
+    User.findOne({ _id: req.params.id }).select('pseudo')
+        .then((user) => res.status(200).json(user))
+        .catch(error => res.status(400).json({ error }));
+};
 
-    // Vérification si le champ id est présent et cohérent
-    if (!userId) {
-        return res.json(400).json({ message: 'Missing Parameter' })
-    }
-
-    try {
-        // Récupération de l'utilisateur et vérification
-        let user = await User.findOne({ where: { id: userId }, attributes: ['id', 'pseudo', 'email'] })
-        if (user === null) {
-            return res.status(404).json({ message: 'This user does not exist !' })
-        }
-
-        return res.json({ data: user })
-    } catch (err) {
-        return res.status(500).json({ message: 'Database Error', error: err })
-    }
-}
-
-exports.getAdmin = async (req, res) => {
-    let adminId = parseInt(req.params.id)
-
-    // Vérification si le champ id est présent est cohérent
-    if (!adminId) {
-        return res.json(400).json({ message: 'Missing Parameter' })
-    }
-
-    try {
-        // Récupération de l'utilisateur et vérification
-        let admin = await AdminMdl.findOne({ where: { id: adminId }, attributes: ['id', 'pseudo', 'email'] })
-        if (admin === null) {
-            return res.status(404).json({ message: 'This user does not exist !' })
-        }
-
-        return res.json({ data: admin })
-    } catch (err) {
-        return res.status(500).json({ message: 'Database Error', error: err })
+exports.getAdmin = (req, res) => {
+    if (req.params.id == req.auth.adminId) {
+        AdminMdl.findOne({ _id: req.params.id }).select('pseudo')
+            .then((admin) => res.status(200).json(admin))
+            .catch(error => res.status(400).json({ error }));
     }
 }
