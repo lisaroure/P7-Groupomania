@@ -1,33 +1,48 @@
-import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { userService } from '../../../_services/user.service';
 
 const User = () => {
-    let navigate = useNavigate()
+    // let navigate = useNavigate()
+    const [users, setUsers] = useState([])
+    const flag = useRef(false)
 
     useEffect(() => {
-        userService.getAllUsers()
-            .then(res => console.log(res.data))
-            .catch(err => console.log(err))
-
-        userService.getUser()
-            .then(res => console.log(res.data))
-
-        userService.getAdmin()
-            .then(res => console.log(res.data))
-
+        if (flag.current === false) {
+            userService.getAllUsers()
+                .then(res => {
+                    console.log(res.data)
+                    setUsers(res.data.data)
+                })
+                .catch(err => console.log(err))
+        }
+        // méthode pour éviter le double appel useEffect
+        return () => flag.current = true
     }, [])
-
-    const user = (userId) => {
-        console.log('click');
-        navigate('/Admin/user/edit/' + userId)
-    }
 
     return (
         <div className='User'>
-            users here
+            Utilisateurs
             {/*onClick={() => user(1 = paramètre uid)}>User 1*/}
-            <button onClick={() => user(1)}>User 1</button>
+            {/* <button onClick={() => user(1)}>User 1</button> */}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Pseudo</th>
+                        <th>Membre depuis</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        users.map(user => (
+                            <tr key={user.pseudo}>
+                                <td><Link to={`../edit/${user._id}`}>{user.pseudo}</Link></td>
+                                <td>{user.createdAt}</td>
+                            </tr>
+                        ))
+                    }
+                </tbody>
+            </table>
         </div>
     );
 };

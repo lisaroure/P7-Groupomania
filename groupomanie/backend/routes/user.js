@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+const multer = require('multer');
 const auth = require('../middleware/auth');
 const userCtrl = require('../controllers/user');
 
@@ -11,7 +12,9 @@ router.post('/login', userCtrl.login);
 router.get('/users', auth, userCtrl.getAllUsers);
 router.get('/user/:id', auth, userCtrl.getUser);
 
-// Admin
-router.get('/admin/:id', auth, userCtrl.getAdmin);
+router.patch('user/:id', multer, auth, userCtrl.modifyUser);
+
+// // Admin
+// router.get('/admin/:id', auth, userCtrl.getAdmin);
 
 module.exports = router;

@@ -8,24 +8,18 @@ const SideMenu = () => {
                 <li><Link to="/">Accueil</Link></li>
                 <li>&nbsp;</li>
                 <li><Link to="/admin/dashboard">Dashboard</Link></li>
-                {/* <li>
-                    Admin
-                    <ul>
-                        <li><Link to='/admin/user/index'>Get</Link></li>
-                    </ul>
-                </li> */}
                 <li>
                     User
                     <ul>
-                        <li><Link to='/admin/user/index'>Liste</Link></li>
+                        <li><Link to='/admin/user/index'>Utilisateurs</Link></li>
                         <li><Link to='/admin/user/add'>Ajouter</Link></li>
                     </ul>
                 </li>
                 <li>
                     Post
                     <ul>
-                        <li><Link to='/admin/post/index'>Liste</Link></li>
-                        <li><Link to='/admin/post/edit'>Ajouter</Link></li>
+                        <li><Link to='/admin/post/index'>Publications</Link></li>
+                        <li><Link to='/admin/post/edit'>Editer</Link></li>
                     </ul>
                 </li>
             </ul>

@@ -1,4 +1,5 @@
 require('dotenv').config({ path: './config/.env' })
+const fs = require('fs');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
@@ -10,6 +11,7 @@ const Admin = {
     password: "mdpadmin"
 }
 
+//Créer un compte
 exports.signup = (req, res) => {
     console.log(req.body);
     if (req.body.pseudo === Admin.pseudo && req.body.email === Admin.email && req.body.password === Admin.password) {
@@ -44,6 +46,7 @@ exports.signup = (req, res) => {
     }
 }
 
+//Connexion
 exports.login = (req, res) => {
     if (req.body.email === Admin.email && req.body.password === Admin.password) {
         AdminMdl.findOne({ email: req.body.email })
@@ -94,22 +97,48 @@ exports.login = (req, res) => {
     }
 };
 
+//Afficher tous les users
 exports.getAllUsers = (req, res) => {
     User.find()
         .then(users => res.json({ data: users }))
         .catch(err => res.status(500).json({ message: 'Database Error', error: err }))
 }
 
+//Afficher un seul user
 exports.getUser = (req, res) => {
-    User.findOne({ _id: req.params.id }).select('pseudo')
+    User.findOne({ _id: req.params.id })
         .then((user) => res.status(200).json(user))
         .catch(error => res.status(400).json({ error }));
 };
 
-exports.getAdmin = (req, res) => {
-    if (req.params.id === req.auth.adminId) {
-        AdminMdl.findOne({ _id: req.params.id }).select('pseudo')
-            .then((admin) => res.status(200).json(admin))
-            .catch(error => res.status(400).json({ error }));
+// Modifier un user (partie admin)
+exports.modifyUser = async (req, res) => {
+    let userId = parseInt(req.params.id)
+
+    // Vérification si le champ id est présent et cohérent
+    if (!userId) {
+        return res.status(400).json({ message: 'Missing parameter' })
+    }
+
+    try {
+        // Recherche de l'utilisateur et vérification
+        let user = await User.findOne({ where: { _id: userId }, raw: true })
+        if (user === null) {
+            return res.status(404).json({ message: 'This user does not exist !' })
+        }
+
+        // Mise à jour de l'utilisateur
+        await User.updateOne(req.body, { where: { _id: userId } })
+        return res.json({ message: 'User Updated' })
+    } catch (err) {
+        return res.status(500).json({ message: 'Database Error', error: err })
     }
 }
+
+// exports.getAdmin = (req, res) => {
+//     if (req.params.id === req.auth.adminId) {
+//         AdminMdl.findOne({ _id: req.params.id }).select('pseudo')
+//             .then((admin) => res.status(200).json(admin))
+//             .catch(error => res.status(400).json({ error }));
+//     }
+// }
