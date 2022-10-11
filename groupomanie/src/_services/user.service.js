@@ -4,12 +4,12 @@ let getAllUsers = () => {
   return Axios.get('/api/user/users')
 };
 
-let getAdmin = (adminId) => {
-  return Axios.get('/api/user/admin/' + adminId)
+let getAdmin = (id) => {
+  return Axios.get('/api/user/admin/' + id)
 }
 
-let getUser = (userId) => {
-  return Axios.get('/api/user/user/' + userId)
+let getUser = (id) => {
+  return Axios.get('/api/user/user/' + id)
 };
 
 export const userService = {
