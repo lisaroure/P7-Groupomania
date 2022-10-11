@@ -44,7 +44,6 @@ exports.signup = (req, res) => {
 }
 
 exports.login = (req, res) => {
-    console.log("login", req.body);
     if (req.body.email === Admin.email && req.body.password === Admin.password) {
         AdminMdl.findOne({ email: req.body.email })
             .then(admin => {
@@ -67,7 +66,7 @@ exports.login = (req, res) => {
                     })
                     .catch(err => res.status(500).json({ err }))
             })
-            .catch(err => res.status(500).json({ err }))
+            .catch(err => res.status(500).json(console.log('Erreur serveur'), { err }))
     } else {
         User.findOne({ email: req.body.email })
             .then(user => {
@@ -84,7 +83,7 @@ exports.login = (req, res) => {
                                 token: jwt.sign(
                                     { userId: user._id },
                                     'RANDOM_TOKEN_SECRET',
-                                    { expiresIn: process.env.JWT_DURING })
+                                    { expiresIn: '24h' })
                             });
                         }
                     })
@@ -95,21 +94,49 @@ exports.login = (req, res) => {
 };
 
 exports.getAllUsers = (req, res) => {
-    User.findAll().select("-password")
-        .then((user) => res.status(200).json(user))
-        .catch(err => res.status(400).json({ err }))
+    User.findAll()
+        .then(users => res.json({ data: users }))
+        .catch(err => res.status(500).json({ message: 'Database Error', error: err }))
 }
 
-exports.getUser = (req, res) => {
-    User.findOne({ _id: req.params.id }).select('pseudo')
-        .then((user) => res.status(200).json(user))
-        .catch(err => res.status(400).json({ err }))
+exports.getUser = async (req, res) => {
+    let userId = parseInt(req.params.id)
+
+    // Vérification si le champ id est présent et cohérent
+    if (!userId) {
+        return res.json(400).json({ message: 'Missing Parameter' })
+    }
+
+    try {
+        // Récupération de l'utilisateur et vérification
+        let user = await User.findOne({ where: { id: userId }, attributes: ['id', 'pseudo', 'email'] })
+        if (user === null) {
+            return res.status(404).json({ message: 'This user does not exist !' })
+        }
+
+        return res.json({ data: user })
+    } catch (err) {
+        return res.status(500).json({ message: 'Database Error', error: err })
+    }
 }
 
-exports.getAdmin = (req, res) => {
-    if (req.params.id === req.auth.adminId) {
-        AdminMdl.findOne({ _id: req.params.id }).select('pseudo')
-            .then((admin) => res.status(200).json(admin))
-            .catch(err => res.status(400).json({ err }))
+exports.getAdmin = async (req, res) => {
+    let adminId = parseInt(req.params.id)
+
+    // Vérification si le champ id est présent est cohérent
+    if (!adminId) {
+        return res.json(400).json({ message: 'Missing Parameter' })
+    }
+
+    try {
+        // Récupération de l'utilisateur et vérification
+        let admin = await AdminMdl.findOne({ where: { id: adminId }, attributes: ['id', 'pseudo', 'email'] })
+        if (admin === null) {
+            return res.status(404).json({ message: 'This user does not exist !' })
+        }
+
+        return res.json({ data: admin })
+    } catch (err) {
+        return res.status(500).json({ message: 'Database Error', error: err })
     }
 }

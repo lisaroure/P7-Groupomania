@@ -10,12 +10,11 @@ const User = () => {
             .then(res => console.log(res.data))
             .catch(err => console.log(err))
 
-        userService.getUser()
-            .then(res => console.log(res.data))
+        // userService.getUser()
+        //     .then(res => console.log(res.data))
 
         // userService.getAdmin()
         //     .then(res => console.log(res.data))
-        //     .catch(err => console.log(err))
 
     }, [])
 
@@ -26,7 +25,7 @@ const User = () => {
 
     return (
         <div className='User'>
-            users
+            users here
             {/*onClick={() => user(1 = paramètre uid)}>User 1*/}
             <button onClick={() => user(1)}>User 1</button>
         </div>
