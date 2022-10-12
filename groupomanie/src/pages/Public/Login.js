@@ -25,7 +25,7 @@ const Login = () => {
         accountService.login(credentials)
             .then(res => {
                 accountService.saveToken(res.data.token)
-                navigate('/accueil')
+                navigate('../accueil')
             })
             .catch(error => console.log(error))
     }

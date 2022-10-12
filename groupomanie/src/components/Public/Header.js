@@ -1,10 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import logo from '../../assets/logo.png'
+import { accountService } from "../../_services/account.service";
 
 import "./header.scss";
 
 const Header = () => {
+  let navigate = useNavigate()
+
+  const logout = () => {
+    accountService.logout()
+    navigate('/')
+  }
+
   return (
     <>
       <header className="public-header">
@@ -14,22 +22,7 @@ const Header = () => {
           width={130}
           height={130}
         />
-        <nav>
-          <ul>
-            {/* <li>
-              <Link to="home">Accueil</Link>
-            </li> */}
-            <li>
-              <Link to="login">Connexion</Link>
-            </li>
-            <li>
-              <Link to="signup">Inscription</Link>
-            </li>
-            {/* <li>
-              <Link to="admin">Admin</Link>
-            </li> */}
-          </ul>
-        </nav>
+        <button onClick={logout}>Se déconnecter</button>
       </header>
     </>
   );
