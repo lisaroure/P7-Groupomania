@@ -11,9 +11,9 @@ const PublicRouter = () => {
         <Routes>
             <Route element={<PostLayout />}>
                 <Route index element={<Accueil />} />
-                <Route path='accueil' element={<Accueil />} />
-                <Route path="auth/login" element={<Login />} />
-                <Route path="auth/signup" element={<Signup />} />
+                <Route path='/accueil' element={<Accueil />} />
+                <Route path="/auth/login" element={<Login />} />
+                <Route path="/auth/signup" element={<Signup />} />
                 <Route path="*" element={<Error />} />
             </Route>
         </Routes>

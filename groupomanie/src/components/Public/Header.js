@@ -10,12 +10,12 @@ const Header = () => {
 
   const logout = () => {
     accountService.logout()
-    navigate('/')
+    navigate('/home')
   }
 
   return (
     <>
-      <header className="public-header">
+      <header className="home-header">
         <img
           src={logo}
           alt='logo de Groupomania'

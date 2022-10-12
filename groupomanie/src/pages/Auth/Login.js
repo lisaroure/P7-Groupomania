@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { accountService } from '../../_services/account.service'
 
 import './auth.scss';
@@ -32,6 +32,7 @@ const Login = () => {
 
     return (
         <form onSubmit={onSubmit}>
+            <h3>Connexion</h3>
             <div className='group'>
                 <label htmlFor='email'>Adresse e-mail</label>
                 <input
@@ -53,7 +54,10 @@ const Login = () => {
             <div className='group'>
                 <button>Connexion</button>
             </div>
-
+            <div className='group'>
+                <p>Pas de compte ?</p>
+                <Link to='/auth/signup'>Inscrivez vous !</Link>
+            </div>
         </form>
     );
 };

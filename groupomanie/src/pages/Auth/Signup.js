@@ -35,6 +35,7 @@ const Signup = () => {
 
     return (
         <form onSubmit={onSubmit}>
+            <h3>Inscription</h3>
             <div className='group'>
                 <label htmlFor='pseudo'>Pseudo</label>
                 <input
@@ -67,7 +68,7 @@ const Signup = () => {
             </div>
             <div className='group'>
                 <p>Déjà inscrit ?</p>
-                <Link to='/login'>Connectez vous !</Link>
+                <Link to='/auth/login'>Connectez vous !</Link>
             </div>
         </form >
     );

@@ -7,7 +7,7 @@ const Header = () => {
 
     const logout = () => {
         accountService.logout()
-        navigate('/')
+        navigate('/home')
     }
 
     return (
