@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { accountService } from '../../_services/account.service'
 
 import '../Auth/auth.scss';
@@ -25,7 +25,7 @@ const Login = () => {
         accountService.login(credentials)
             .then(res => {
                 accountService.saveToken(res.data.token)
-                navigate('/')
+                navigate('/accueil')
             })
             .catch(error => console.log(error))
     }
@@ -53,7 +53,10 @@ const Login = () => {
             <div className='group'>
                 <button>Connexion</button>
             </div>
-
+            <div className='group'>
+                <p>Pas de compte ?</p>
+                <Link to='/signup'>Inscrivez vous !</Link>
+            </div>
         </form>
     );
 };

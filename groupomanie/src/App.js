@@ -3,18 +3,23 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AdminRouter from './pages/Admin/AdminRouter';
 import AuthRouter from './pages/Auth/AuthRouter';
 import PublicRouter from './pages/Public/PublicRouter';
-import AuthGuard from './_helpers/AuthGuard';
+import AdminAuthGuard from './_helpers/AdminAuthGuard';
+import PublicAuthGuard from './_helpers/PublicAuthGuard';
 
 const App = () => {
     return (
         <div className='App'>
             <BrowserRouter>
                 <Routes>
-                    <Route path='/*' element={<PublicRouter />} />
+                    <Route path='/*' element={
+                        <PublicAuthGuard>
+                            <PublicRouter />
+                        </PublicAuthGuard>
+                    } />
                     <Route path='/admin/*' element={
-                        <AuthGuard>
+                        <AdminAuthGuard>
                             < AdminRouter />
-                        </AuthGuard>
+                        </AdminAuthGuard>
                     } />
                     <Route path='/auth/*' element={<AuthRouter />} />
                 </Routes>

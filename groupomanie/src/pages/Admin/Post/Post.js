@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { postService } from '../../../_services/_post.service';
+import { postService } from '../../../_services/post.service';
 
 const Post = () => {
     const [posts, setPosts] = useState([])

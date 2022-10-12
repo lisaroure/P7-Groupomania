@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { accountService } from '../../_services/account.service'
 
 import './auth.scss';
@@ -65,7 +65,10 @@ const Signup = () => {
             <div className='group'>
                 <button>Créer un compte</button>
             </div>
-
+            <div className='group'>
+                <p>Déjà inscrit ?</p>
+                <Link to='/login'>Connectez vous !</Link>
+            </div>
         </form >
     );
 };

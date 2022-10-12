@@ -16,18 +16,18 @@ const Header = () => {
         />
         <nav>
           <ul>
-            <li>
+            {/* <li>
               <Link to="home">Accueil</Link>
-            </li>
+            </li> */}
             <li>
               <Link to="login">Connexion</Link>
             </li>
             <li>
               <Link to="signup">Inscription</Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="admin">Admin</Link>
-            </li>
+            </li> */}
           </ul>
         </nav>
       </header>

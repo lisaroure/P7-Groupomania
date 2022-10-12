@@ -12,7 +12,6 @@ const Header = () => {
 
     return (
         <div className='AHeader'>
-            header admin
             <button onClick={logout}>Se déconnecter</button>
         </div>
     );
