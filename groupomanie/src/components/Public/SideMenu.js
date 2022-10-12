@@ -5,12 +5,12 @@ const SideMenu = () => {
     return (
         <div className='SideMenu'>
             <ul>
-                <li><Link to="/accueil">Accueil</Link></li>
+                <li><Link to="profil">Profil</Link></li>
                 <li>&nbsp;</li>
                 <li>
                     User
                     <ul>
-                        <li><Link to='/user/index'>Utilisateurs</Link></li>
+                        <li><Link to='user/index'>Utilisateurs</Link></li>
                         <li><Link to='user/add'>Ajouter</Link></li>
                     </ul>
                 </li>

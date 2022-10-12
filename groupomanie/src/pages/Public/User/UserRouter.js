@@ -7,7 +7,7 @@ const UserRouter = () => {
     return (
         <Routes>
             <Route index element={<Profil />} />
-            <Route path='/profil' element={<Profil />} />
+            <Route path='profil' element={<Profil />} />
             <Route path="*" element={<Error />} />
         </Routes>
     );
