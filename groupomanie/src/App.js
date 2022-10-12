@@ -4,6 +4,7 @@ import AdminRouter from './pages/Admin/AdminRouter';
 import AuthRouter from './pages/Auth/AuthRouter';
 import { Home } from './pages/Public';
 import PublicRouter from './pages/Public/PublicRouter';
+import PostRouter from './pages/Public/Posts/PostRouter';
 import AdminAuthGuard from './_helpers/AdminAuthGuard';
 import PublicAuthGuard from './_helpers/PublicAuthGuard';
 
@@ -12,10 +13,17 @@ const App = () => {
         <div className='App'>
             <BrowserRouter>
                 <Routes>
-                    <Route path='/*' element={<Home />} />
-                    <Route path='/accueil/*' element={
+                    <Route path='/' element={<Home />} />
+
+                    <Route path='/home/*' element={
                         <PublicAuthGuard>
                             <PublicRouter />
+                        </PublicAuthGuard>
+                    } />
+
+                    <Route path='/accueil/*' element={
+                        <PublicAuthGuard>
+                            <PostRouter />
                         </PublicAuthGuard>
                     } />
 
@@ -27,7 +35,7 @@ const App = () => {
                     <Route path='/auth/*' element={<AuthRouter />} />
                 </Routes>
             </BrowserRouter>
-        </div>
+        </div >
     );
 };
 

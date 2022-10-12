@@ -1,11 +1,11 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Header from '../../components/Public/Header';
+import PHeader from '../../components/Public/Home/PHeader';
 
 const Layout = () => {
     return (
         <div className='layout'>
-            <Header />
+            <PHeader />
             <Outlet />
         </div>
     );

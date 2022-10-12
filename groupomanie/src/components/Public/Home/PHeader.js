@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from '../../assets/logo.png'
+import logo from '../../../assets/logo.png'
 
-import "./header.scss";
+import "../header.scss";
 
 const PHeader = () => {
     return (
@@ -16,18 +16,12 @@ const PHeader = () => {
                 />
                 <nav>
                     <ul>
-                        {/* <li>
-              <Link to="home">Accueil</Link>
-            </li> */}
                         <li>
                             <Link to="login">Connexion</Link>
                         </li>
                         <li>
                             <Link to="signup">Inscription</Link>
                         </li>
-                        {/* <li>
-              <Link to="admin">Admin</Link>
-            </li> */}
                     </ul>
                 </nav>
             </header>

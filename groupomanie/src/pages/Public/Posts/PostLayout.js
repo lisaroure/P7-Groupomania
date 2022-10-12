@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import Header from '../../components/Public/Header';
-import SideMenu from '../../components/Public/SideMenu';
+import Header from '../../../components/Public/Header';
+import SideMenu from '../../../components/Public/SideMenu';
 
 import './accueil.scss'
 
