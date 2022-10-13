@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import AdminRouter from './pages/Admin/AdminRouter';
 import AuthRouter from './pages/Auth/AuthRouter';
-import { Home } from './pages/Public';
+import { Home, Layout } from './pages/Public';
 import PublicRouter from './pages/Public/PublicRouter';
 import PostRouter from './pages/Public/Posts/PostRouter';
 import AdminAuthGuard from './_helpers/AdminAuthGuard';
@@ -13,7 +13,8 @@ const App = () => {
         <div className='App'>
             <BrowserRouter>
                 <Routes>
-                    <Route path='/' element={<Home />} />
+                    <Route element ={<Layout />} />
+                    <Route index element={<Home />} />
 
                     <Route path='/home/*' element={
                         <PublicAuthGuard>

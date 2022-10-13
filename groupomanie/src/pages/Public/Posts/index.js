@@ -1,3 +1,2 @@
-export { default as PostLayout } from './PostLayout'
-export { default as Post } from './Post'
-export { default as PEdit } from './PostEdit'
+export { default as Accueil } from "./Accueil";
+export { default as PostLayout } from "./PostLayout";
