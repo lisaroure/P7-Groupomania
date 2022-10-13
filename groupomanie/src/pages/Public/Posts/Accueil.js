@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { postService } from '../../../_services/post.service';
 
+import './accueil.scss'
+
 const Accueil = () => {
     const [posts, setPosts] = useState([])
     const flag = useRef(false)
