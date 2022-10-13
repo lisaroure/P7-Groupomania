@@ -3,26 +3,70 @@ form {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 30em;
-  width: 65%;
+  height: 38em;
+  width: 48%;
   margin: 0 auto;
-  margin-top: 150px;
+  margin-top: 110px;
   border: 1px solid gray;
   border-radius: 50px;
+    img {
+        position: absolute;
+        z-index: -1;
+        opacity: 0.2;
+    }
+
   h3 {
+    margin: 0 0px 60px 0;
     font-size: 25px;
     padding-bottom: 30px;
     border-bottom: 1px solid red;
+    width: 64%;
+    text-align: center;
   }
 }
 .group {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   margin-bottom: 15px;
 
   label {
+    padding-bottom: 15px;
     display: block;
   }
+  input {
+    text-align: center;
+    border: 1px solid gray;
+    border-radius: 20px;
+    width: 143%;
+    height: 30px;
+  }
 }
+  a {
+      text-decoration: none;
+      color: black;
+      transform: scale(1.0);
+      transition: transform 200ms;
+      padding: 8px;
+      &:hover {
+          transform: scale(1.1);
+          border-bottom: 1px solid black;
+      }
+  }
 button {
-  width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border: none;
+    border-radius: 40px;
+    width: 121%;
+    height: 3em;
+    margin: 28px 0px 0 0px;
+    cursor: pointer;
+    transform: scale(1.0);
+    transition: transform 300ms;
+    &:hover {
+        transform: scale(1.1);
+    }
 }

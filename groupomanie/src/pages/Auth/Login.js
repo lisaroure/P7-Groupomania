@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { accountService } from '../../_services/account.service'
+import logo from '../../assets/groupomania.jpg'
 
 import './auth.scss';
 
@@ -32,12 +33,14 @@ const Login = () => {
 
     return (
         <form onSubmit={onSubmit}>
+            <img src={logo} alt='logo de Groupomania'/>
             <h3>Connexion</h3>
             <div className='group'>
                 <label htmlFor='email'>Adresse e-mail</label>
                 <input
                     type="text"
                     name='email'
+                    placeholder='Votre e-mail'
                     value={credentials.email}
                     onChange={onChange}
                 />
@@ -47,6 +50,7 @@ const Login = () => {
                 <input
                     type="text"
                     name='password'
+                    placeholder='Votre mot de passe'
                     value={credentials.password}
                     onChange={onChange}
                 />
@@ -54,10 +58,8 @@ const Login = () => {
             <div className='group'>
                 <button>Connexion</button>
             </div>
-            <div className='group'>
                 <p>Pas de compte ?</p>
                 <Link to='/auth/signup'>Inscrivez vous !</Link>
-            </div>
         </form>
     );
 };

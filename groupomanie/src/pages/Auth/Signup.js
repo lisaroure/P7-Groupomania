@@ -41,6 +41,7 @@ const Signup = () => {
                 <input
                     type="text"
                     name='pseudo'
+                    placeholder='Votre pseudo'
                     value={credentials.pseudo}
                     onChange={onChange}
                 />
@@ -50,6 +51,7 @@ const Signup = () => {
                 <input
                     type="text"
                     name='email'
+                    placeholder='Votre e-mail'
                     value={credentials.email}
                     onChange={onChange}
                 />
@@ -59,6 +61,7 @@ const Signup = () => {
                 <input
                     type="text"
                     name='password'
+                    placeholder='Votre mot de passe'
                     value={credentials.password}
                     onChange={onChange}
                 />
@@ -66,10 +69,8 @@ const Signup = () => {
             <div className='group'>
                 <button>Créer un compte</button>
             </div>
-            <div className='group'>
                 <p>Déjà inscrit ?</p>
                 <Link to='/auth/login'>Connectez vous !</Link>
-            </div>
         </form >
     );
 };
