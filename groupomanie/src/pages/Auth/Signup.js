@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { accountService } from '../../_services/account.service'
+import logo from '../../assets/groupomania.jpg'
 
 import './auth.scss';
 
@@ -35,6 +36,7 @@ const Signup = () => {
 
     return (
         <form onSubmit={onSubmit}>
+            <img src={logo} alt='logo de groupomania' />
             <h3>Inscription</h3>
             <div className='group'>
                 <label htmlFor='pseudo'>Pseudo</label>

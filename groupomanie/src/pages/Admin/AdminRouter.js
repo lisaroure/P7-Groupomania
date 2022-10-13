@@ -2,8 +2,9 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 
 import { ALayout, Dashboard } from "../Admin";
+import LogAdmin from "./Log/LogAdmin";
 import { User, UEdit, Add } from "../Admin/User";
-import { Post, PEdit } from "../Admin/Post";
+import { Post, PEdit, PostAdd } from "../Admin/Post";
 import Error from "../../_utils/Error";
 
 const AdminRouter = () => {
@@ -11,6 +12,7 @@ const AdminRouter = () => {
     <Routes>
       <Route element={<ALayout />}>
         <Route index element={<Dashboard />} />
+        <Route path="/auth/login" element={<LogAdmin />} />
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="user">
           <Route path="index" element={<User />} />
@@ -20,6 +22,7 @@ const AdminRouter = () => {
         <Route path="post">
           <Route path="index" element={<Post />} />
           <Route path="edit" element={<PEdit />} />
+          <Route path="add" element={<PostAdd /> } />
         </Route>
         <Route path="*" element={<Error />} />
       </Route>

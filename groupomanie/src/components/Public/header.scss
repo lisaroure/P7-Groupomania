@@ -1,29 +1,29 @@
 .home-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    img {
-        margin-left: 15px;
-    }
-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  img {
+    margin-left: 15px;
+  }
+  nav {
     border-bottom: 2px solid black;
     ul {
-        list-style-type: none;
-        padding: 20px;
-        display: flex;
-        justify-content: right;
-        li {
-            margin-right: 55px;
-            cursor: pointer;
-            color: black;
-                a {
-                    text-decoration: none;
-                    color: black;
-                }
+      list-style-type: none;
+      padding: 20px;
+      display: flex;
+      justify-content: right;
+      li {
+        margin-right: 55px;
+        cursor: pointer;
+        color: black;
+        a {
+          text-decoration: none;
+          color: black;
         }
+      }
     }
-}
-button {
+  }
+  button {
     width: 16%;
-}
+  }
 }

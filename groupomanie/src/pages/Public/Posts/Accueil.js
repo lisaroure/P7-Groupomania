@@ -35,7 +35,7 @@ const Accueil = () => {
                 <tbody>
                     {
                         posts.map(post => (
-                            <tr key={post._id}>
+                            <tr key={post.id}>
                                 <td><Link to={`../edit/${post._id}`}>{post.posterId}</Link></td>
                                 <td>{post.createdAt}</td>
                             </tr>
