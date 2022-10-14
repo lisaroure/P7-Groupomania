@@ -4,23 +4,38 @@
   align-items: center;
   padding-top: 85px;
   h2 {
+    position: relative;
+    z-index: 1;
     border-top: 1px solid;
     padding-top: 60px;
     width: 36em;
-    padding-bottom: 60px;
+    padding-bottom: 40px;
   }
   p {
     position: relative;
     z-index: 1;
-    font-style: italic;
+    padding-bottom: 50px;
+    border-top: 1px solid;
+    padding-top: 50px;
+    a {
+      text-decoration: none;
+      color: black;
+      &:hover {
+      border-bottom: 1px solid;
+      padding-bottom: 5px;
+      }
+    }
   }
   img {
-    width: 70%;
+    width: 45%;
     cursor: pointer;
-    transform: scale(1);
-    transition: transform 400ms;
-    &:hover {
-      transform: scale(1.15);
-    }
+    transform: rotate();
+    animation: spin 17.5s linear infinite;
+  }
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
   }
 }

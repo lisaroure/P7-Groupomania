@@ -6,14 +6,9 @@ import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <div className="home-container">
-      <div>
-        <h2>Bienvenue sur le réseau social de Groupomania !</h2>
-        <p>Cliquez sur le logo pour accéder au site !</p>
-      </div>
-
-      <Link to="auth/login">
-        <img src={logo} alt="logo de groupomania" width={270} />
-      </Link>
+      <h2>Bienvenue sur le réseau social de Groupomania !</h2>
+      <p>Accéder à <Link to="/profil">mon compte</Link></p>
+      <img src={logo} alt="logo de groupomania" />
     </div>
   );
 };
