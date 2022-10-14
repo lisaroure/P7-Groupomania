@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <div className="home-container">
       <h2>Bienvenue sur le réseau social de Groupomania !</h2>
-      <p>Accéder à <Link to="/profil">mon compte</Link></p>
+      <p>Accéder à <Link to="/accueil">mon compte</Link></p>
       <img src={logo} alt="logo de groupomania" />
     </div>
   );

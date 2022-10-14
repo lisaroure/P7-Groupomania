@@ -12,10 +12,10 @@ const PHeader = () => {
         <nav>
           <ul>
             <li>
-              <Link to="login">Connexion</Link>
+              <Link to="auth/login">Connexion</Link>
             </li>
             <li>
-              <Link to="signup">Inscription</Link>
+              <Link to="auth/signup">Inscription</Link>
             </li>
           </ul>
         </nav>
