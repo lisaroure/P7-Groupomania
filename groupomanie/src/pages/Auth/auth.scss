@@ -49,17 +49,6 @@ form {
     height: 30px;
   }
 }
-a {
-  font-style: italic;
-  text-decoration: none;
-  color: black;
-  transform: scale(1);
-  transition: transform 200ms;
-  padding-left: 22px;
-  &:hover {
-    transform: scale(1.1);
-  }
-}
 button {
   display: flex;
   align-items: center;
@@ -81,4 +70,15 @@ button {
 .suggestion {
   display: flex;
   align-items: center;
+  a {
+    font-style: italic;
+    text-decoration: none;
+    color: black;
+    transform: scale(1);
+    transition: transform 200ms;
+    padding-left: 22px;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
 }
