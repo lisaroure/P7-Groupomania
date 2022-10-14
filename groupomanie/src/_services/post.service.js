@@ -1,11 +1,11 @@
 import Axios from "./caller.service";
 
 let getAllPosts = () => {
-    return Axios.get('/api/post/')
+    return Axios.get('/api/post')
 };
 
 let getPost = (id) => {
-    return Axios.get('/api/post/' + id)
+    return Axios.get('/api/post')
 }
 
 export const postService = {

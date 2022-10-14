@@ -28,7 +28,7 @@ const Signup = () => {
         accountService.signup(credentials)
             .then(res => {
                 accountService.saveToken(res.data.token)
-                navigate('/admin')
+                navigate('/accueil')
             })
             .catch(error => console.log(error))
     }
