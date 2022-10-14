@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 
 import { ALayout, Dashboard } from "../Admin";
-import { User, UEdit, Add } from "../Admin/User";
+import { User, UEdit } from "../Admin/User";
 import { Post, PEdit, PostAdd } from "../Admin/Post";
 import Error from "../../_utils/Error";
 
@@ -15,7 +15,6 @@ const AdminRouter = () => {
         <Route path="user">
           <Route path="index" element={<User />} />
           <Route path="edit/:uid" element={<UEdit />} />
-          <Route path="add" element={<Add />} />
         </Route>
         <Route path="post">
           <Route path="index" element={<Post />} />

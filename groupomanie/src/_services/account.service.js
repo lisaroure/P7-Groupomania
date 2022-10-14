@@ -25,6 +25,10 @@ let getToken = () => {
     return localStorage.getItem('token')
 }
 
+let id =  () => {
+    return localStorage.getItem('req.data.id')
+}
+
 export const accountService = {
-    signup, login, saveToken, logout, isLogged, getToken
+    signup, login, saveToken, logout, isLogged, getToken, id
 }
