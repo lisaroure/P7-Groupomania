@@ -32,6 +32,16 @@ const App = () => {
               </PublicAuthGuard>
             }
           />
+
+          <Route
+            path="/accueil/*"
+            element={
+              <AdminAuthGuard>
+                <PostRouter />
+              </AdminAuthGuard>
+            }
+          />
+
           <Route
             path="/admin/*"
             element={
@@ -41,7 +51,7 @@ const App = () => {
             }
           />
           <Route path="/auth/*" element={<AuthRouter />} />
-          <Route path="*" element={<Error /> }  />
+          <Route path="*" element={<Error />} />
         </Routes>
       </BrowserRouter>
     </div>
