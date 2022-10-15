@@ -24,15 +24,6 @@ const App = () => {
           />
 
           <Route
-            path="/*"
-            element={
-              <PublicAuthGuard>
-                <PublicRouter />
-              </PublicAuthGuard>
-            }
-          />
-
-          <Route
             path="/admin/*"
             element={
               <AdminAuthGuard>

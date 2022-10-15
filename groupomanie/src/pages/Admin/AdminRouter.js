@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 
 import { ALayout, Dashboard } from "../Admin";
-import { User, UEdit } from "../Admin/User";
+import { User, UEdit } from "../Public/User";
 import { Post, PEdit, PostAdd } from "../Admin/Post";
 import Error from "../../_utils/Error";
 

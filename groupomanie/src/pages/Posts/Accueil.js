@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { postService } from "../../../_services/post.service";
+import { postService } from "../../_services/post.service";
 import "./accueil.scss";
-import { accountService } from "../../../_services/account.service";
+import { accountService } from "../../_services/account.service";
 
 const Accueil = () => {
   const [posts, setPosts] = useState([]);
