@@ -5,13 +5,14 @@ import Accueil from "./Posts/Accueil";
 
 const Home = () => {
   return (
-    <div className="home-container">
-      <h2>Bienvenue sur le réseau social de Groupomania !</h2>
-      <img src={logo} alt="logo de groupomania" />
-      <div className="accueil">
-        <Accueil />
+    <>
+      <div className="home-container">
+        <h2>Bienvenue sur le réseau social de Groupomania !</h2>
+        <img src={logo} alt="logo de groupomania" />
+        <p></p>
       </div>
-    </div>
+      <Accueil />
+    </>
   );
 };
 
