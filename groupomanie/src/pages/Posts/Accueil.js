@@ -1,18 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { postService } from "../../_services/post.service";
 import "./accueil.scss";
-import { accountService } from "../../_services/account.service";
 
 const Accueil = () => {
   const [posts, setPosts] = useState([]);
   const flag = useRef(false);
-  let navigate = useNavigate();
-
-  const logout = () => {
-    accountService.logout();
-    navigate("/home");
-  };
 
   useEffect(() => {
     if (flag.current === false) {
@@ -30,10 +23,7 @@ const Accueil = () => {
 
   return (
     <>
-      <header className="home-header">
-        <button onClick={logout}>Se déconnecter</button>
-      </header>
-      <div className="post" />
+      <div className="post-body" />
       <table>
         <thead>
           <tr>
@@ -45,7 +35,7 @@ const Accueil = () => {
           {posts.map((post) => (
             <tr key={post.id}>
               <td>
-                <Link to={`../edit/${post._id}`}>jgbkjbghjvj</Link>
+                <Link to={`../edit/${post._id}`}></Link>
               </td>
               <td>{post.createdAt}</td>
             </tr>

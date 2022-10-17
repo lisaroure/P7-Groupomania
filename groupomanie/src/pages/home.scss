@@ -21,8 +21,8 @@
       text-decoration: none;
       color: black;
       &:hover {
-      border-bottom: 1px solid;
-      padding-bottom: 5px;
+        border-bottom: 1px solid;
+        padding-bottom: 5px;
       }
     }
   }
@@ -31,6 +31,14 @@
     cursor: pointer;
     transform: rotate();
     animation: spin 17.5s linear infinite;
+  }
+
+  table {
+    border: 1px solid gray;
+    border-radius: 50px;
+    padding: 20px;
+    margin-top: 20px;
+    position: relative;
   }
 }
 

@@ -12,10 +12,16 @@ const Header = () => {
         <nav>
           <ul>
             <li>
+              <Link to="accueil">Accueil</Link>
+            </li>
+            <li>
               <Link to="auth/login">Connexion</Link>
             </li>
             <li>
               <Link to="auth/signup">Inscription</Link>
+            </li>
+            <li>
+              <Link to="profil">Profil</Link>
             </li>
           </ul>
         </nav>

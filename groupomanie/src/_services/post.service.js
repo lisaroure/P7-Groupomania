@@ -5,7 +5,7 @@ let getAllPosts = () => {
 };
 
 let getPost = (id) => {
-    return Axios.get('/api/post')
+    return Axios.get('/api/post/' + id)
 }
 
 export const postService = {

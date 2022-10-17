@@ -9,7 +9,7 @@ let getUser = (id) => {
 }
 
 let modifyUser = (id) => {
-  return Axios.patch('/api/user/user' + id)
+  return Axios.patch('/api/user/user/' + id)
 }
 
 export const userService = {
