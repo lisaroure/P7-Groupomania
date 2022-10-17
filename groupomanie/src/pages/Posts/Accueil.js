@@ -22,8 +22,7 @@ const Accueil = () => {
   }, []);
 
   return (
-    <>
-      <div className="post-body" />
+    <div className="post-body">
       <table>
         <thead>
           <tr>
@@ -42,7 +41,7 @@ const Accueil = () => {
           ))}
         </tbody>
       </table>
-    </>
+    </div>
   );
 };
 

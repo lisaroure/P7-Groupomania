@@ -14,14 +14,21 @@ const App = () => {
           <Route element={<Layout />}>
             <Route index element={<Home />} />
             <Route
-              path="/post/*"
+              path="/accueil/*"
               element={
                 <PublicAuthGuard>
                   <PublicRouter />
                 </PublicAuthGuard>
               }
             />
-
+            <Route
+              path="/profil/*"
+              element={
+                <PublicAuthGuard>
+                  <PublicRouter />
+                </PublicAuthGuard>
+              }
+            />
             <Route path="/auth/*" element={<AuthRouter />} />
             <Route path="*" element={<Error />} />
           </Route>

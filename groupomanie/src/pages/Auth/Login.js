@@ -33,6 +33,8 @@ const Login = () => {
   };
 
   return (
+    <>
+    <h3>Connectez vous pour  accéder à votre compte et pour pouvoir publier !</h3>
     <form onSubmit={onSubmit}>
       <img src={logo} alt="logo de Groupomania" />
       <h3>Connexion</h3>
@@ -64,6 +66,7 @@ const Login = () => {
         <Link to="/auth/signup">Inscrivez vous !</Link>
       </div>
     </form>
+    </>
   );
 };
 
