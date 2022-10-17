@@ -11,9 +11,8 @@ const PublicRouter = () => {
       <Route index element="/" />
       <Route path="home" element={<Home />} />
       <Route path="accueil" element={<Accueil />} />
-      <Route path="user">
-        <Route path="/index" element={<User />} />
-        <Route path="/profil" element={<Profil />} />
+      <Route path="profil" element={<Profil />}>
+        <Route path="user" element={<User />} />
       </Route>
 
       <Route path="*" element={<Error />} />
