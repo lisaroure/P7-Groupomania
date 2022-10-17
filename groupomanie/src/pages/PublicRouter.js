@@ -1,9 +1,9 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import { Layout, Home } from "../../pages/Public";
-import Error from "../../_utils/Error";
-import Accueil from "./Posts/Accueil";
+import Error from "../_utils/Error";
 import { Profil, User } from "./User";
+import Home from "./Home";
+import Layout from "./Layout";
 
 const PublicRouter = () => {
   return (
@@ -11,7 +11,6 @@ const PublicRouter = () => {
       <Route element={<Layout />}>
         <Route index element="/" />
         <Route path="home" element={<Home />} />
-        <Route path="accueil" element={<Accueil/>} />
         <Route path="user">
           <Route path="index" element={<User />} />
           <Route path="profil" element={<Profil />} />

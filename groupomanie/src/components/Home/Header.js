@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "../../../assets/logo.png";
+import logo from "../../assets/logo.png";
 
-import "./p-header.scss";
+import "./header.scss";
 
-const PHeader = () => {
+const Header = () => {
   return (
     <>
       <header className="public-header">
@@ -24,4 +24,4 @@ const PHeader = () => {
   );
 };
 
-export default PHeader;
+export default Header;

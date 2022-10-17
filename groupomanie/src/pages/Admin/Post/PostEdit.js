@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const PostEdit = () => {
-    return (
-        <div className='PostEdit'>
-
-        </div>
-    );
+  return <div className="PostEdit">Edit</div>;
 };
 
 export default PostEdit;
