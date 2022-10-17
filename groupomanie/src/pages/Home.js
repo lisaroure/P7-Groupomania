@@ -8,7 +8,9 @@ const Home = () => {
     <div className="home-container">
       <h2>Bienvenue sur le réseau social de Groupomania !</h2>
       <img src={logo} alt="logo de groupomania" />
-      <Accueil />
+      <div className="accueil">
+        <Accueil />
+      </div>
     </div>
   );
 };
