@@ -32,10 +32,11 @@
 
 .post-body {
   position: relative;
+  z-index: 1;
   display: flex;
   justify-content: center;
   text-align: center;
-  padding-left: 20px;
+  margin: -45px 0 0 0;
   table {
     border: 1px solid gray;
     border-radius: 50px;
