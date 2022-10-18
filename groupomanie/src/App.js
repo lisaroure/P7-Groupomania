@@ -12,24 +12,21 @@ const App = () => {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          {/* <Route index element={<Home />} />
+          <Route index element={<Home />} />
 
           <Route element={<Layout />}>
             <Route path="/*" element={
-              // <AuthGuard>
-              <Routes>
+              <AuthGuard>
+                <Routes>
 
-                <Route to="home" element={<Home />} />
-                <Route to="profil" element={<Profil />} />
-                <Route to="add" element={<PostAdd />} />
-              </Routes>
-              // </AuthGuard>
+                  <Route path="home" element={<Home />} />
+                  <Route path="profil" element={<Profil />} />
+                  <Route path="add" element={<PostAdd />} />
+                </Routes>
+              </AuthGuard>
             } />
-          </Route> */}
-          <Route index element={<Home />} />
-          <Route path="home" element={<Home />} />
-          <Route path="profil" element={<Profil />} />
-          <Route path="add" element={<PostAdd />} />
+          </Route>
+
           <Route path="/auth/*" element={<AuthRouter />} />
           <Route path="*" element={<Error />} />
         </Routes>
