@@ -1,7 +1,8 @@
 import Axios from "./caller.service";
 
-let getAllPosts = () => {
-    return Axios.get('/api/post')
+let getAllPosts = async () => {
+    const { data } = Axios.get('/api/post')
+    return data
 };
 
 let getPost = (id) => {

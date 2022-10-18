@@ -25,8 +25,6 @@ const checkTokenMiddleware = (req, res, next) => {
     if (!token) {
         return res.status(401).json({ message: 'Bad Token' })
     }
-
-    console.log("go verify")
     console.log(process.env.RANDOM_TOKEN_SECRET)
     // Vérifier la validité du token
     jwt.verify(token, process.env.RANDOM_TOKEN_SECRET, (err, decodedToken) => {

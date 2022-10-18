@@ -11,12 +11,12 @@ const Header = () => {
       <header className="public-header">
         <Link to="/">
           <img src={logo} alt="logo de Groupomania" width={130} height={130} />
-          <img src={home} alt="logo home" width={20} height={20}/>
-          </Link>
+          <img src={home} alt="logo home" width={20} height={20} />
+        </Link>
         <nav>
           <ul>
             <li>
-              <Link to="/accueil">Accueil</Link>
+              <Link to="/home">Accueil</Link>
             </li>
             <li>
               <Link to="/profil">Profil</Link>

@@ -4,17 +4,36 @@ const Post = require('../models/Post');
 const User = require('../models/User');
 
 // Créer une post
-exports.createPost = (req, res, next) => {
-    const post = new Post({
-        posterId: req.auth.userId,
-        post: req.body.post,
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
-        likers: [],
-    });
-    post.save()
-        .then(() => { res.status(201).json({ message: 'post save' }) })
-        .catch(error => { res.status(400).json({ error, message: 'Erreur creation post' }) })
-};
+exports.createPost = async (req, res) => {
+    // const post = new Post({
+    //     posterId: req.auth.id,
+    //     post: req.body.post,
+    //     imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
+    //     likers: [],
+    // });
+    const { posterId, post } = req.body
+    if (!posterId || !post) {
+        return res.status(400).json({ message: 'Missing data' })
+    }
+
+    try {
+        //Vérification s'il y a déjà des posts de créés
+        let post = await Post.findOne()
+        if (post !== null) {
+            return res.status(409).json({ message: `Pas de post ici` })
+        }
+        //Création d'un post
+        post = await Post.create(req.body)
+        return res.json({ message: 'Post créé', data: post })
+    } catch (err) {
+        return res.status(500).json({ message: 'DB error', error: err })
+    }
+}
+
+// post.save()
+//     .then(() => { res.status(201).json({ message: 'post save' }) })
+//     .catch(error => { res.status(400).json({ error, message: 'Erreur creation post' }) })
+// };
 // Modifier un post
 exports.modifyPost = (req, res) => {
     if (req.file) {

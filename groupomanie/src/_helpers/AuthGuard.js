@@ -1,13 +1,13 @@
 import { Navigate } from "react-router-dom";
 import { accountService } from '../_services/account.service';
 
-const AdminAuthGuard = ({ children }) => {
+const AuthGuard = ({ children }) => {
 
     if (!accountService.isLogged()) {
-        return <Navigate to='/auth/login' />
+        return <Navigate to='/login' />
     }
 
     return children
 };
 
-export default AdminAuthGuard;
+export default AuthGuard;

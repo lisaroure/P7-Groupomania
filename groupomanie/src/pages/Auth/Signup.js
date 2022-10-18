@@ -72,7 +72,7 @@ const Signup = () => {
       </div>
       <div className="suggestion">
         <p>Déjà inscrit ?</p>
-        <Link to="/auth/login">Connectez vous !</Link>
+        <Link to="/login">Connectez vous !</Link>
       </div>
     </form>
   );

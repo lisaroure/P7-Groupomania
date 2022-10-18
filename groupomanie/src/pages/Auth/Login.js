@@ -27,45 +27,45 @@ const Login = () => {
       .login(credentials)
       .then((res) => {
         accountService.saveToken(res.data.token);
-        navigate("/accueil");
+        navigate("/");
       })
       .catch((error) => console.log(error));
   };
 
   return (
     <>
-    <h3>Connectez vous pour  accéder à votre compte et pour pouvoir publier !</h3>
-    <form onSubmit={onSubmit}>
-      <img src={logo} alt="logo de Groupomania" />
-      <h3>Connexion</h3>
-      <div className="group">
-        <label htmlFor="email">Adresse e-mail</label>
-        <input
-          type="text"
-          name="email"
-          placeholder="Votre e-mail"
-          value={credentials.email}
-          onChange={onChange}
-        />
-      </div>
-      <div className="group">
-        <label htmlFor="password">Mot de passe</label>
-        <input
-          type="text"
-          name="password"
-          placeholder="Votre mot de passe"
-          value={credentials.password}
-          onChange={onChange}
-        />
-      </div>
-      <div className="group">
-        <button>Connexion</button>
-      </div>
-      <div className="suggestion">
-        <p>Pas de compte ?</p>
-        <Link to="/auth/signup">Inscrivez vous !</Link>
-      </div>
-    </form>
+      <h3>Connectez vous pour  accéder à votre compte et pour pouvoir publier !</h3>
+      <form onSubmit={onSubmit}>
+        <img src={logo} alt="logo de Groupomania" />
+        <h3>Connexion</h3>
+        <div className="group">
+          <label htmlFor="email">Adresse e-mail</label>
+          <input
+            type="text"
+            name="email"
+            placeholder="Votre e-mail"
+            value={credentials.email}
+            onChange={onChange}
+          />
+        </div>
+        <div className="group">
+          <label htmlFor="password">Mot de passe</label>
+          <input
+            type="text"
+            name="password"
+            placeholder="Votre mot de passe"
+            value={credentials.password}
+            onChange={onChange}
+          />
+        </div>
+        <div className="group">
+          <button>Connexion</button>
+        </div>
+        <div className="suggestion">
+          <p>Pas de compte ?</p>
+          <Link to="/signup">Inscrivez vous !</Link>
+        </div>
+      </form>
     </>
   );
 };
