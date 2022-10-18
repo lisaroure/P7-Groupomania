@@ -1,26 +1,19 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
+import { useQuery } from "react-query";
 import randomUser from "../../../assets/random-user.png";
 import { userService } from "../../../_services/user.service";
 
 const Profil = () => {
-  const [users, setUsers] = useState([]);
-  const flag = useRef(false);
+  const { isLoading, data } = useQuery('user', userService.getUser)
+  const user = data || { "data": [] }
 
-  useEffect(() => {
-    if (flag.current === false) {
-      userService
-        .getUser()
-        .then((res) => {
-          setUsers(res.data.data);
-        })
-        .catch((err) => console.log(err));
-    }
-    return () => (flag.current = true);
-  }, []);
+  if (isLoading) {
+    return <div>Ca charge...</div>
+  }
 
   return (
     <div className="profil-card">
-      {users.map((user) => (
+      {user.data.map((user) => (
         <div key={user.pseudo}>
           <h3>Votre profil {user.pseudo}</h3>
           <img src={randomUser} alt="User pic" />

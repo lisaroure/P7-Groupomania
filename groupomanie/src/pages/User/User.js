@@ -1,24 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+import { useQuery } from "react-query";
 import { userService } from "../../_services/user.service";
 
 const User = () => {
-  const [users, setUsers] = useState([]);
-  const flag = useRef(false);
+  const { isLoading, data } = useQuery('users', userService.getAllUsers)
+  const users = data || { "data": [] }
 
-  useEffect(() => {
-    if (flag.current === false) {
-      userService
-        .getAllUsers()
-        .then((res) => {
-          console.log(res.data);
-          setUsers(res.data.data);
-        })
-        .catch((err) => console.log(err));
-    }
-    // méthode pour éviter le double appel useEffect
-    return () => (flag.current = true);
-  }, []);
+  if (isLoading) {
+    return <div>Ca charge...</div>
+  }
 
   return (
     <div className="User">
@@ -31,7 +22,7 @@ const User = () => {
           </tr>
         </thead>
         <tbody>
-          {users.map((user) => (
+          {users.data.map((user) => (
             <tr key={user.pseudo}>
               <td>
                 <Link to={`../edit/${user._id}`}>{user.pseudo}</Link>
