@@ -21,20 +21,16 @@ const extractBearer = authorization => {
 const checkTokenMiddleware = (req, res, next) => {
 
     const token = req.headers.authorization && extractBearer(req.headers.authorization)
-    console.log(token)
+    
     if (!token) {
         return res.status(401).json({ message: 'Bad Token' })
     }
-    console.log(process.env.RANDOM_TOKEN_SECRET)
     // Vérifier la validité du token
     jwt.verify(token, process.env.RANDOM_TOKEN_SECRET, (err, decodedToken) => {
         if (err) {
             return res.status(401).json({ message: 'Bad token' })
         }
-
-        console.log(decodedToken)
         req.user = decodedToken.userId
-
 
         next()
     })

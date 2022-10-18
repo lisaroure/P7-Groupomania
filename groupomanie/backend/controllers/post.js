@@ -5,9 +5,9 @@ const User = require('../models/User');
 
 // Créer une post
 exports.createPost = async (req, res) => {
-    console.log(req.body)
-    console.log(req.file)
-    console.log(req.user)
+    //console.log(req.body)
+    //console.log(req.file)
+    //console.log(req.user)
     const { post } = req.body
     if (!post) {
         return res.status(400).json({ message: 'Missing data' })
