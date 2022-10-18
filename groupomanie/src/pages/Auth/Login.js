@@ -27,7 +27,7 @@ const Login = () => {
       .login(credentials)
       .then((res) => {
         accountService.saveToken(res.data.token);
-        navigate("/");
+        navigate("/home");
       })
       .catch((error) => console.log(error));
   };
@@ -63,7 +63,7 @@ const Login = () => {
         </div>
         <div className="suggestion">
           <p>Pas de compte ?</p>
-          <Link to="/signup">Inscrivez vous !</Link>
+          <Link to="/auth/signup">Inscrivez vous !</Link>
         </div>
       </form>
     </>
