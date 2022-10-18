@@ -1,22 +1,41 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config({ path: './config/.env' })
 
-module.exports = (req, res, next) => {
-    try {
-        const token = req.headers.authorization.split(' ')[1];
-        const decodedToken = jwt.verify(token, process.env.RANDOM_TOKEN_SECRET);
+/*************************/
+/*** Extraction du token */
+const extractBearer = authorization => {
 
-        if (decodedToken.adminId) {
-            const adminId = decodedToken.adminId;
-            req.auth = { adminId: adminId };
-        }
-        if (decodedToken.userId) {
-            const userId = decodedToken.userId;
-            req.auth = { userId: userId };
-        }
-        next();
-    } catch (error) {
-        res.status(401).json({ error });
+    if (typeof authorization !== 'string') {
+        return false
     }
-};
 
+    // On isole le token
+    const matches = authorization.match(/(Bearer)\s+(\S+)/i)
+
+    return matches && matches[2]
+
+}
+
+/******************************************/
+/*** Vérification de la présence du token */
+const checkTokenMiddleware = (req, res, next) => {
+
+    const token = req.headers.authorization && extractBearer(req.headers.authorization)
+    console.log(token)
+    if (!token) {
+        return res.status(401).json({ message: 'Bad Token' })
+    }
+
+    console.log("go verify")
+    console.log(process.env.RANDOM_TOKEN_SECRET)
+    // Vérifier la validité du token
+    jwt.verify(token, process.env.RANDOM_TOKEN_SECRET, (err, decodedToken) => {
+        if (err) {
+            return res.status(401).json({ message: 'Bad token' })
+        }
+
+        next()
+    })
+}
+
+module.exports = checkTokenMiddleware
