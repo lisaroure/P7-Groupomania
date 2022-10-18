@@ -9,7 +9,7 @@ const Home = () => {
   const [text, setText] = useState([]);
   const [image, setImage] = useState();
   const { isLoading, data } = useQuery("posts", postService.getAllPosts);
-  console.log(data);
+
   const posts = data || [];
 
   if (isLoading) {
@@ -42,6 +42,7 @@ const Home = () => {
         {posts.map((post) => (
           <form className="post-container" onSubmit={onSubmit} key={post._id}>
             <div className="group">
+              
               <label htmlFor="post"></label>
               <textarea
                 name="post"
@@ -50,7 +51,7 @@ const Home = () => {
               ></textarea>
             </div>
             <div className="group">
-              <label htmlFor="image">{post.image}</label>
+              <label htmlFor="image"></label>
               <input
                 type="file"
                 name="image"
@@ -58,7 +59,9 @@ const Home = () => {
                 onChange={imageChange}
               />
             </div>
-            <p>Posté le : {new Date(post.createdAt).toLocaleDateString("fr-FR")}</p>
+            <p>
+              Posté le : {new Date(post.createdAt).toLocaleDateString("fr-FR")}
+            </p>
             <button>Modifier</button>
           </form>
         ))}
