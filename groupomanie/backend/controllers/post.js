@@ -5,35 +5,27 @@ const User = require('../models/User');
 
 // Créer une post
 exports.createPost = async (req, res) => {
-    // const post = new Post({
-    //     posterId: req.auth.id,
-    //     post: req.body.post,
-    //     imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`,
-    //     likers: [],
-    // });
-    const { posterId, post } = req.body
-    if (!posterId || !post) {
+    console.log(req.body)
+    console.log(req.file)
+    console.log(req.user)
+    const { post } = req.body
+    if (!post) {
         return res.status(400).json({ message: 'Missing data' })
     }
-
     try {
-        //Vérification s'il y a déjà des posts de créés
-        let post = await Post.findOne()
-        if (post !== null) {
-            return res.status(409).json({ message: `Pas de post ici` })
-        }
         //Création d'un post
-        post = await Post.create(req.body)
-        return res.json({ message: 'Post créé', data: post })
+        const newPost = new Post({
+            posterId: req.user,
+            post: req.body.post,
+            imageUrl: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
+            likers: []
+        })
+        let data = await newPost.save()
+        return res.json({ message: 'Post créé', data: data })
     } catch (err) {
         return res.status(500).json({ message: 'DB error', error: err })
     }
 }
-
-// post.save()
-//     .then(() => { res.status(201).json({ message: 'post save' }) })
-//     .catch(error => { res.status(400).json({ error, message: 'Erreur creation post' }) })
-// };
 // Modifier un post
 exports.modifyPost = (req, res) => {
     if (req.file) {
@@ -54,7 +46,6 @@ exports.modifyPost = (req, res) => {
                 } else {
                     res.status(401).json({ message: 'Not authorized' });
                 }
-
             })
             .catch(error => res.status(500).json({ error }));
     } else {
@@ -74,13 +65,12 @@ exports.modifyPost = (req, res) => {
             });
     }
 };
-
 //Suppression d'un post
 exports.deletePost = (req, res) => {
     Post.findOne({ _id: req.params.id })
         .then(post => {
             if (req.auth.adminId || post.posterId === req.auth.userId) {
-                // Supprime l'image
+                // Supprime l'image-+
                 const filename = post.imageUrl.split('/images/')[1];
                 fs.unlink(`images/${filename}`, () => {
                     Post.deleteOne({ _id: req.params.id })
@@ -95,21 +85,18 @@ exports.deletePost = (req, res) => {
             res.status(500).json({ error });
         });
 };
-
 // Posts existants
 exports.getAllPosts = (req, res, next) => {
     Post.find()
         .then((posts) => res.status(200).json(posts))
         .catch(error => res.status(400).json({ error: error }))
 }
-
 //Afficher un seul post
 exports.getPost = (req, res) => {
     User.findOne({ _id: req.params.id })
         .then((post) => res.status(200).json(post))
         .catch(error => res.status(400).json({ error }));
 };
-
 // Like utilisateur
 exports.likePost = (req, res) => {
     try {
