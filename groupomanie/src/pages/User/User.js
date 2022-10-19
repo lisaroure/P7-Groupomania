@@ -13,25 +13,14 @@ const User = () => {
 
   return (
     <div className="User">
-      Utilisateurs
-      <table>
-        <thead>
-          <tr>
-            <th>Pseudo</th>
-            <th>Membre depuis</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.data.map((user) => (
-            <tr key={user.pseudo}>
-              <td>
-                <Link to={`../edit/${user._id}`}>{user.pseudo}</Link>
-              </td>
-              <td>{user.createdAt}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {users.data.map((user) => (
+        <div key={user.pseudo}>
+          <h1>
+            <Link to={`../edit/${user._id}`}>{user.pseudo}</Link>
+          </h1>
+          <span>{user.createdAt}</span>
+        </div>
+      ))}
     </div>
   );
 };

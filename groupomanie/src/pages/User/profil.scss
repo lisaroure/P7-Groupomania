@@ -1,0 +1,23 @@
+
+.profil-container {
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    .profil-card{
+        display: flex;
+        flex-direction: column;
+        align-items: center; 
+        img {
+            margin-top: 30px;
+            width: 12em;
+            border-radius: 20px;
+        }
+        .profil-info {
+            margin-top: 30px;
+            span {
+                font-size: 12px;
+            }
+        }
+
+    }
+}

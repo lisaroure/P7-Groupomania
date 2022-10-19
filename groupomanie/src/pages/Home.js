@@ -42,7 +42,7 @@ const Home = () => {
         {posts.map((post) => (
           <form className="post-container" onSubmit={onSubmit} key={post._id}>
             <div className="group">
-              
+
               <label htmlFor="post"></label>
               <textarea
                 name="post"

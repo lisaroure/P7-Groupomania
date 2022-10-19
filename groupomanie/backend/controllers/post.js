@@ -93,7 +93,7 @@ exports.getAllPosts = (req, res, next) => {
 }
 //Afficher un seul post
 exports.getPost = (req, res) => {
-    User.findOne({ _id: req.params.id })
+    Post.findOne({ _id: req.params.id })
         .then((post) => res.status(200).json(post))
         .catch(error => res.status(400).json({ error }));
 };

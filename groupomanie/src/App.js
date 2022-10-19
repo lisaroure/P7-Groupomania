@@ -4,7 +4,7 @@ import { Home, Layout } from "./pages";
 import AuthGuard from "./_helpers/AuthGuard";
 import Error from "./_utils/Error";
 import AuthRouter from "./pages/Auth/AuthRouter";
-import { Profil } from "./pages/User";
+import Profil from "./pages/User/Profil";
 import PostAdd from "./pages/Posts/PostAdd";
 import PostEdit from "./pages/Posts/PostEdit";
 

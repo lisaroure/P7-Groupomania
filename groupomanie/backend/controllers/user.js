@@ -120,15 +120,15 @@ exports.getAllUsers = (req, res) => {
 
 //Afficher un seul user
 exports.getUser = (req, res) => {
-  User.findOne({ _id: req.params.id })
-    .then((user) => res.status(200).json(user))
-    .catch((error) => res.status(400).json({ error }));
-};
+  User.findOne({ where: { _id: req.params.id } })
+    .then((users) => res.status(200).json(users))
+    .catch((err) =>
+      res.status(400).json({ message: "Missing parameter", error: err }));
+}
 
 // Modifier un user (partie admin)
 exports.modifyUser = async (req, res) => {
   let userId = parseInt(req.params.id);
-
   // Vérification si le champ id est présent et cohérent
   if (!userId) {
     return res.status(400).json({ message: "Missing parameter" });
