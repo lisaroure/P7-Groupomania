@@ -2,11 +2,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+
   .bienvenue {
     display: flex;
     align-items: center;
-justify-content: center;
+    justify-content: center;
+
     h2 {
       position: relative;
       z-index: 1;
@@ -85,22 +86,16 @@ justify-content: center;
 }
 
 .post-container {
-  border: 1px solid gray;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   border-radius: 35px;
   padding: 20px;
   margin-top: 20px;
-  height: 13em;
   border: 1px solid #ffd7d7;
-
+  width: 16em;
   .group {
     width: 46%;
-
-    textarea {
-      font-family: Lato, sans-serif;
-      font-size: 23px;
-      border: none;
-      text-align: center;
-    }
   }
 
   p {

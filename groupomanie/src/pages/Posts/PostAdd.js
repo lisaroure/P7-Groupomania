@@ -21,13 +21,18 @@ const PostAdd = () => {
         e.preventDefault()
         // console.log(post)
         const formData = new FormData();
-        formData.append('imageUrl', image);
-        formData.append('post', text);
+        if (image || text) {
+            formData.append('imageUrl', image);
+            formData.append('post', text);
 
-        postService.createPost(formData)
-            .then(() => navigate('..'))
-            .catch(err => console.log(err))
+            postService.createPost(formData)
+                .then(() => navigate('..'))
+                .catch(err => console.log(err))
+        } else {
+            alert("Champ manquant")
+        }
     }
+
 
     return (
         <div className='form-post'>

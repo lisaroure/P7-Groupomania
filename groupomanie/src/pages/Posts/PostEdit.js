@@ -1,11 +1,19 @@
 import React, { useState } from "react";
+import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { postService } from "../../_services/post.service";
 
 const PostEdit = () => {
+  let navigate = useNavigate();
   const [text, setText] = useState([]);
   const [image, setImage] = useState();
-  let navigate = useNavigate();
+
+  const { isLoading, data } = useQuery('posts', postService.getAllPosts, { onSuccess: setImage, setText })
+  const posts = data || []
+
+  if (isLoading) {
+    return <i className="fas fa-spinner fa-spin"></i>;
+  }
 
   const onChange = (e) => {
     setText(e.target.value);
@@ -30,19 +38,26 @@ const PostEdit = () => {
 
   return (
     <>
-      <form onSubmit={onSubmit}>
-        <div className="group">
-          <label htmlFor="post">Votre texte</label>
-          <textarea name="post" onChange={onChange}></textarea>
-        </div>
-        <div className="group">
-          <label htmlFor="image">Image</label>
-          <input type="file" name="image" onChange={imageChange} />
-        </div>
-        <div className="group">
-          <button>Modifier</button>
-        </div>
-      </form>
+      {posts.map((post) => (
+
+        <form onSubmit={onSubmit} key={post._id}>
+
+          <div className="group" >
+            <label htmlFor="post">Votre texte</label>
+            <textarea name="post" defaultValue={post.post} onChange={onChange}></textarea>
+          </div>
+
+          <div className="group">
+            <label htmlFor="image">Image</label>
+            <input type="file" name="image" onChange={imageChange} />
+          </div>
+          <div className="group">
+            <button>Modifier</button>
+          </div>
+
+        </form>
+      ))
+      }
     </>
   );
 };

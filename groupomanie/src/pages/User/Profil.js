@@ -10,7 +10,7 @@ const Profil = () => {
   const users = data || { "data": [] }
 
   if (isLoading) {
-    return <div>Ca charge...</div>
+    <i className="fas fa-spinner fa-spin"></i>;
   }
   return (
     <div className="profil-container">
