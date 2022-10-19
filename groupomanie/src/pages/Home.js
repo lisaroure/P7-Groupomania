@@ -35,9 +35,9 @@ const Home = () => {
               {post.post}
             </div>
 
-            <div className="group">
-              {post.image}
-            </div>
+
+            <img src={post.image} alt="user-pic" />
+
 
             <p>
               Posté le : {new Date(post.createdAt).toLocaleDateString("fr-FR")}

@@ -14,15 +14,22 @@ const Profil = () => {
   }
   return (
     <div className="profil-container">
+
       {users.data.map((user) => (
         <div className="profil-card" key={user._id}>
+
           <h3>Votre profil {user.pseudo} ✨</h3>
           <img src={randomUser} alt="User pic" />
+          <button>Modifier la photo</button>
           <div className="profil-info">
+
             <span>Membre depuis le : {new Date(user.createdAt).toLocaleDateString("fr-FR")}</span>
+
           </div>
         </div>
+
       ))}
+
     </div>
   );
 };
