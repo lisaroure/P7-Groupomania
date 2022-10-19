@@ -20,7 +20,7 @@ const Home = () => {
     setText(e.target.value);
   };
 
-  const imageChange = (e) => {
+  const img = (e) => {
     console.log(e.target.files);
     setImage(e.target.files[0]);
   };
@@ -34,8 +34,10 @@ const Home = () => {
   return (
     <>
       <div className="home-container">
-        <h2>Bienvenue sur le réseau social de Groupomania !</h2>
-        <img src={logo} alt="logo de groupomania" />
+        <div className="bienvenue">
+          <img src={logo} alt="logo de groupomania" />
+          <h2>Bienvenue sur le réseau social de Groupomania !</h2>
+        </div>
         <div className="create-post">
           <PAdd />
         </div>
@@ -50,14 +52,8 @@ const Home = () => {
                 onChange={onChange}
               ></textarea>
             </div>
-            <div className="group">
-              <label htmlFor="image"></label>
-              <input
-                type="file"
-                name="image"
-                defaultValue={post.image}
-                onChange={imageChange}
-              />
+            <div className="user-img">
+              {post.image}
             </div>
             <p>
               Posté le : {new Date(post.createdAt).toLocaleDateString("fr-FR")}

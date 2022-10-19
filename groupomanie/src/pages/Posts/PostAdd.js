@@ -32,6 +32,7 @@ const PostAdd = () => {
     return (
         <div className='form-post'>
             <form onSubmit={onSubmit}>
+                <h4>Créez votre publication</h4>
                 <div className="group">
                     <label htmlFor="post">Votre texte</label>
                     <textarea name="post" onChange={onChange}></textarea>
