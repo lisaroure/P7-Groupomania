@@ -1,4 +1,5 @@
 require("dotenv").config({ path: "./config/.env" });
+const fs = require("fs");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
@@ -128,6 +129,28 @@ exports.getUser = (req, res) => {
 
 // Modifier un user (partie admin)
 exports.modifyUser = async (req, res) => {
+  if (req.file) {
+
+    User.findOne({ _id: req.params.id })
+      // Pour supprimer l'image dans le dossier images
+      .then(imageUrl => {
+
+        const fileName = imageUrl.picture.split('/images')[1];
+        fs.unlink(`images/${fileName}`, (error) => {
+          if (error) res.status(200);
+        })
+      })
+  }
+  const pictureUpdate = req.file ? {
+    ...(req.body.user),
+    picture: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+  } : { ...req.body };
+
+  User.updateOne({ ...pictureUpdate, pseudo: req.body.pseudo }, { where: { _id: req.params.id } })
+    .then(() => res.status(200).send({ message: "modification ok" }))
+    .catch((err) => res.status(500).json(err))
+}
+
   // let userId = parseInt(req.params.id);
   // Vérification si le champ id est présent et cohérent
   //   if (!userId) {
@@ -148,30 +171,6 @@ exports.modifyUser = async (req, res) => {
   //     return res.status(500).json({ message: "Database Error", error: err });
   //   }
   // };
-  if (req.file) {
-
-    User.findOne({ _id: req.params.id })
-      // Pour supprimer l'image dans le dossier images
-      .then(imageUrl => {
-
-        const fileName = imageUrl.picture.split('/images')[1];
-        fs.unlink(`images/${fileName}`, (error) => {
-          if (error) res.status(200);
-        })
-      })
-  }
-  const pictureUpdate = req.file ? {
-    ...(req.body.user),
-    picture: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-  } : { ...req.body };
-
-  User.updateOne({ ...pictureUpdate, email: req.body.email }, { where: { _id: req.params.id } })
-    .then(() => res.status(200).send({ message: "modification ok" }))
-    .catch((err) => res.status(500).json(err))
-}
-
-
-
 
 
 

@@ -44,7 +44,7 @@ const UserEdit = () => {
 
                     <div className="group" >
                         <label htmlFor="post">Votre texte</label>
-                        <textarea name="post" defaultValue={post.post} onChange={onChange}></textarea>
+                        <textarea name="post" defaultValue={user.post} onChange={onChange}></textarea>
                     </div>
 
                     <div className="group">
