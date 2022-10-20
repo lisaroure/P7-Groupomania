@@ -36,6 +36,8 @@ const UserEdit = () => {
             .catch((err) => console.log(err));
     };
 
+
+    // Form : regarder ce qui bug pour l'affichage
     return (
         <div className="UserEdit">
             {user.map((user) => (
