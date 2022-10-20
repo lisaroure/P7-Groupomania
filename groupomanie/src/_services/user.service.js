@@ -11,8 +11,9 @@ let getUser = async (_id) => {
   return data
 }
 
-let modifyUser = (user) => {
-  return Axios.patch('/api/user/user/' + user._id, user)
+let modifyUser = async (user) => {
+  const { data } = await Axios.patch('/api/user/user/' + user._id, user)
+  return data
 }
 
 export const userService = {

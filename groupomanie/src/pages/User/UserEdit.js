@@ -8,7 +8,7 @@ const UserEdit = () => {
     const [text, setText] = useState([]);
     const [image, setImage] = useState();
 
-    const { isLoading, data } = useQuery('user', userService.getUser, { onSuccess: setImage, setText })
+    const { isLoading, data } = useQuery('user', (user) => userService.modifyUser(user), { onSuccess: setImage, setText })
     const user = data || []
 
     if (isLoading) {
@@ -37,15 +37,23 @@ const UserEdit = () => {
     };
 
     return (
-        <>
+        <div className="UserEdit">
             {user.map((user) => (
 
                 <form onSubmit={onSubmit} key={user._id}>
                     <div className="group" >
-                        <label htmlFor="post">Votre texte</label>
-                        <div defaultValue={user.post} onChange={onChange}></div>
+                        <label htmlFor="pseudo">Pseudo</label>
+                        <div defaultValue={user.pseudo} onChange={onChange}></div>
                     </div>
 
+                    <div className="group">
+                        <label htmlFor="email">Email</label>
+                        <div defaultValue={user.email} onChange={onChange}></div>
+                    </div>
+                    <div className="user-post">
+                        <label htmlFor="post">Modifier votre post</label>
+                        <textarea name="post" onChange={onChange}></textarea>
+                    </div>
                     <div className="group">
                         <label htmlFor="image">Image</label>
                         <input type="file" name="image" onChange={imageChange} />
@@ -57,7 +65,7 @@ const UserEdit = () => {
                 </form>
             ))
             }
-        </>
+        </ div>
     );
 };
 
