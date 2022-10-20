@@ -7,7 +7,7 @@ import logo from "../assets/groupomania.jpg";
 
 const Home = () => {
 
-  const { isLoading, data } = useQuery("posts", postService.getAllPosts);
+  const { isLoading, data } = useQuery("posts", () => postService.getAllPosts());
 
   const posts = data || [];
 

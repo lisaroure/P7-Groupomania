@@ -8,8 +8,8 @@ const UserEdit = () => {
     const [text, setText] = useState([]);
     const [image, setImage] = useState();
 
-    const { isLoading, data } = useQuery('users', userService.getUser, { onSuccess: setImage, setText })
-    const users = data || []
+    const { isLoading, data } = useQuery('user', userService.getUser, { onSuccess: setImage, setText })
+    const user = data || []
 
     if (isLoading) {
         return <i className="fas fa-spinner fa-spin"></i>;
@@ -38,13 +38,12 @@ const UserEdit = () => {
 
     return (
         <>
-            {users.map((user) => (
+            {user.map((user) => (
 
                 <form onSubmit={onSubmit} key={user._id}>
-
                     <div className="group" >
                         <label htmlFor="post">Votre texte</label>
-                        <textarea name="post" defaultValue={user.post} onChange={onChange}></textarea>
+                        <div defaultValue={user.post} onChange={onChange}></div>
                     </div>
 
                     <div className="group">

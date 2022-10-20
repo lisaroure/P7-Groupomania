@@ -6,8 +6,8 @@ let getAllPosts = async () => {
   return data;
 };
 
-let getPost = async (id) => {
-  const { data } = await Axios.get("/api/post/" + id);
+let getPost = async (uid) => {
+  const { data } = await Axios.get("/api/post/" + uid);
   return data
 };
 
