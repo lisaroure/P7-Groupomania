@@ -128,26 +128,52 @@ exports.getUser = (req, res) => {
 
 // Modifier un user (partie admin)
 exports.modifyUser = async (req, res) => {
-  let userId = parseInt(req.params.id);
+  // let userId = parseInt(req.params.id);
   // Vérification si le champ id est présent et cohérent
-  if (!userId) {
-    return res.status(400).json({ message: "Missing parameter" });
-  }
+  //   if (!userId) {
+  //     return res.status(400).json({ message: "Missing parameter" });
+  //   }
 
-  try {
-    // Recherche de l'utilisateur et vérification
-    let user = await User.findOne({ where: { _id: userId }, raw: true });
-    if (user === null) {
-      return res.status(404).json({ message: "This user does not exist !" });
-    }
+  //   try {
+  //     // Recherche de l'utilisateur et vérification
+  //     let user = await User.findOne({ where: { _id: userId }, raw: true });
+  //     if (user === null) {
+  //       return res.status(404).json({ message: "This user does not exist !" });
+  //     }
 
-    // Mise à jour de l'utilisateur
-    await User.updateOne(req.body, { where: { _id: userId } });
-    return res.json({ message: "User Updated" });
-  } catch (err) {
-    return res.status(500).json({ message: "Database Error", error: err });
+  //     // Mise à jour de l'utilisateur
+  //     await User.updateOne(req.body, { where: { _id: userId } });
+  //     return res.json({ message: "User Updated" });
+  //   } catch (err) {
+  //     return res.status(500).json({ message: "Database Error", error: err });
+  //   }
+  // };
+  if (req.file) {
+
+    User.findOne({ _id: req.params.id })
+      // Pour supprimer l'image dans le dossier images
+      .then(imageUrl => {
+
+        const fileName = imageUrl.picture.split('/images')[1];
+        fs.unlink(`images/${fileName}`, (error) => {
+          if (error) res.status(200);
+        })
+      })
   }
-};
+  const pictureUpdate = req.file ? {
+    ...(req.body.user),
+    picture: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+  } : { ...req.body };
+
+  User.updateOne({ ...pictureUpdate, email: req.body.email }, { where: { _id: req.params.id } })
+    .then(() => res.status(200).send({ message: "modification ok" }))
+    .catch((err) => res.status(500).json(err))
+}
+
+
+
+
+
 
 // exports.getAdmin = (req, res) => {
 //     if (req.params.id === req.auth.adminId) {
