@@ -11,7 +11,7 @@ const Header = () => {
 
   const logout = () => {
     accountService.logout()
-    navigate("/home")
+    navigate("/auth/login")
   }
 
   return (
@@ -22,10 +22,10 @@ const Header = () => {
         </Link>
         <nav>
           <ul>
-            <li>
+            <li className="accueil">
               <Link to="/home">Accueil</Link>
             </li>
-            <li>
+            <li className="profil">
               <Link to="/profil">Profil</Link>
             </li>
           </ul>

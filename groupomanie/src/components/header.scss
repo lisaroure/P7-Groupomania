@@ -2,24 +2,35 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   a {
     display: flex;
     align-items: center;
   }
+
   img {
     margin-left: 15px;
   }
+
   nav {
-    border-bottom: 1px solid black;
+
     ul {
       list-style-type: none;
       padding: 20px;
       display: flex;
-      justify-content: right;
+      margin-left: 220px;
       li {
         margin-right: 55px;
         cursor: pointer;
         color: black;
+        border-bottom: 1px solid black;
+        margin:  25px 0px 0 0px;
+        width: 5em;
+        padding-bottom: 18px;
+        &:hover {
+          border: none;
+        }
+
         a {
           text-decoration: none;
           color: black;
@@ -27,7 +38,12 @@
       }
     }
   }
+
   button {
-    width: 16%;
+    width: auto;
+    box-shadow: 2px 7px 15px -13px gray;
+    font-weight: 700;
+    font-size: 12px;
+    margin-bottom: 12px;
   }
 }
