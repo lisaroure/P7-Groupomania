@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { postService } from '../../_services/post.service';
+import img from "../../assets/image.svg";
+import write from "../../assets/pen.svg"
 
 const PostAdd = () => {
     const [text, setText] = useState([])
@@ -39,11 +41,13 @@ const PostAdd = () => {
             <form onSubmit={onSubmit}>
                 <h4>Créez votre publication</h4>
                 <div className="group">
-                    <label htmlFor="post">Votre texte</label>
-                    <textarea name="post" onChange={onChange}></textarea>
+                    <img className='svg' src={write} alt="ajout d'une img" />
+                    <label htmlFor="post"></label>
+                    <textarea name="post" placeholder='Ecrivez ici' onChange={onChange}></textarea>
                 </div>
                 <div className="group">
-                    <label htmlFor="image">Image</label>
+                    <img className='svg' src={img} alt="écrire un post" />
+                    <label htmlFor="image"></label>
                     <input type="file" name="image" onChange={imageChange} />
                 </div>
                 <div className="group">

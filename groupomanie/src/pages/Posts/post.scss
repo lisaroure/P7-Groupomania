@@ -1,0 +1,48 @@
+.form-post {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 66em;
+    height: 18em;
+    margin-bottom: 10%;
+  
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 38%;
+      margin-top: 55px;
+      border: 1px solid gray;
+      border-radius: 28px;
+
+      img {
+        width: 50px;
+      }
+  
+      label {
+        font-size: 12px;
+        margin: 10px 0 -9px 0;
+      }
+  
+      textarea {
+        border: 1px solid lightgray;
+        border-radius: 50px;
+      }
+  
+      input {
+        font-size: 10px;
+        text-align: center;
+        border-radius: 20px;
+        width: 83%;
+        height: 21px;
+        padding: 5px;
+        border: none;
+      }
+  
+      button {
+        width: 10em;
+        font-size: 12px;
+        box-shadow: 2px 7px 15px -13px gray;
+      }
+    }
+  }

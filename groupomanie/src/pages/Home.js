@@ -4,6 +4,7 @@ import { postService } from "../_services/post.service";
 import { PAdd } from "./Posts";
 import "./home.scss";
 import logo from "../assets/groupomania.jpg";
+import globe from "../assets/globe.svg"
 
 const Home = () => {
 
@@ -28,8 +29,14 @@ const Home = () => {
           <PAdd />
         </div>
 
+        <div className="fil">
+          <img src={globe} alt="globe" />
+          <h4>Fil d'actualité</h4>
+        </div>
+
         {posts.map((post) => (
           <div className="post-container" key={post._id}>
+
 
             <div className="group">
               {post.post}
