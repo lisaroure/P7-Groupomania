@@ -1,18 +1,19 @@
 import Axios from "./caller.service";
 
 let getAllUsers = async () => {
-  const { data } = await Axios.get('/api/user/users')
+  const { data } = await Axios.get('/api/users')
   return data
 };
 
-let getUser = async (_id) => {
-  const { data } = await Axios.get('/api/user/user/' + _id)
+let getUser = async (id) => {
+  const { data } = await Axios.get('/api/user/' + id)
   console.log(data);
   return data
 }
 
-let modifyUser = async (user) => {
-  const { data } = await Axios.patch('/api/user/user/' + user._id, user)
+let modifyUser = async (id) => {
+  const { data } = await Axios.patch('/api/user/edit/' + id)
+  console.log(data);
   return data
 }
 

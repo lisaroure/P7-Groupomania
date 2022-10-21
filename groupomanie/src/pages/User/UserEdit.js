@@ -8,8 +8,8 @@ const UserEdit = () => {
     const [text, setText] = useState([]);
     const [image, setImage] = useState();
 
-    const { isLoading, data } = useQuery('user', (user) => userService.modifyUser(user), { onSuccess: setImage, setText })
-    const user = data || []
+    const { isLoading, data } = useQuery('user', (id) => userService.modifyUser(id))
+    const user = data || { "data": [] }
 
     if (isLoading) {
         return <i className="fas fa-spinner fa-spin"></i>;
@@ -40,7 +40,7 @@ const UserEdit = () => {
     // Form : regarder ce qui bug pour l'affichage
     return (
         <div className="UserEdit">
-            {user.map((user) => (
+            {user.data.map((user) => (
 
                 <form onSubmit={onSubmit} key={user._id}>
                     <div className="group" >

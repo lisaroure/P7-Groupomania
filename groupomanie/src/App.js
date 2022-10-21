@@ -7,6 +7,7 @@ import AuthRouter from "./pages/Auth/AuthRouter";
 import Profil from "./pages/User/Profil";
 import PostAdd from "./pages/Posts/PostAdd";
 import PostEdit from "./pages/Posts/PostEdit";
+import UserEdit from "./pages/User/UserEdit";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
                   <Routes>
                     <Route path="home" element={<Home />} />
                     <Route path="profil" element={<Profil />} />
+                    <Route path="user-edit" element={<UserEdit />} />
                     <Route path="add" element={<PostAdd />} />
                     <Route path="edit-post" element={<PostEdit />} />
                   </Routes>

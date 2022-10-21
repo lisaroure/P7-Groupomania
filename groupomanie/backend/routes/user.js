@@ -12,7 +12,7 @@ router.post('/login', userCtrl.login);
 router.get('/users', auth, userCtrl.getAllUsers);
 router.get('/user/:id', auth, userCtrl.getUser);
 
-router.patch('user/edit/:id', multer, auth, userCtrl.modifyUser);
+router.patch('/user/edit/:id', multer, auth, userCtrl.modifyUser);
 
 // // Admin
 // router.get('/admin/:id', auth, userCtrl.getAdmin);
