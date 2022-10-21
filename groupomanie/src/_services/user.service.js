@@ -5,14 +5,14 @@ let getAllUsers = async () => {
   return data
 };
 
-let getUser = async (id) => {
-  const { data } = await Axios.get('/api/user/' + id)
+let getUser = async (_id) => {
+  const { data } = await Axios.get('/api/user/${_id')
   console.log(data);
   return data
 }
 
-let modifyUser = async (id) => {
-  const { data } = await Axios.patch('/api/user/edit/' + id)
+let modifyUser = async (user) => {
+  const { data } = await Axios.patch('/api/user/edit/' + user._id)
   console.log(data);
   return data
 }

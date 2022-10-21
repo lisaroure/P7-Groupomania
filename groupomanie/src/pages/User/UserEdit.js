@@ -8,8 +8,8 @@ const UserEdit = () => {
     const [text, setText] = useState([]);
     const [image, setImage] = useState();
 
-    const { isLoading, data } = useQuery('user', (id) => userService.modifyUser(id))
-    const user = data || { "data": [] }
+    const { isLoading, data } = useQuery("user", (id) => userService.modifyUser(id))
+    const user = data || []
 
     if (isLoading) {
         return <i className="fas fa-spinner fa-spin"></i>;
@@ -54,7 +54,7 @@ const UserEdit = () => {
                     </div>
                     <div className="user-post">
                         <label htmlFor="post">Modifier votre post</label>
-                        <textarea name="post" onChange={onChange}></textarea>
+                        <textarea defaultValue={user.post} name="post" onChange={onChange}></textarea>
                     </div>
                     <div className="group">
                         <label htmlFor="image">Image</label>

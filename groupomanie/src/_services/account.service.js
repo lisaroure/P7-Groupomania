@@ -1,11 +1,11 @@
 import Axios from "./caller.service"
 
 let signup = (credentials) => {
-    return Axios.post('/api/user/signup', credentials)
+    return Axios.post('/api/signup', credentials)
 }
 
 let login = (credentials) => {
-    return Axios.post('/api/user/login', credentials)
+    return Axios.post('/api/login', credentials)
 }
 
 let saveToken = (token) => {
@@ -25,7 +25,7 @@ let getToken = () => {
     return localStorage.getItem('token')
 }
 
-let uid =  () => {
+let uid = () => {
     return localStorage.getItem('req.data.id')
 }
 
