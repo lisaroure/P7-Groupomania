@@ -14,7 +14,6 @@ const App = () => {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route index element={<Home />} />
 
           <Route element={<Layout />}>
             <Route
@@ -22,9 +21,10 @@ const App = () => {
               element={
                 <AuthGuard>
                   <Routes>
+                    <Route index element={<Home />} />
                     <Route path="home" element={<Home />} />
                     <Route path="profil" element={<Profil />} />
-                    <Route path="user-edit" element={<UserEdit />} />
+                    <Route path="edit/:uid" element={<UserEdit />} />
                     <Route path="add" element={<PostAdd />} />
                     <Route path="edit-post" element={<PostEdit />} />
                   </Routes>

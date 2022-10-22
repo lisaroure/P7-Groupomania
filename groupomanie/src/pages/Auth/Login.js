@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { accountService } from "../../_services/account.service";
 import logo from "../../assets/groupomania.jpg";
+import groupo from "../../assets/logo.png";
 
 import "./auth.scss";
 
@@ -33,8 +34,9 @@ const Login = () => {
   };
 
   return (
-    <>
-      <h3>Connectez vous pour  accéder à votre compte et pour pouvoir publier !</h3>
+    <div className="sign">
+      <img src={groupo} alt="logo de groupomania" width={150} />
+      <h4>Connectez vous pour  accéder à votre compte et pour pouvoir publier !</h4>
       <form onSubmit={onSubmit}>
         <img src={logo} alt="logo de Groupomania" />
         <h3>Connexion</h3>
@@ -66,7 +68,7 @@ const Login = () => {
           <Link to="/auth/signup">Inscrivez vous !</Link>
         </div>
       </form>
-    </>
+    </div>
   );
 };
 

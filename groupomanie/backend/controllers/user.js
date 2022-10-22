@@ -122,7 +122,7 @@ exports.getAllUsers = (req, res) => {
 //Afficher un seul user
 exports.getUser = (req, res) => {
   User.findOne({ where: { _id: req.params.id } })
-    .then((users) => res.status(200).json(users))
+    .then((user) => res.status(200).json(user))
     .catch((err) =>
       res.status(400).json({ message: "Missing parameter", error: err }));
 }

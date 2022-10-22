@@ -1,5 +1,4 @@
-import React from "react";
-import { useQuery } from "react-query";
+import React, { useEffect, useRef, useState } from "react";
 import { postService } from "../_services/post.service";
 import { PAdd } from "./Posts";
 import "./home.scss";
@@ -7,14 +6,22 @@ import logo from "../assets/groupomania.jpg";
 import globe from "../assets/globe.svg"
 
 const Home = () => {
+  const flag = useRef(false)
+  const [posts, setPosts] = useState([])
 
-  const { isLoading, data } = useQuery("posts", () => postService.getAllPosts());
 
-  const posts = data || [];
+  useEffect(() => {
+    if (flag.current === false) {
+      postService.getAllPosts()
+        .then(res => {
+          console.log(res.data)
+          setPosts(res.data)
+        })
+        .catch(err => console.log(err))
 
-  if (isLoading) {
-    <i className="fas fa-spinner fa-spin"></i>;
-  }
+    }
+    return () => flag.current = true
+  }, [])
 
   return (
     <>

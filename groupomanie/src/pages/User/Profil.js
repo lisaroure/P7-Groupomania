@@ -1,36 +1,44 @@
-import React from "react";
-import { useQuery } from "react-query";
+import React, { useEffect, useRef, useState } from "react";
+import { useParams } from "react-router-dom";
 import randomUser from "../../assets/random-user.png";
 import { userService } from "../../_services/user.service";
 
 import "./profil.scss"
 
 const Profil = () => {
+  const [user, setUsers] = useState([])
+  const flag = useRef(false)
+  const { uid } = useParams()
 
-  const { isLoading, data } = useQuery('users', (_id) => userService.getUser(_id))
+  useEffect(() => {
 
-  const users = data || { "data": [] }
+    if (flag.current === false) {
+      userService.getUser(uid)
+        .then(res => {
+          console.log(res.data)
+          setUsers(res.data.data)
+        })
+        .catch(err => console.log(err))
+    }
 
-  if (isLoading) {
-    <i className="fas fa-spinner fa-spin"></i>;
-  }
+    return () => flag.current = true
+
+  }, [])
+
   return (
     <div className="profil-container">
 
-      {users.data.map((user) => (
-        <div className="profil-card" key={user._id}>
+      <div className="profil-card">
 
-          <h3>Votre profil {user.pseudo} ✨</h3>
-          <img src={randomUser} alt="User pic" />
-          {/* <button>Modifier la photo</button> */}
-          <div className="profil-info">
+        <h3>Votre profil {user} ✨</h3>
+        <img src={randomUser} alt="User pic" />
+        {/* <button>Modifier la photo</button> */}
+        <div className="profil-info">
 
-            <span>Membre depuis le : {new Date(user.createdAt).toLocaleDateString("fr-FR")}</span>
+          <span>Membre depuis le : {new Date(user).toLocaleDateString("fr-FR")}</span>
 
-          </div>
         </div>
-
-      ))}
+      </div>
 
     </div>
   );

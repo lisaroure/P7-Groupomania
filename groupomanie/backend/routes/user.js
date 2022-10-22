@@ -10,7 +10,7 @@ router.post('/login', userCtrl.login);
 
 // User
 router.get('/users', auth, userCtrl.getAllUsers);
-router.get('/user/:id', auth, userCtrl.getUser);
+router.get('/user/:id', userCtrl.getUser);
 
 router.patch('/user/edit/:id', multer, auth, userCtrl.modifyUser);
 
