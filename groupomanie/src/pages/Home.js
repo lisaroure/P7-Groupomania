@@ -4,6 +4,7 @@ import { PAdd } from "./Posts";
 import "./home.scss";
 import logo from "../assets/groupomania.jpg";
 import globe from "../assets/globe.svg"
+import LikeButton from "../components/LikeButton";
 
 const Home = () => {
   const flag = useRef(false)
@@ -56,7 +57,7 @@ const Home = () => {
               <p>
                 Posté le : {new Date(post.createdAt).toLocaleDateString("fr-FR")}
               </p>
-
+              <LikeButton />
             </div>
 
 
