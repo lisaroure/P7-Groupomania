@@ -52,10 +52,13 @@ const Home = () => {
 
             <img src={post.image} alt="user-pic" />
 
+            <div className="post-infos">
+              <p>
+                Posté le : {new Date(post.createdAt).toLocaleDateString("fr-FR")}
+              </p>
 
-            <p>
-              Posté le : {new Date(post.createdAt).toLocaleDateString("fr-FR")}
-            </p>
+            </div>
+
 
           </div>
         ))}
