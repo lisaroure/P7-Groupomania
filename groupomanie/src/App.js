@@ -4,6 +4,7 @@ import { Home, Layout } from "./pages";
 import AuthGuard from "./_helpers/AuthGuard";
 import Error from "./_utils/Error";
 import AuthRouter from "./pages/Auth/AuthRouter";
+import AdminRouter from "./pages/Admin/AdminRouter";
 import Profil from "./pages/User/Profil";
 import PostAdd from "./pages/Posts/PostAdd";
 import PostEdit from "./pages/Posts/PostEdit";
@@ -23,6 +24,7 @@ const App = () => {
                   <Routes>
                     <Route index element={<Home />} />
                     <Route path="home" element={<Home />} />
+                    <Route path="/admin/*" element={<AdminRouter />} />
                     <Route path="profil" element={<Profil />} />
                     <Route path="edit/:uid" element={<UserEdit />} />
                     <Route path="add" element={<PostAdd />} />
