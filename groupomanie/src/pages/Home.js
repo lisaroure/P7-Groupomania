@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { postService } from "../_services/post.service";
-import { PAdd } from "./Posts";
+import { PAdd } from "../pages/Posts";
+import LikeButton from "../components/LikeButton";
 import "./home.scss";
 import logo from "../assets/groupomania.jpg";
 import globe from "../assets/globe.svg"
-import LikeButton from "../components/LikeButton";
+
 
 const Home = () => {
   const flag = useRef(false)
@@ -44,15 +45,13 @@ const Home = () => {
 
         {posts.map((post) => (
           <div className="post-container" key={post._id}>
-
-
             <div className="group">
               {post.post}
             </div>
-
-
-            <img src={post.imageUrl} alt="user-pic" />
-
+            <img
+              src={post.imageUrl}
+              alt="user-pic"
+            />
             <div className="post-infos">
               <LikeButton post={post} />
               <p className="pinfos">

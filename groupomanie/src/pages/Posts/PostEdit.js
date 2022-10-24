@@ -8,7 +8,7 @@ const PostEdit = () => {
   const [text, setText] = useState([]);
   const [image, setImage] = useState();
 
-  const { isLoading, data } = useQuery('posts', postService.getAllPosts, { onSuccess: setImage, setText })
+  const { isLoading, data } = useQuery('posts', postService.modifyPost, { onSuccess: setImage, setText })
   const posts = data || []
 
   if (isLoading) {
@@ -44,7 +44,7 @@ const PostEdit = () => {
 
           <div className="group" >
             <label htmlFor="post">Votre texte</label>
-            <textarea name="post" defaultValue={post.post} onChange={onChange}></textarea>
+            <textarea name="post" onChange={onChange}></textarea>
           </div>
 
           <div className="group">
