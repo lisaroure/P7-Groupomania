@@ -1,27 +1,27 @@
-# HotTakes
+# Projet 7 : Groupomania, réseau social d'entreprise
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.4.
+Dernier projet de la formation, réalisé avec React, Express et Mongoose.
 
-## Development server
+## Backend
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Lancez les commandes "cd backend" + "npm install" dans votre terminal.
 
-## Code scaffolding
+Créez le fichier .env dans backend/config/ avec les données suivantes :
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+PORT=5000 (port localhost)
 
-## Build
+CLIENT_URL='http://localhost:3000' (URL client)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+DB_USER_PASS=VotreIdentifiant:VotrePassword
 
-## Running unit tests
+RANDOM_TOKEN_SECRET=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c (votre clé secrète aléatoire)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Démarrez le server avec "npm start"
 
-## Running end-to-end tests
+## Frontend
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Dans un nouveau terminal, tapez les commandes "cd src" et "npm install"
 
-## Further help
+Vous pourrez ainsi démarrer le compileur avec "npm start" !
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
