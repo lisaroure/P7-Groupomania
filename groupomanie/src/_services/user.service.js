@@ -4,9 +4,10 @@ let getAllUsers = () => {
   return Axios.get('/api/users')
 };
 
-let getUser = (_id) => {
-  console.log(_id);
-  return Axios.get('/api/user/' + _id)
+let getUser = async (uid) => {
+  console.log(uid);
+  const { data } = await Axios.get('/api/user/' + uid)
+  return data
 }
 
 let modifyUser = (user) => {

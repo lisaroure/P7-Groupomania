@@ -29,6 +29,7 @@ const LikeButton = ({ post }) => {
         }
         return () => flag.current = true
 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
 
