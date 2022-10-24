@@ -70,10 +70,12 @@
   .group {
     width: 46%;
   }
-
   p {
     font-size: 10px;
     margin-top: 60px;
+  }
+  img {
+    width: 70%;
   }
 
   button {
@@ -81,21 +83,44 @@
     margin: 0;
   }
 
+  .post-infos{
+    display: flex;
+    align-items: center;
+    margin-top: 55px;
+    .pinfos {
+      margin: 0;
+      padding-left: 35px;
+    }
+  .like-container {
+    display: flex;
+    align-items: center;
+    img {
+      width: 18px;
+      padding-right: 5px;
+      cursor: pointer;
+      transform: scale(1.0);
+      transition: transform 300ms;
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+    span {
+      font-size: 11px;
+    }
+  }
+  }
 }
 
 .form-post {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 66em;
-  height: 18em;
   margin-bottom: 10%;
-
+width: 52em;
   form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 38%;
     margin-top: 55px;
     border: 1px solid gray;
     border-radius: 28px;
@@ -139,21 +164,6 @@
     }
   }
 
-.post-body {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  margin: -45px 0 0 0;
-
-  table {
-    border: 1px solid gray;
-    border-radius: 50px;
-    padding: 20px;
-    margin-top: 20px;
-  }
-}
 
 // Keyframes
 @keyframes spin {

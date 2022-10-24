@@ -8,12 +8,12 @@ import "./profil.scss"
 const Profil = () => {
   const [user, setUsers] = useState([])
   const flag = useRef(false)
-  const { id } = useParams()
+  const { uid, adminId } = useParams()
 
   useEffect(() => {
 
     if (flag.current === false) {
-      userService.getUser(id)
+      userService.getUser(uid, adminId)
         .then(res => {
           console.log(res.data)
           setUsers(res.data.data)

@@ -4,9 +4,9 @@ let getAllUsers = () => {
   return Axios.get('/api/users')
 };
 
-let getUser = (id) => {
-  console.log(id);
-  return Axios.get('/api/user/' + id)
+let getUser = (_id) => {
+  console.log(_id);
+  return Axios.get('/api/user/' + _id)
 }
 
 let modifyUser = (user) => {

@@ -18,8 +18,8 @@ let modifyPost = (post) => {
   return Axios.patch("/api/post", post);
 };
 
-let likePost = (id) => {
-  return Axios.patch("/api/post/like/" + id)
+let likePost = (_id) => {
+  return Axios.patch("/api/post/like/" + _id)
 }
 
 let unlikePost = (_id) => {

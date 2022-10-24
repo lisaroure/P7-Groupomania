@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { postService } from '../_services/post.service';
 import likeFull from "../assets/heart.svg"
 import likeEmpty from "../assets/heart-filled.svg"
@@ -7,24 +6,24 @@ import likeEmpty from "../assets/heart-filled.svg"
 const LikeButton = ({ post }) => {
     const [liked, setLiked] = useState(false)
     const flag = useRef(false)
-    const { posterId } = useParams()
 
     const like = () => {
-        document.getElementById('likePost'(post._id, posterId))
         setLiked(true)
     }
 
     const unlike = () => {
-        document.getElementById('unlikePost'(post._id, posterId))
         setLiked(false)
     }
 
     useEffect(() => {
         if (flag.current === false) {
-            postService.likePost(posterId)
+            // console.log(post._id);
+            if (post.likers.includes(post.posterId)) setLiked(true)
+            else setLiked(false)
+            postService.likePost(post._id)
+
                 .then(res => {
                     console.log(res.data);
-                    setLiked(res.data.data)
                 })
                 .catch(err => console.log(err))
         }
@@ -32,13 +31,18 @@ const LikeButton = ({ post }) => {
 
     }, [])
 
+
+
     return (
         <div className='like-container'>
-            {posterId && liked === false && (
+            {/* {console.log(post.likers.includes(post.posterId))} */}
+
+            {post.posterId && liked === false && (
                 <img src={likeEmpty} onClick={like} alt="like" />
             )}
-            {posterId && liked && (
+            {post.posterId && liked && (
                 <img src={likeFull} onClick={unlike} alt="unlike" />
+
             )}
             <span>{post?.likers?.length}</span>
         </div>

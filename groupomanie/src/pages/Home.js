@@ -51,16 +51,14 @@ const Home = () => {
             </div>
 
 
-            <img src={post.image} alt="user-pic" />
+            <img src={post.imageUrl} alt="user-pic" />
 
             <div className="post-infos">
-              <p>
+              <LikeButton post={post} />
+              <p className="pinfos">
                 Posté le : {new Date(post.createdAt).toLocaleDateString("fr-FR")}
               </p>
-              <LikeButton />
             </div>
-
-
           </div>
         ))}
 
