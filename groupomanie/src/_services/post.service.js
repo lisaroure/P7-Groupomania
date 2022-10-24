@@ -14,8 +14,9 @@ let createPost = (post) => {
   return Axios.post("/api/post", post);
 };
 
-let modifyPost = (post) => {
-  return Axios.patch("/api/post", post);
+let modifyPost = async (post) => {
+  const { data } = Axios.patch("/api/post/" + post._id, post);
+  return data
 };
 
 let likePost = (_id) => {

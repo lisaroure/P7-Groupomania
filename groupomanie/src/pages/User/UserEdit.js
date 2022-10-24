@@ -1,19 +1,17 @@
-import React, { useState } from "react";
-import { useQuery } from "react-query";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { userService } from "../../_services/user.service";
+
+
 const UserEdit = () => {
 
     let navigate = useNavigate();
     const [text, setText] = useState([]);
     const [image, setImage] = useState();
+    const [users, setUsers] = useState([])
 
-    const { isLoading, data } = useQuery("user", (id) => userService.modifyUser(id))
-    const user = data || []
-
-    if (isLoading) {
-        return <i className="fas fa-spinner fa-spin"></i>;
-    }
+    const { uid } = useParams()
+    const flag = useRef(false)
 
     const onChange = (e) => {
         setText(e.target.value);
@@ -28,33 +26,46 @@ const UserEdit = () => {
         e.preventDefault();
         const formData = new FormData();
         formData.append("imageUrl", image);
-        formData.append("user", text);
-
+        formData.append("user", users);
+        formData.append("post", text);
         userService
-            .modifyUser(formData)
+            .modifyUser(uid)
             .then(() => navigate(".."))
             .catch((err) => console.log(err));
     };
+
+    useEffect(() => {
+        if (flag.current === false) {
+            userService.getUser(uid)
+                .then(res => {
+                    console.log(res.data.data);
+                    setUsers(res.data.data)
+                })
+                .catch(err => console.log(err))
+        }
+
+        return () => flag.current = true
+    })
 
 
     // Form : regarder ce qui bug pour l'affichage
     return (
         <div className="UserEdit">
-            {user.data.map((user) => (
+            {users.data.map((user) => (
 
                 <form onSubmit={onSubmit} key={user._id}>
                     <div className="group" >
                         <label htmlFor="pseudo">Pseudo</label>
-                        <div defaultValue={user.pseudo} onChange={onChange}></div>
+                        <div defaultValue={users.pseudo} onChange={onChange}></div>
                     </div>
 
                     <div className="group">
                         <label htmlFor="email">Email</label>
-                        <div defaultValue={user.email} onChange={onChange}></div>
+                        <div defaultValue={users.email} onChange={onChange}></div>
                     </div>
                     <div className="user-post">
                         <label htmlFor="post">Modifier votre post</label>
-                        <textarea defaultValue={user.post} name="post" onChange={onChange}></textarea>
+                        <textarea defaultValue={users.text} name="post" onChange={onChange}></textarea>
                     </div>
                     <div className="group">
                         <label htmlFor="image">Image</label>

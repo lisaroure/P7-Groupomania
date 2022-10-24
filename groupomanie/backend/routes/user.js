@@ -10,9 +10,10 @@ router.post('/login', userCtrl.login);
 
 // User
 router.get('/users', auth, userCtrl.getAllUsers);
-router.get('/user/:id', userCtrl.getUser);
+router.get('/users/:id', userCtrl.getUser);
 
-router.patch('/user/edit/:id', multer, auth, userCtrl.modifyUser);
+router.patch('/users/edit/:id', multer, auth, userCtrl.modifyUser);
+router.delete('/users/delete/:id', auth, userCtrl.deleteUser);
 
 // // Admin
 // router.get('/admin/:id', auth, userCtrl.getAdmin);

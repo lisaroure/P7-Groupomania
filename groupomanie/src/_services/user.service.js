@@ -4,14 +4,14 @@ let getAllUsers = () => {
   return Axios.get('/api/users')
 };
 
-let getUser = async (uid) => {
+let getUser = (uid) => {
   console.log(uid);
-  const { data } = await Axios.get('/api/user/' + uid)
-  return data
+  Axios.get('/api/users/' + uid)
+
 }
 
 let modifyUser = (user) => {
-  return Axios.patch('/api/user/edit/' + user._id)
+  return Axios.patch('/api/users/edit/' + user._id, user)
 }
 
 export const userService = {

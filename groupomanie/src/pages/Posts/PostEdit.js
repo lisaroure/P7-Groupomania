@@ -8,11 +8,11 @@ const PostEdit = () => {
   const [text, setText] = useState([]);
   const [image, setImage] = useState();
 
-  const { isLoading, data } = useQuery('posts', postService.modifyPost, { onSuccess: setImage, setText })
+  const { isLoading, data } = useQuery('post', postService.modifyPost)
   const posts = data || []
 
   if (isLoading) {
-    return <i className="fas fa-spinner fa-spin"></i>;
+    return <div>Loading...</div>
   }
 
   const onChange = (e) => {

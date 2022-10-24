@@ -41,7 +41,7 @@ exports.modifyPost = (req, res) => {
                         }
                         Post.updateOne({ _id: req.params.id }, { ...postObject, _id: req.params.id })
                             .then(() => res.status(200).json({ message: 'Post modifié !' }))
-                            .catch(error => res.status(400).json({ error }));
+                            .catch(err => res.status(400).json({ err }));
                     })
                 } else {
                     res.status(401).json({ message: 'Not authorized' });
@@ -54,7 +54,7 @@ exports.modifyPost = (req, res) => {
             .then(post => {
                 if (req.user.adminId || post.posterId === req.user.userId) {
                     Post.updateOne({ _id: req.params.id }, { ...postObject, _id: req.params.id })
-                        .then(() => res.status(200).json({ message: 'Post modifiée!' }))
+                        .then(() => res.status(200).json({ message: 'Post modifié!' }))
                         .catch(error => res.status(401).json({ error }));
                 } else {
                     res.status(401).json({ message: 'Not authorized' });
