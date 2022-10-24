@@ -10,7 +10,7 @@ Créez le fichier .env dans backend/config/ avec les données suivantes :
 
 PORT=5000 (port localhost)
 
-CLIENT_URL='http://localhost:3000' (URL client)
+CLIENT_URL=http://localhost:3000 (URL client)
 
 DB_USER_PASS=VotreIdentifiant:VotrePassword
 
