@@ -29,7 +29,7 @@ const Signup = () => {
       .signup(credentials)
       .then((res) => {
         accountService.saveToken(res.data.token);
-        navigate("/login");
+        navigate("/auth/login");
       })
       .catch((error) => console.log(error));
   };

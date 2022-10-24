@@ -17,9 +17,9 @@ exports.signup = (req, res) => {
       .hash(req.body.password, 10)
       .then((hash) => {
         const admin = new AdminMdl({
-          pseudo: req.body.pseudo,
-          email: req.body.email,
-          password: hash,
+          pseudo: 'Admin',
+          email: 'admin@mail.fr',
+          password: 'adminmdp',
         });
         admin
           .save()
