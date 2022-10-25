@@ -32,7 +32,7 @@ let getInfo = () => {
 
 // Définition de l'utilisateur admin
 let getAdmin = () => {
-    return '6357fed57fc541fa54f47735'
+    return '6357be0e0b540636347e8285'
 }
 
 export const accountService = {
