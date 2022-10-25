@@ -37,24 +37,26 @@ const PostAdd = () => {
             <form onSubmit={onSubmit}>
                 <h4>Créez votre publication</h4>
                 <div className="group">
-                    <img className='svg' src={write} alt="ajout d'une img" />
+                    <img className='svg' src={write} alt="ajout d'une img"
+                        {...image === null && (
+                            <Popup>
+                                <div>Image manquante !</div>
+                            </Popup>
+                        )} />
                     <label htmlFor="post"></label>
                     <textarea name="post" placeholder='Ecrivez ici' onChange={onChange}></textarea>
-                    {image === null && (
-                        <Popup>
-                            <div>Image manquante !</div>
-                        </Popup>
-                    )}
+
                 </div>
                 <div className="group">
-                    <img className='svg' src={img} alt="écrire un post" />
+                    <img className='svg' src={img} alt="écrire un post"
+                        {...text === null && (
+                            <Popup>
+                                <div>Veuillez écrire un message</div>
+                            </Popup>
+                        )} />
                     <label htmlFor="image"></label>
                     <input type="file" name="image" onChange={imageChange} />
-                    {text === null && (
-                        <Popup>
-                            <div>Veuillez écrire un message</div>
-                        </Popup>
-                    )}
+
                 </div>
                 <div className="group">
                     <button>Ajouter</button>
