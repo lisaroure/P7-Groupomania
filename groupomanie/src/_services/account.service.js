@@ -30,7 +30,7 @@ let getInfo = () => {
     return jwt_decode(getToken())
 }
 
-// Définition de l'utilisateur admin
+// Définition de l'utilisateur admin 
 let getAdmin = () => {
     return '63582f758b82198bdb49ffc3'
 }
