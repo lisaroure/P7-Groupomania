@@ -26,16 +26,14 @@ const Header = () => {
             <li>
               <Link to="/home">Accueil</Link>
             </li>
-            <li>
-              <Link to="/profil">Profil</Link>
-            </li>
+            <img className="logout"
+              src={deconnect}
+              alt="Se déconnecter"
+              onClick={logout}>
+            </img>
           </ul>
         </nav>
-        <img className="logout"
-          src={deconnect}
-          alt="Se déconnecter"
-          onClick={logout}>
-        </img>
+
       </header>
     </>
   );

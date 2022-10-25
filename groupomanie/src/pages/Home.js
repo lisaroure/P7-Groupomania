@@ -4,7 +4,6 @@ import { postService } from "../_services/post.service";
 import { accountService } from "../_services/account.service";
 import PostAdd from "../pages/Posts/PostAdd";
 import LikeButton from "../components/LikeButton";
-import Popup from "reactjs-popup";
 
 import "./home.scss";
 import trash from "../assets/trash.svg";
@@ -12,12 +11,10 @@ import update from "../assets/update.svg";
 import logo from "../assets/groupomania.jpg";
 import globe from "../assets/globe.svg";
 
-
 const Home = () => {
   let navigate = useNavigate()
   const flag = useRef(false)
   const [posts, setPosts] = useState([])
-  // const adminId = localStorage.getItem('adminId')
 
   useEffect(() => {
     if (flag.current === false) {
@@ -34,7 +31,7 @@ const Home = () => {
   }, [])
 
   const updatePost = (postId) => {
-    navigate("/edit-post/"+postId)
+    navigate("/edit-post/" + postId)
   }
 
   const delPost = (postId) => {
@@ -54,7 +51,7 @@ const Home = () => {
         </div>
 
         <div className="create-post">
-          <PostAdd marcel={setPosts}/>
+          <PostAdd marcel={setPosts} />
         </div>
 
         <div className="fil">
@@ -65,7 +62,6 @@ const Home = () => {
         {posts.map((post) => (
           <div className="post-container" key={post._id}>
             <div className="group">
-              <p>{post.pseudo} dit :</p>
               {post.post}
             </div>
             <img
@@ -77,8 +73,8 @@ const Home = () => {
               <p className="pinfos">
                 Posté le : {new Date(post.createdAt).toLocaleDateString("fr-FR")}
               </p>
-            </div>            
-            {post.posterId === accountService.getInfo().userId || accountService.getInfo().userId === accountService.getAdmin() ?  (
+            </div>
+            {post.posterId === accountService.getInfo().userId || accountService.getInfo().userId === accountService.getAdmin() ? (
               <div className="updating">
                 <img onClick={() => updatePost(post._id)}
                   src={update}
@@ -91,15 +87,9 @@ const Home = () => {
                   src={trash}
                   alt="Supprimer"
                 ></img>
-                {post.adminId === null && (
-                  <Popup>
-                    <div>Vous n'avez pas les droits requis pour effectuer ceci.
-                      Connectez vous en tant qu'admin.</div>
-                  </Popup>
-                )}
               </div>
 
-            ): ''}
+            ) : ''}
           </div>
 
 

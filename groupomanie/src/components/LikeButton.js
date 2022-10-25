@@ -13,17 +13,17 @@ const LikeButton = ({ post }) => {
         postService.likePost(post._id, accountService.getInfo().userId)
             .then(res => {
                 setLiked(true)
-                setTotal(current => current+1)
+                setTotal(current => current + 1)
             })
             .catch(err => console.log(err))
-        
+
     }
 
     const unlike = () => {
         postService.unlikePost(post._id, accountService.getInfo().userId)
             .then(res => {
                 setLiked(false)
-                setTotal(current => current-1)
+                setTotal(current => current - 1)
             })
             .catch(err => console.log(err))
     }
@@ -33,12 +33,12 @@ const LikeButton = ({ post }) => {
             // console.log(post._id);
             console.log(post.likers.length)
             setTotal(post.likers.length)
-            if (post.likers.length > 0){
+            if (post.likers.length > 0) {
                 console.log('ici')
                 setLiked(true)
             }
             else setLiked(false)
-           
+
         }
         return () => flag.current = true
 
@@ -49,16 +49,14 @@ const LikeButton = ({ post }) => {
 
     return (
         <div className='like-container'>
-            {/* {console.log(post.likers.includes(post.posterId))} */}
-            {console.log(liked)}
             {
-                liked  
-                ? 
+                liked
+                    ?
                     <img src={likeFull} onClick={() => unlike()} alt="unlike" />
-                : 
+                    :
                     <img src={likeEmpty} onClick={() => like()} alt="like" />
             }
-            
+
             <span>{total}</span>
         </div>
     );
