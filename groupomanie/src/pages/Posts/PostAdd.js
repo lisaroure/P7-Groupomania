@@ -4,7 +4,7 @@ import img from "../../assets/image.svg";
 import write from "../../assets/pen.svg"
 import Popup from 'reactjs-popup';
 
-const PostAdd = ({ create }) => {
+const PostAdd = ({marcel}) => {
     const [text, setText] = useState([])
     const [image, setImage] = useState()
 
@@ -27,7 +27,8 @@ const PostAdd = ({ create }) => {
 
         postService.createPost(formData)
             .then((res) => {
-                create(prev => [res.data.data, ...prev])
+                console.log(res)
+                marcel(prev => [res.data.data, ...prev])
             })
             .catch(err => console.log(err))
     }

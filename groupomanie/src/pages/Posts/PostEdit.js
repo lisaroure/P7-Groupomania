@@ -1,13 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { postService } from "../../_services/post.service";
 
 const PostEdit = () => {
   let navigate = useNavigate();
-  let { id } = useParams();
   const [text, setText] = useState([]);
   const [image, setImage] = useState([]);
+  const [isLoad, setLoad] = useState(false)
 
+  let { pid } = useParams()
+
+  useEffect(() => {
+    postService.getPost(pid)
+      .then(res => {
+        setText(res.data.post)
+        setImage(res.data.imageUrl)
+        setLoad(true)
+      })
+      .catch(err => console.log(err))
+  }, [])
 
   const onChange = (e) => {
     setText(e.target.value);
@@ -24,29 +35,34 @@ const PostEdit = () => {
     formData.append("imageUrl", image);
     formData.append("post", text);
 
-    postService
-      .modifyPost(formData)
-      .then(() => navigate(".."))
+    postService.modifyPost(pid, formData)
+      .then(res => navigate('/'))
       .catch((err) => console.log(err));
   };
 
-  return (
-    <form onSubmit={onSubmit}>
+  if (!isLoad) {
+    return <div>Loading ...</div>
+  }
 
+  return (
+    <form onSubmit={onSubmit} >
       <div className="group" >
         <label htmlFor="post">Votre texte</label>
-        <textarea name="post" onChange={onChange}></textarea>
+        <textarea name="post" value={text} onChange={onChange}></textarea>
       </div>
 
       <div className="group">
         <label htmlFor="image">Image</label>
         <input type="file" name="image" onChange={imageChange} />
+        <img src={image} alt="Post image" />
       </div>
       <div className="group">
         <button>Modifier</button>
       </div>
 
     </form>
+
+
   );
 };
 

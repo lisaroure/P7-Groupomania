@@ -6,6 +6,9 @@ const { postAddErrors } = require('../_utils/errors');
 
 // Créer une post
 exports.createPost = async (req, res) => {
+    //console.log(req.body)
+    //console.log(req.file)
+    //console.log(req.user)
     const { post } = req.body
     if (!post) {
         return res.status(400).json({ message: 'Missing data' })
@@ -67,6 +70,7 @@ exports.modifyPost = (req, res) => {
 
 //Suppression d'un post
 exports.deletePost = (req, res) => {
+    console.log(req.user)
     Post.findOne({ _id: req.params.id })
         .then(post => {
             if (req.user.adminId || post.posterId === req.user) {
@@ -96,61 +100,39 @@ exports.getAllPosts = (req, res, next) => {
 exports.getPost = (req, res) => {
     Post.findOne({ _id: req.params.id })
         .then((post) => res.status(200).json(post))
-        .catch(error => res.status(400).json({ error }));
+        .catch(error => res.status(500).json({ error }));
 };
 // Like utilisateur
-exports.likePost = (req, res) => {
+exports.likePost = async (req, res) => {
     try {
-        Post.findByIdAndUpdate(
-            req.params.id,
-            {
-                $addToSet: { likers: req.body.id }
-            },
-            { new: true },
-            (err, docs) => {
-                if (err) res.status(400).send(err);
-                else return res.send(docs);
-            }
+        let post = await Post.findOne({_id: req.params.id})
+        post.likers.push(req.params.pid)
+
+        await Post.updateOne(
+            {_id: req.params.id},
+            { likers: post.likers},
+            { _id: req.params.id}
         )
-        User.findByIdAndUpdate(
-            req.body.id,
-            {
-                $addToSet: { likes: req.params.id }
-            },
-            { new: true },
-            (err) => {
-                if (err) return res.status(400).send(err);
-            }
-        )
+
+        return res.send({message: "Post liked"});        
     } catch (err) {
-        return res.status(402).send(err);
+        return res.status(500).send(err);
     }
 };
 // Dislike utilisateur
-exports.unlikePost = (req, res) => {
+exports.unlikePost = async (req, res) => {
     try {
-        Post.findByIdAndUpdate(
-            req.params.id,
-            {
-                $pull: { likers: req.body.id }
-            },
-            { new: true },
-            (err, docs) => {
-                if (err) res.status(400).send(err);
-                else return res.send(docs);
-            }
+        let post = await Post.findOne({_id: req.params.id})
+        post.likers = post.likers.filter(pid => pid != req.params.pid)
+
+        await Post.updateOne(
+            {_id: req.params.id},
+            { likers: post.likers},
+            { _id: req.params.id}
         )
-        User.findByIdAndUpdate(
-            req.body.id,
-            {
-                $pull: { likes: req.params.id }
-            },
-            { new: true },
-            (err) => {
-                if (err) return res.status(400).send(err);
-            }
-        )
+
+        return res.send({message: "Post liked"}); 
     } catch (err) {
-        return res.status(400).send(err);
+        return res.status(500).send(err);
     }
 };

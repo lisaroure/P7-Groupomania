@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { postService } from "../_services/post.service";
+import { accountService } from "../_services/account.service";
 import PostAdd from "../pages/Posts/PostAdd";
 import LikeButton from "../components/LikeButton";
 import Popup from "reactjs-popup";
@@ -33,7 +34,7 @@ const Home = () => {
   }, [])
 
   const updatePost = (postId) => {
-    navigate("/edit-post/" + postId)
+    navigate("/edit-post/"+postId)
   }
 
   const delPost = (postId) => {
@@ -53,7 +54,7 @@ const Home = () => {
         </div>
 
         <div className="create-post">
-          <PostAdd create={setPosts} />
+          <PostAdd marcel={setPosts}/>
         </div>
 
         <div className="fil">
@@ -76,8 +77,8 @@ const Home = () => {
               <p className="pinfos">
                 Posté le : {new Date(post.createdAt).toLocaleDateString("fr-FR")}
               </p>
-            </div>
-            {post.posterId !== userId ? <></> : (
+            </div>            
+            {post.posterId === accountService.getInfo().userId || accountService.getInfo().userId === accountService.getAdmin() ?  (
               <div className="updating">
                 <img onClick={() => updatePost(post._id)}
                   src={update}
@@ -98,23 +99,7 @@ const Home = () => {
                 )}
               </div>
 
-            )}
-
-            {post.posterId ? <></> : (
-              <div className="updating">
-                <img onClick={() => updatePost(post._id)}
-                  src={update}
-                  alt="Modifier"></img>
-
-                <img onClick={() => {
-                  if (window.confirm('Êtes vous sûr.e de vouloir supprimer ce post ?'))
-                    delPost(post._id)
-                }}
-                  src={trash}
-                  alt="Supprimer"
-                ></img>
-              </div>
-            )}
+            ): ''}
           </div>
 
 

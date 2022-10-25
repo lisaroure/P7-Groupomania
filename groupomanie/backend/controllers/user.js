@@ -130,7 +130,7 @@ exports.getUser = (req, res) => {
 
 //Afficher l'admin
 exports.getAdmin = (req, res) => {
-  if (req.params.id === req.user.adminId) {
+  if (req.params.id === req.auth.adminId) {
     AdminMdl.findOne({ _id: req.params.id }).select('pseudo')
       .then((admin) => res.status(200).json(admin))
       .catch(error => res.status(400).json({ error }));

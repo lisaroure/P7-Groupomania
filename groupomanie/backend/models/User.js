@@ -3,13 +3,11 @@ const uniqueValidator = require('mongoose-unique-validator');
 const { isEmail } = require('validator');
 
 const userSchema = new mongoose.Schema({
-
     pseudo: {
         type: String,
         unique: true,
         required: true
     },
-
     email: {
         type: String,
         validate: [isEmail],
@@ -17,17 +15,14 @@ const userSchema = new mongoose.Schema({
         unique: true,
         required: true
     },
-
     password: {
         type: String,
         required: true
     },
-
     likes: {
         type: [String]
     }
 },
-
     {
         timestamps: true,
     }
