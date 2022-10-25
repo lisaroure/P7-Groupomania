@@ -71,7 +71,7 @@ exports.login = (req, res) => {
                 token: jwt.sign(
                   { adminId: admin._id },
                   process.env.RANDOM_TOKEN_SECRET,
-                  { expiresIn: "24h" }
+                  { expiresIn: "1 hour" }
                 ),
               });
             }
@@ -130,7 +130,7 @@ exports.getUser = (req, res) => {
 
 //Afficher l'admin
 exports.getAdmin = (req, res) => {
-  if (req.params.id === req.auth.adminId) {
+  if (req.params.id === req.user.adminId) {
     AdminMdl.findOne({ _id: req.params.id }).select('pseudo')
       .then((admin) => res.status(200).json(admin))
       .catch(error => res.status(400).json({ error }));

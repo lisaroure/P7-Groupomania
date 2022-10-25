@@ -32,8 +32,6 @@ const LikeButton = ({ post }) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-
-
     return (
         <div className='like-container'>
             {/* {console.log(post.likers.includes(post.posterId))} */}

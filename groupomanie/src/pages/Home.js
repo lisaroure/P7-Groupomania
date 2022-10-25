@@ -32,14 +32,14 @@ const Home = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const updatePost = () => {
-    navigate("/edit-post")
+  const updatePost = (postId) => {
+    navigate("/edit-post/" + postId)
   }
 
   const delPost = (postId) => {
     console.log(postId);
     postService.delPost(postId)
-      .then(res => console.log(res.data))
+      .then(res => setPosts(current => current.filter(post => post._id !== postId)))
       .catch(err => console.log(err))
   }
 
@@ -53,7 +53,7 @@ const Home = () => {
         </div>
 
         <div className="create-post">
-          <PostAdd />
+          <PostAdd create={setPosts} />
         </div>
 
         <div className="fil">
@@ -77,9 +77,9 @@ const Home = () => {
                 Posté le : {new Date(post.createdAt).toLocaleDateString("fr-FR")}
               </p>
             </div>
-            {post.adminId ? <></> : (
+            {post.posterId !== userId ? <></> : (
               <div className="updating">
-                <img onClick={updatePost}
+                <img onClick={() => updatePost(post._id)}
                   src={update}
                   alt="Modifier"></img>
 
@@ -102,7 +102,7 @@ const Home = () => {
 
             {post.posterId ? <></> : (
               <div className="updating">
-                <img onClick={updatePost}
+                <img onClick={() => updatePost(post._id)}
                   src={update}
                   alt="Modifier"></img>
 

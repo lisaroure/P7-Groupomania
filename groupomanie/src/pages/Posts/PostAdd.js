@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { postService } from '../../_services/post.service';
 import img from "../../assets/image.svg";
 import write from "../../assets/pen.svg"
 import Popup from 'reactjs-popup';
 
-const PostAdd = () => {
+const PostAdd = ({ create }) => {
     const [text, setText] = useState([])
     const [image, setImage] = useState()
-    let navigate = useNavigate()
 
     // Handle modification dans le formulaire
     const onChange = (e) => {
@@ -28,7 +26,9 @@ const PostAdd = () => {
         formData.append('post', text);
 
         postService.createPost(formData)
-            .then(() => navigate('..'))
+            .then((res) => {
+                create(prev => [res.data.data, ...prev])
+            })
             .catch(err => console.log(err))
     }
 

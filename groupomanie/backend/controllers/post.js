@@ -6,9 +6,6 @@ const { postAddErrors } = require('../_utils/errors');
 
 // Créer une post
 exports.createPost = async (req, res) => {
-    //console.log(req.body)
-    //console.log(req.file)
-    //console.log(req.user)
     const { post } = req.body
     if (!post) {
         return res.status(400).json({ message: 'Missing data' })
@@ -33,7 +30,7 @@ exports.modifyPost = (req, res) => {
     if (req.file) {
         Post.findOne({ _id: req.params.id })
             .then(post => {
-                if (req.user.adminId || post.posterId === req.user.userId) {
+                if (req.user.adminId || post.posterId === req.user) {
                     // Supprime l'ancienne image
                     const filename = post.imageUrl.split('/images/')[1];
                     fs.unlink(`images/${filename}`, () => {
@@ -54,7 +51,7 @@ exports.modifyPost = (req, res) => {
         const postObject = { ...req.body };
         Post.findOne({ _id: req.params.id })
             .then(post => {
-                if (req.user.adminId || post.posterId === req.user.userId) {
+                if (req.user.adminId || post.posterId === req.user) {
                     Post.updateOne({ _id: req.params.id }, { ...postObject, _id: req.params.id })
                         .then(() => res.status(200).json({ message: 'Post modifié!' }))
                         .catch(error => res.status(401).json({ error }));
@@ -72,7 +69,7 @@ exports.modifyPost = (req, res) => {
 exports.deletePost = (req, res) => {
     Post.findOne({ _id: req.params.id })
         .then(post => {
-            if (req.user.adminId || post.posterId === req.user.userId) {
+            if (req.user.adminId || post.posterId === req.user) {
                 // Supprime l'image-+
                 const filename = post.imageUrl.split('/images/')[1];
                 fs.unlink(`images/${filename}`, () => {
@@ -91,7 +88,7 @@ exports.deletePost = (req, res) => {
 
 // Posts existants
 exports.getAllPosts = (req, res, next) => {
-    Post.find().sort({ post: +1 })
+    Post.find().sort({ createdAt: -1 })
         .then((posts) => res.status(200).json(posts))
         .catch(error => res.status(400).json({ error: error }))
 }

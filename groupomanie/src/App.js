@@ -26,7 +26,7 @@ const App = () => {
                     <Route path="profil" element={<Profil />} />
                     <Route path="edit/:uid" element={<UserEdit />} />
                     <Route path="add" element={<PostAdd />} />
-                    <Route path="edit-post" element={<PostEdit />} />
+                    <Route path="edit-post/id" element={<PostEdit />} />
                   </Routes>
                 </AuthGuard>
               }
