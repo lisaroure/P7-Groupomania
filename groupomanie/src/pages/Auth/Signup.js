@@ -38,7 +38,7 @@ const Signup = () => {
     <div className="sign">
       <img src={groupo} alt="logo de groupomania" width={150} />
       <form onSubmit={onSubmit}>
-        <img src={logo} alt="logo de groupomania" />
+        <img className="logo" src={logo} alt="logo de groupomania" />
         <h4>Inscription</h4>
         <div className="group">
           <label htmlFor="pseudo">Pseudo</label>

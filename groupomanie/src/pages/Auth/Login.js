@@ -38,7 +38,7 @@ const Login = () => {
       <img src={groupo} alt="logo de groupomania" width={150} />
       <h4>Connectez vous pour  accéder à votre compte et pour pouvoir publier !</h4>
       <form onSubmit={onSubmit}>
-        <img src={logo} alt="logo de Groupomania" />
+        <img className="logo" src={logo} alt="logo de Groupomania" />
         <h3>Connexion</h3>
         <div className="group">
           <label htmlFor="email">Adresse e-mail</label>

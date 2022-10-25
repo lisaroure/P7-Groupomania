@@ -1,7 +1,7 @@
 .public-header {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
 
   a {
     display: flex;
@@ -20,6 +20,8 @@
       display: flex;
       margin-left: 220px;
       li {
+        display: flex;
+        justify-content: center;
         margin-right: 55px;
         cursor: pointer;
         color: black;
@@ -30,7 +32,6 @@
         &:hover {
           border: none;
         }
-
         a {
           text-decoration: none;
           color: black;
@@ -40,7 +41,7 @@
   }
   .logout {
     width: 20px;
-    margin-bottom: 12px;
+    margin-top: 8px;
     cursor: pointer;
     transform: scale(1.0);
     transition: transform 400ms;

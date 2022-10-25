@@ -4,7 +4,7 @@ import img from "../../assets/image.svg";
 import write from "../../assets/pen.svg"
 import Popup from 'reactjs-popup';
 
-const PostAdd = ({marcel}) => {
+const PostAdd = ({ marcel }) => {
     const [text, setText] = useState([])
     const [image, setImage] = useState()
 
@@ -60,7 +60,7 @@ const PostAdd = ({marcel}) => {
 
                 </div>
                 <div className="group">
-                    <button>Ajouter</button>
+                    <button>Envoyer</button>
                 </div>
             </form>
         </div>

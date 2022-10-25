@@ -8,29 +8,20 @@
     align-items: center;
     justify-content: center;
 
-    h2 {
-      position: relative;
-      z-index: 1;
+    h1 {
       border-bottom: 1px solid red;
-      padding: 16px 44px 30px 30px;
+      padding: 0 24px 13px 29px;
     }
 
-    p {
-      position: relative;
-      z-index: 1;
-      padding-bottom: 50px;
-      border-top: 1px solid;
-      padding-top: 50px;
+    a {
+      text-decoration: none;
+      color: black;
 
-      a {
-        text-decoration: none;
-        color: black;
-
-        &:hover {
-          border-bottom: 1px solid;
-          padding-bottom: 5px;
-        }
+      &:hover {
+        border-bottom: 1px solid;
+        padding-bottom: 5px;
       }
+
     }
 
     img {
@@ -40,40 +31,40 @@
     }
   }
 }
+
+.news {
+  font-weight: 400;
+  border-bottom: 1px solid #4E5166;
+  box-shadow: 0px 63px 72px -24px #4e5166;
+  margin-top: 20px;
+  padding: 16px;
+}
+
 .fil {
   display: flex;
-    align-items: center;
-    margin: -17px 55px 95px 0;
-    border-bottom: 1px solid #4E5166;
-    width: 34em;
-    box-shadow: 0px 63px 72px -24px #4e5166;
-    img {
-      opacity: 0.7;
-      width: 25px;
-      padding-right: 25px;
-    }
-    h4 {
-      font-weight: 400;
-    }
+  flex-direction: column;
+  align-items: center;
 }
 
 .post-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 35px;
+  border-radius: 35px 35px 35px 0;
   padding: 20px;
-  margin-top: 20px;
-  border: 1px solid #ffd7d7;
-  width: 16em;
-
+  margin: 20px 0 20px 0;
+  border: 2px solid #ffd7d7;
+  width: 35em;
+  box-shadow: 7px 0px 46px -16px grey;
   .group {
     width: 46%;
   }
+
   p {
     font-size: 10px;
     margin-top: 60px;
   }
+
   img {
     width: 70%;
   }
@@ -83,46 +74,54 @@
     margin: 0;
   }
 
-  .post-infos{
+  .post-infos {
     display: flex;
     align-items: center;
     margin-top: 55px;
+
     .pinfos {
       margin: 0;
       padding-left: 35px;
     }
+
     img {
       width: 5%;
       padding-right: 5px;
     }
-  .like-container {
-    display: flex;
-    align-items: center;
-    img {
-      width: 18px;
-      padding-right: 5px;
-      cursor: pointer;
-      transform: scale(1.0);
-      transition: transform 300ms;
-      &:hover {
-        transform: scale(1.2);
+
+    .like-container {
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 18px;
+        padding-right: 5px;
+        cursor: pointer;
+        transform: scale(1.0);
+        transition: transform 300ms;
+
+        &:hover {
+          transform: scale(1.2);
+        }
+      }
+
+      span {
+        font-size: 11px;
       }
     }
-    span {
-      font-size: 11px;
-    }
-  }
   }
 
   .updating {
     display: flex;
     align-items: center;
+
     img {
       width: 15px;
       padding: 17px 12px 0 12px;
       transform: scale(1.0);
       transition: transform 400ms;
       cursor: pointer;
+
       &:hover {
         transform: scale(1.1);
       }
@@ -135,7 +134,8 @@
   flex-direction: column;
   align-items: center;
   margin-bottom: 10%;
-width: 52em;
+  width: 52em;
+
   form {
     display: flex;
     flex-direction: column;
@@ -143,45 +143,49 @@ width: 52em;
     margin-top: 55px;
     border: 1px solid gray;
     border-radius: 28px;
+
     .group {
       flex-direction: row;
     }
-      img {
-        width: 20px;
-        position: relative;
-        opacity: 0.7;
-        color: #4E5166;
-        margin: -5px 0 0 0;
-        padding: 0 25px 0 0;
-      }
-      label {
-        font-size: 12px;
-        margin: 10px 0 -9px 0;
-      }
 
-      textarea {
-        font-family: Lato, sans-serif;
-        border: 1px solid lightgray;
-        border-radius: 50px;
-        text-align: center;
-      }
-
-      input {
-        font-size: 10px;
-        text-align: center;
-        border-radius: 20px;
-        width: 83%;
-        height: 21px;
-        padding: 5px;
-        border: none;
-      }
+    img {
+      width: 20px;
+      position: relative;
+      opacity: 0.7;
+      color: #4E5166;
+      margin: -5px 0 0 0;
+      padding: 0 25px 0 0;
     }
-    button {
-      width: 10em;
+
+    label {
       font-size: 12px;
-      box-shadow: 2px 7px 15px -13px gray;
+      margin: 10px 0 -9px 0;
+    }
+
+    textarea {
+      font-family: Lato, sans-serif;
+      border: 1px solid lightgray;
+      border-radius: 50px;
+      text-align: center;
+    }
+
+    input {
+      font-size: 10px;
+      text-align: center;
+      border-radius: 20px;
+      width: 83%;
+      height: 21px;
+      padding: 5px;
+      border: none;
     }
   }
+
+  button {
+    width: 10em;
+    font-size: 12px;
+    box-shadow: 2px 7px 15px -13px gray;
+  }
+}
 
 
 // Keyframes

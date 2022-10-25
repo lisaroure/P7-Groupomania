@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { postService } from "../../_services/post.service";
 
+import "./post.scss"
+
 const PostEdit = () => {
   let navigate = useNavigate();
   const [text, setText] = useState([]);
@@ -45,16 +47,16 @@ const PostEdit = () => {
   }
 
   return (
-    <form onSubmit={onSubmit} >
+    <form className="form-edit" onSubmit={onSubmit} >
       <div className="group" >
-        <label htmlFor="post">Votre texte</label>
+        <label htmlFor="post">Modifiez votre texte</label>
         <textarea name="post" value={text} onChange={onChange}></textarea>
       </div>
 
       <div className="group">
-        <label htmlFor="image">Image</label>
+        <label htmlFor="image">Votre image</label>
         <input type="file" name="image" onChange={imageChange} />
-        <img src={image} alt="Post image" />
+        <img src={image} alt="Post pic" />
       </div>
       <div className="group">
         <button>Modifier</button>

@@ -9,7 +9,6 @@ import "./home.scss";
 import trash from "../assets/trash.svg";
 import update from "../assets/update.svg";
 import logo from "../assets/groupomania.jpg";
-import globe from "../assets/globe.svg";
 
 const Home = () => {
   let navigate = useNavigate()
@@ -47,53 +46,63 @@ const Home = () => {
 
         <div className="bienvenue">
           <img src={logo} alt="logo de groupomania" />
-          <h2>Bienvenue sur le réseau social de Groupomania !</h2>
+          <h1>Bienvenue sur le réseau social de Groupomania !</h1>
+        </div>
+        <h4 className="news">Fil d'actualité</h4>
+
+        <div className="fil">
+
+          {posts.map((post) => (
+            <div className="post-container" key={post._id}>
+
+              <div className="group">
+                {post.post}
+              </div>
+
+              <img
+                src={post.imageUrl}
+                alt="user-pic"
+              />
+
+              <div className="post-infos">
+
+                <LikeButton post={post} />
+
+                <p className="pinfos">
+                  Posté le : {new Date(post.createdAt).toLocaleDateString("fr-FR")}
+                </p>
+
+              </div>
+
+              {post.posterId === accountService.getInfo().userId || accountService.getInfo().userId === accountService.getAdmin() ? (
+                <div className="updating">
+
+                  <img onClick={() => updatePost(post._id)}
+                    src={update}
+                    alt="Modifier"
+                  ></img>
+
+                  <img onClick={() => {
+                    if (window.confirm('Êtes vous sûr.e de vouloir supprimer ce post ?'))
+                      delPost(post._id)
+                  }}
+                    src={trash}
+                    alt="Supprimer"
+                  ></img>
+
+                </div>
+
+              ) : ''}
+            </div>
+
+
+          ))}
         </div>
 
+        <h4 className="news">Quelles sont vos news ?</h4>
         <div className="create-post">
           <PostAdd marcel={setPosts} />
         </div>
-
-        <div className="fil">
-          <img src={globe} alt="globe" />
-          <h4>Fil d'actualité</h4>
-        </div>
-
-        {posts.map((post) => (
-          <div className="post-container" key={post._id}>
-            <div className="group">
-              {post.post}
-            </div>
-            <img
-              src={post.imageUrl}
-              alt="user-pic"
-            />
-            <div className="post-infos">
-              <LikeButton post={post} />
-              <p className="pinfos">
-                Posté le : {new Date(post.createdAt).toLocaleDateString("fr-FR")}
-              </p>
-            </div>
-            {post.posterId === accountService.getInfo().userId || accountService.getInfo().userId === accountService.getAdmin() ? (
-              <div className="updating">
-                <img onClick={() => updatePost(post._id)}
-                  src={update}
-                  alt="Modifier"></img>
-
-                <img onClick={() => {
-                  if (window.confirm('Êtes vous sûr.e de vouloir supprimer ce post ?'))
-                    delPost(post._id)
-                }}
-                  src={trash}
-                  alt="Supprimer"
-                ></img>
-              </div>
-
-            ) : ''}
-          </div>
-
-
-        ))}
 
       </div>
 
