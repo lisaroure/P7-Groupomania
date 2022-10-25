@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { postService } from "../_services/post.service";
 import PostAdd from "../pages/Posts/PostAdd";
 import LikeButton from "../components/LikeButton";
-import 
+import Popup from "reactjs-popup";
 
 import "./home.scss";
 
@@ -82,11 +82,21 @@ const Home = () => {
                   src={update}
                   alt="Modifier"></img>
 
-                <img onClick={() => delPost(post._id)}
+                <img onClick={() => {
+                  if (window.confirm('Êtes vous sûr.e de vouloir supprimer ce post ?'))
+                    delPost(post._id)
+                }}
                   src={trash}
                   alt="Supprimer"
                 ></img>
+                {post.adminId === null && (
+                  <Popup>
+                    <div>Vous n'avez pas les droits requis pour effectuer ceci.
+                      Connectez vous en tant qu'admin.</div>
+                  </Popup>
+                )}
               </div>
+
             )}
 
             {post.posterId ? <></> : (
@@ -95,7 +105,10 @@ const Home = () => {
                   src={update}
                   alt="Modifier"></img>
 
-                <img onClick={() => delPost(post._id)}
+                <img onClick={() => {
+                  if (window.confirm('Êtes vous sûr.e de vouloir supprimer ce post ?'))
+                    delPost(post._id)
+                }}
                   src={trash}
                   alt="Supprimer"
                 ></img>
