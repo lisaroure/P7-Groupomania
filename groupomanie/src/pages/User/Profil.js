@@ -68,7 +68,7 @@ const Profil = () => {
   return (
     <>
       <div className="profil-container">
-        {users.map(user => (
+        {users.data.map(user => (
           <div className="profil-card" key={user._id}>
 
             <h3>Votre profil {user.pseudo} ✨</h3>

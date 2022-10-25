@@ -6,7 +6,6 @@ import LikeButton from "../components/LikeButton";
 import Popup from "reactjs-popup";
 
 import "./home.scss";
-
 import trash from "../assets/trash.svg";
 import update from "../assets/update.svg";
 import logo from "../assets/groupomania.jpg";
@@ -30,6 +29,7 @@ const Home = () => {
 
     }
     return () => flag.current = true
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const updatePost = () => {
@@ -64,6 +64,7 @@ const Home = () => {
         {posts.map((post) => (
           <div className="post-container" key={post._id}>
             <div className="group">
+              <p>{post.pseudo} dit :</p>
               {post.post}
             </div>
             <img

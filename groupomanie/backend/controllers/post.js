@@ -2,6 +2,7 @@
 const fs = require('fs');
 const Post = require('../models/Post');
 const User = require('../models/User');
+const { postAddErrors } = require('../_utils/errors');
 
 // Créer une post
 exports.createPost = async (req, res) => {
@@ -23,7 +24,8 @@ exports.createPost = async (req, res) => {
         let data = await newPost.save()
         return res.json({ message: 'Post créé', data: data })
     } catch (err) {
-        return res.status(500).json({ message: 'DB error', error: err })
+        const errors = postAddErrors(err)
+        return res.status(500).json({ errors })
     }
 }
 // Modifier un post
