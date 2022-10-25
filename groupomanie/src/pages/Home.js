@@ -1,16 +1,17 @@
 import React, { useEffect, useRef, useState } from "react";
 import { postService } from "../_services/post.service";
-import { PAdd } from "../pages/Posts";
+import PostAdd from "../pages/Posts/PostAdd"
 import LikeButton from "../components/LikeButton";
 import "./home.scss";
 import logo from "../assets/groupomania.jpg";
 import globe from "../assets/globe.svg"
-
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  let navigate = useNavigate()
   const flag = useRef(false)
   const [posts, setPosts] = useState([])
-
+  const adminId = localStorage.getItem('adminId')
 
   useEffect(() => {
     if (flag.current === false) {
@@ -25,6 +26,17 @@ const Home = () => {
     return () => flag.current = true
   }, [])
 
+  const updatePost = () => {
+    navigate("/edit-post")
+  }
+
+  const delPost = (postId) => {
+    console.log(postId);
+    postService.delPost(postId)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err))
+  }
+
   return (
     <>
       <div className="home-container">
@@ -35,7 +47,7 @@ const Home = () => {
         </div>
 
         <div className="create-post">
-          <PAdd />
+          <PostAdd />
         </div>
 
         <div className="fil">
@@ -58,7 +70,22 @@ const Home = () => {
                 Posté le : {new Date(post.createdAt).toLocaleDateString("fr-FR")}
               </p>
             </div>
+            {adminId && (
+              <>
+                <button onClick={updatePost}>Modifier ce post</button>
+                <button onClick={() => delPost(post._id)}>Supprimer ce post</button>
+              </>
+            )}
+
+            {post.posterId && (
+              <>
+                <button onClick={updatePost}>Modifier ce post</button>
+                <button onClick={() => delPost(post._id)}>Supprimer ce post</button>
+              </>
+            )}
           </div>
+
+
         ))}
 
       </div>

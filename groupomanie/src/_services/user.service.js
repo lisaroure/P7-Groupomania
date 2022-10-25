@@ -10,6 +10,11 @@ let getUser = (uid) => {
 
 }
 
+let getAdmin = (admin) => {
+  console.log(admin._id);
+  Axios.get('/api/admin/' + admin._id)
+}
+
 let modifyUser = (user) => {
   return Axios.patch('/api/users/edit/' + user._id, user)
 }
@@ -19,5 +24,5 @@ let deleteUser = (uid) => {
 }
 
 export const userService = {
-  getAllUsers, getUser, modifyUser, deleteUser
+  getAllUsers, getUser, getAdmin, modifyUser, deleteUser
 };

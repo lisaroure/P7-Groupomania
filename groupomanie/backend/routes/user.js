@@ -10,12 +10,12 @@ router.post('/login', userCtrl.login);
 
 // User
 router.get('/users', auth, userCtrl.getAllUsers);
-router.get('/users/:id', userCtrl.getUser);
+router.get('/users/:id', auth, userCtrl.getUser);
 
 router.patch('/users/edit/:id', multer, auth, userCtrl.modifyUser);
 router.delete('/users/delete/:id', auth, userCtrl.deleteUser);
 
 // // Admin
-// router.get('/admin/:id', auth, userCtrl.getAdmin);
+router.get('/admin/:id', auth, userCtrl.getAdmin);
 
 module.exports = router;

@@ -5,24 +5,28 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const AdminMdl = require("../models/Admin");
 
+const Admin = {
+  pseudo: "Admin",
+  email: "admin@email.fr",
+  password: "coucouadmin"
+}
+
 //Créer un compte
 exports.signup = (req, res) => {
   console.log(req.body);
   if (
-    req.body.pseudo === AdminMdl.pseudo &&
-    req.body.email === AdminMdl.email &&
-    req.body.password === AdminMdl.password
+    req.body.pseudo === Admin.pseudo &&
+    req.body.email === Admin.email &&
+    req.body.password === Admin.password
   ) {
-    bcrypt
-      .hash(req.body.password, 10)
+    bcrypt.hash(req.body.password, 10)
       .then((hash) => {
         const admin = new AdminMdl({
-          pseudo: 'Admin',
-          email: 'admin@mail.fr',
-          password: 'adminmdp',
+          pseudo: 'req.body.pseudo',
+          email: 'req.body.email',
+          password: hash,
         });
-        admin
-          .save()
+        admin.save()
           .then(() => res.status(201).json({ message: "Admin created" }))
           .catch((err) => res.status(400).json({ err }));
       })
@@ -40,9 +44,8 @@ exports.signup = (req, res) => {
           email: req.body.email,
           password: hash,
         });
-        user
-          .save()
-          .then(() => res.status(201).json("User created"))
+        user.save()
+          .then(() => res.status(201).json({ message: "User created" }))
           .catch((err) => res.status(500).json({ err }));
       });
   }
@@ -51,19 +54,19 @@ exports.signup = (req, res) => {
 //Connexion
 exports.login = (req, res) => {
   if (
-    req.body.email === AdminMdl.email &&
-    req.body.password === AdminMdl.password
+    req.body.email === Admin.email &&
+    req.body.password === Admin.password
   ) {
     AdminMdl.findOne({ email: req.body.email })
       .then((admin) => {
         if (!admin) {
-          return res.status(401).json("Login ou mot de passe incorrect");
+          return res.status(401).json({ message: "Login ou mot de passe incorrect" });
         }
         bcrypt
           .compare(req.body.password, admin.password)
           .then((valid) => {
             if (!valid) {
-              return res.status(401).json("Login ou mot de passe incorrect");
+              return res.status(401).json({ message: "Login ou mot de passe incorrect" });
             } else {
               res.status(200).json({
                 adminId: admin._id,
@@ -127,7 +130,16 @@ exports.getUser = (req, res) => {
       res.status(400).json({ message: "Missing parameter", error: err }));
 }
 
-// Modifier un user (partie admin)
+//Afficher l'admin
+exports.getAdmin = (req, res) => {
+  if (req.params.id === req.auth.adminId) {
+    AdminMdl.findOne({ _id: req.params.id }).select('pseudo')
+      .then((admin) => res.status(200).json(admin))
+      .catch(error => res.status(400).json({ error }));
+  }
+}
+
+// Modifier un user 
 exports.modifyUser = async (req, res) => {
   if (req.file) {
 
@@ -167,11 +179,3 @@ exports.deleteUser = (req, res) => {
 }
 
 
-
-// exports.getAdmin = (req, res) => {
-//     if (req.params.id === req.auth.adminId) {
-//         AdminMdl.findOne({ _id: req.params.id }).select('pseudo')
-//             .then((admin) => res.status(200).json(admin))
-//             .catch(error => res.status(400).json({ error }));
-//     }
-// }
