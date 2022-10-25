@@ -65,6 +65,7 @@ exports.modifyPost = (req, res) => {
             });
     }
 };
+
 //Suppression d'un post
 exports.deletePost = (req, res) => {
     Post.findOne({ _id: req.params.id })
@@ -74,17 +75,18 @@ exports.deletePost = (req, res) => {
                 const filename = post.imageUrl.split('/images/')[1];
                 fs.unlink(`images/${filename}`, () => {
                     Post.deleteOne({ _id: req.params.id })
-                        .then(() => { res.status(200).json({ message: 'Post supprimée !' }) })
+                        .then(() => { res.status(200).json({ message: 'Post supprimé !' }) })
                         .catch(error => res.status(401).json({ error }));
                 });
             } else {
-                res.status(401).json({ message: 'Non autoriser' });
+                res.status(401).json({ message: 'Non autorisé' });
             }
         })
         .catch(error => {
-            res.status(500).json({ error });
+            res.status(500).json({ message: 'Erreur serveur', error });
         });
 };
+
 // Posts existants
 exports.getAllPosts = (req, res, next) => {
     Post.find().sort({ post: +1 })

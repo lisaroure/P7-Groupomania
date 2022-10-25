@@ -22,8 +22,8 @@ exports.signup = (req, res) => {
     bcrypt.hash(req.body.password, 10)
       .then((hash) => {
         const admin = new AdminMdl({
-          pseudo: 'req.body.pseudo',
-          email: 'req.body.email',
+          pseudo: req.body.pseudo,
+          email: req.body.email,
           password: hash,
         });
         admin.save()
@@ -32,12 +32,10 @@ exports.signup = (req, res) => {
       })
       .catch((err) => {
         console.log(err);
-        res.status(400).json({ err });
+        res.status(500).json({ err });
       });
   } else {
-    bcrypt
-      .hash(req.body.password, 10)
-
+    bcrypt.hash(req.body.password, 10)
       .then((hash) => {
         const user = new User({
           pseudo: req.body.pseudo,

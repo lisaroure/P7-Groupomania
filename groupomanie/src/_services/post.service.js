@@ -27,8 +27,8 @@ let unlikePost = (_id) => {
   return Axios.patch("/api/post/unlike/" + _id)
 }
 
-let delPost = (post) => {
-  return Axios.delete("/api/post/" + post._id, post)
+let delPost = (postId) => {
+  return Axios.delete("/api/post/" + postId)
 }
 
 export const postService = {

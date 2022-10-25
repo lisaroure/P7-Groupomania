@@ -113,6 +113,21 @@
     }
   }
   }
+
+  .updating {
+    display: flex;
+    align-items: center;
+    img {
+      width: 15px;
+      padding: 17px 12px 0 12px;
+      transform: scale(1.0);
+      transition: transform 400ms;
+      cursor: pointer;
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
 }
 
 .form-post {

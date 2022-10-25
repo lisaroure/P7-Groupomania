@@ -1,11 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { postService } from "../_services/post.service";
-import PostAdd from "../pages/Posts/PostAdd"
+import PostAdd from "../pages/Posts/PostAdd";
 import LikeButton from "../components/LikeButton";
 import "./home.scss";
+
+import trash from "../assets/trash.svg";
+import update from "../assets/update.svg";
 import logo from "../assets/groupomania.jpg";
-import globe from "../assets/globe.svg"
-import { useNavigate } from "react-router-dom";
+import globe from "../assets/globe.svg";
+
 
 const Home = () => {
   let navigate = useNavigate()
@@ -70,18 +74,30 @@ const Home = () => {
                 Posté le : {new Date(post.createdAt).toLocaleDateString("fr-FR")}
               </p>
             </div>
-            {adminId && (
-              <>
-                <button onClick={updatePost}>Modifier ce post</button>
-                <button onClick={() => delPost(post._id)}>Supprimer ce post</button>
-              </>
+            {adminId ? <></> : (
+              <div className="updating">
+                <img onClick={updatePost}
+                  src={update}
+                  alt="Modifier"></img>
+
+                <img onClick={() => delPost(post._id)}
+                  src={trash}
+                  alt="Supprimer"
+                ></img>
+              </div>
             )}
 
-            {post.posterId && (
-              <>
-                <button onClick={updatePost}>Modifier ce post</button>
-                <button onClick={() => delPost(post._id)}>Supprimer ce post</button>
-              </>
+            {post.posterId ? <></> : (
+              <div className="updating">
+                <img onClick={updatePost}
+                  src={update}
+                  alt="Modifier"></img>
+
+                <img onClick={() => delPost(post._id)}
+                  src={trash}
+                  alt="Supprimer"
+                ></img>
+              </div>
             )}
           </div>
 
