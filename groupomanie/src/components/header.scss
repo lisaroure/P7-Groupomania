@@ -1,7 +1,7 @@
 .public-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 
   a {
     display: flex;
@@ -38,12 +38,15 @@
       }
     }
   }
-
-  button {
-    width: auto;
-    box-shadow: 2px 7px 15px -13px gray;
-    font-weight: 700;
-    font-size: 12px;
+  .logout {
+    width: 20px;
     margin-bottom: 12px;
+    cursor: pointer;
+    transform: scale(1.0);
+    transition: transform 400ms;
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 }
+  // box-shadow: 2px 7px 15px -13px gray;

@@ -4,6 +4,7 @@ import logo from "../assets/logo.png";
 import { accountService } from "../_services/account.service";
 
 import "./header.scss";
+import deconnect from "../assets/logout.svg"
 
 const Header = () => {
 
@@ -30,7 +31,11 @@ const Header = () => {
             </li>
           </ul>
         </nav>
-        <button onClick={logout}>Se déconnecter</button>
+        <img className="logout"
+          src={deconnect}
+          alt="Se déconnecter"
+          onClick={logout}>
+        </img>
       </header>
     </>
   );
