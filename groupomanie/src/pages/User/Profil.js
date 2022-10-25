@@ -57,7 +57,6 @@ const Profil = () => {
       .catch((err) => console.log(err));
   };
 
-
   const delUser = (userId) => {
     console.log(userId);
     userService.deleteUser(userId)
@@ -108,17 +107,21 @@ const Profil = () => {
             <label htmlFor="email">Email</label>
             <div defaultValue={users.email} onChange={onChange}></div>
           </div>
+
           <div className="user-post">
             <label htmlFor="post">Modifier votre post</label>
             <textarea defaultValue={users.text} name="post" onChange={onChange}></textarea>
           </div>
+
           <div className="group">
             <label htmlFor="image">Image</label>
             <input type="file" name="image" onChange={imageChange} />
           </div>
+
           <div className="group">
             <button>Modifier</button>
           </div>
+
         </form>
       </ div>
     </>

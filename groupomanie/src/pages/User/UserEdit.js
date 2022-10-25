@@ -2,14 +2,12 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { userService } from "../../_services/user.service";
 
-
 const UserEdit = () => {
 
     let navigate = useNavigate();
     const [text, setText] = useState([]);
     const [image, setImage] = useState();
     const [users, setUsers] = useState([])
-
     const { uid } = useParams()
     const flag = useRef(false)
 
@@ -43,12 +41,9 @@ const UserEdit = () => {
                 })
                 .catch(err => console.log(err))
         }
-
         return () => flag.current = true
     })
 
-
-    // Form : regarder ce qui bug pour l'affichage
     return (
         <div className="UserEdit">
             {users.data.map((user) => (
