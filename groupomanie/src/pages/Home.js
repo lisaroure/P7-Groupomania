@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { postService } from "../_services/post.service";
 import PostAdd from "../pages/Posts/PostAdd";
 import LikeButton from "../components/LikeButton";
+import 
+
 import "./home.scss";
 
 import trash from "../assets/trash.svg";
@@ -15,7 +17,7 @@ const Home = () => {
   let navigate = useNavigate()
   const flag = useRef(false)
   const [posts, setPosts] = useState([])
-  const adminId = localStorage.getItem('adminId')
+  // const adminId = localStorage.getItem('adminId')
 
   useEffect(() => {
     if (flag.current === false) {
@@ -74,7 +76,7 @@ const Home = () => {
                 Posté le : {new Date(post.createdAt).toLocaleDateString("fr-FR")}
               </p>
             </div>
-            {adminId ? <></> : (
+            {post.adminId ? <></> : (
               <div className="updating">
                 <img onClick={updatePost}
                   src={update}
