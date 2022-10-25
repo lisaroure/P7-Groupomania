@@ -16,7 +16,6 @@ const LikeButton = ({ post }) => {
                 setTotal(current => current + 1)
             })
             .catch(err => console.log(err))
-
     }
 
     const unlike = () => {
@@ -30,8 +29,7 @@ const LikeButton = ({ post }) => {
 
     useEffect(() => {
         if (flag.current === false) {
-            // console.log(post._id);
-            console.log(post.likers.length)
+
             setTotal(post.likers.length)
             if (post.likers.length > 0) {
                 console.log('ici')
@@ -44,8 +42,6 @@ const LikeButton = ({ post }) => {
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
-
 
     return (
         <div className='like-container'>
