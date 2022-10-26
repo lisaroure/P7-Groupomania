@@ -83,7 +83,7 @@ const Home = () => {
                   ></img>
 
                   <img onClick={() => {
-                    if (window.confirm('Êtes vous sûr.e de vouloir supprimer ce post ?'))
+                    if (window.confirm('Êtes vous sûr(e) de vouloir supprimer ce post ?'))
                       delPost(post._id)
                   }}
                     src={trash}
