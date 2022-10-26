@@ -63,7 +63,7 @@ const Signup = () => {
         <div className="group">
           <label htmlFor="password">Mot de passe</label>
           <input
-            type="text"
+            type="password"
             name="password"
             placeholder="Votre mot de passe"
             value={credentials.password}
