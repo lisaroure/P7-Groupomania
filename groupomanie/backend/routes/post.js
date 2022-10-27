@@ -9,6 +9,7 @@ router.patch('/:id', auth, multer, postCtrl.modifyPost);
 router.get('/', auth, postCtrl.getAllPosts);
 router.get('/:id', auth, postCtrl.getPost);
 router.delete('/:id', auth, postCtrl.deletePost);
+
 router.patch('/like/:id/:pid', postCtrl.likePost);
 router.patch('/unlike/:id/:pid', auth, postCtrl.unlikePost);
 

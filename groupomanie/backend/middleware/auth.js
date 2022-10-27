@@ -30,7 +30,7 @@ const checkTokenMiddleware = (req, res, next) => {
         if (err) {
             return res.status(401).json({ message: 'Bad token' })
         }
-        req.user = decodedToken.userId || decodedToken.adminId
+        req.user = decodedToken.userId
 
         next()
     })

@@ -14,17 +14,17 @@ let createPost = (post) => {
   return Axios.post("/api/post", post);
 };
 
-let modifyPost = async (id, post) => {
-  const { data } = Axios.patch("/api/post/" + id, post);
-  return data
+let modifyPost = (_id, post) => {
+  return Axios.patch("/api/post/" + _id, post);
+
 };
 
 let likePost = (_id, posterId) => {
-  return Axios.patch("/api/post/like/" + _id+"/"+posterId)
+  return Axios.patch("/api/post/like/" + _id + "/" + posterId)
 }
 
 let unlikePost = (_id, posterId) => {
-  return Axios.patch("/api/post/unlike/" + _id+"/"+posterId)
+  return Axios.patch("/api/post/unlike/" + _id + "/" + posterId)
 }
 
 let delPost = (postId) => {
