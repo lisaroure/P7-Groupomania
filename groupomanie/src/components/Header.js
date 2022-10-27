@@ -12,7 +12,7 @@ const Header = () => {
 
   const logout = () => {
     accountService.logout()
-    navigate("/home")
+    navigate("/auth/login")
   }
 
   return (
