@@ -15,7 +15,4 @@ router.get('/users/:id', auth, userCtrl.getUser);
 router.patch('/users/edit/:id', multer, auth, userCtrl.modifyUser);
 router.delete('/users/delete/:id', auth, userCtrl.deleteUser);
 
-// Admin
-// router.get('/admin/:id', auth, userCtrl.getAdmin);
-
 module.exports = router;

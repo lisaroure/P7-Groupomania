@@ -30,7 +30,7 @@ exports.modifyPost = (req, res) => {
     if (req.file) {
         Post.findOne({ _id: req.params.id })
             .then(post => {
-                // if (req.user.adminId || post.posterId === req.user) {
+
                 // Supprime l'ancienne image
                 const filename = post.imageUrl.split('/images/')[1];
                 fs.unlink(`images/${filename}`, () => {
@@ -42,22 +42,15 @@ exports.modifyPost = (req, res) => {
                         .then(() => res.status(200).json({ message: 'Post modifié !' }))
                         .catch(err => res.status(400).json({ err }));
                 })
-                // } else {
-                //     res.status(401).json({ message: 'Not authorized' });
-                // }
             })
             .catch(error => res.status(500).json({ error }));
     } else {
         const postObject = { ...req.body };
         Post.findOne({ _id: req.params.id })
             .then(post => {
-                // if (req.user.adminId || post.posterId === req.user) {
                 Post.updateOne({ _id: req.params.id }, { ...postObject, _id: req.params.id })
                     .then(() => res.status(200).json({ message: 'Post modifié!' }))
                     .catch(error => res.status(401).json({ error }));
-                // } else {
-                //     res.status(401).json({ message: 'Not authorized' });
-                // }
             })
             .catch((error) => {
                 res.status(400).json({ error });
@@ -70,17 +63,13 @@ exports.deletePost = (req, res) => {
     console.log(req.user)
     Post.findOne({ _id: req.params.id })
         .then(post => {
-            // if (req.user.adminId || post.posterId === req.user) {
-            // Supprime l'image-+
+            // Supprime l'image
             const filename = post.imageUrl.split('/images/')[1];
             fs.unlink(`images/${filename}`, () => {
                 Post.deleteOne({ _id: req.params.id })
                     .then(() => { res.status(200).json({ message: 'Post supprimé !' }) })
                     .catch(error => res.status(401).json({ error }));
             });
-            // } else {
-            //     res.status(401).json({ message: 'Non autorisé' });
-            // }
         })
         .catch(error => {
             res.status(500).json({ message: 'Erreur serveur', error });
